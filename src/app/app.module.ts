@@ -9,8 +9,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SetupComponent } from './setup/setup.component';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { NavComponent } from './nav/nav.component';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -26,7 +25,8 @@ var config = {
   declarations: [
     AppComponent,
     routingComponents,
-    SetupComponent
+    SetupComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +36,6 @@ var config = {
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
-    MatStepperModule,
-    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule
   ],
