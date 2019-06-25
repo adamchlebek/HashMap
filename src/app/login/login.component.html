@@ -5,10 +5,10 @@
         <h2>Login</h2>
 
         <div class="form-group">
-            <input type="text" class="form-control" id="inputEmail" placeholder="Username">
+          <input type="text" class="form-control textbox" id="inputEmail" placeholder="Username">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            <input type="password" class="form-control textbox" id="inputPassword" placeholder="Password">
         </div>
 
         <button type="submit" class="btn btn-primary sign-in">Sign in</button>
@@ -18,7 +18,7 @@
         </div>
 
         <!-- user is an obvserable, need to subscribe to it with async -->
-        <div *ngIf="auth.user$ | async as user; else login"> 
+        <div *ngIf="auth.user$ | async as user; else login">
             {{ user | json }}
             <hr>
             <button class="button" (click)="auth.signOut()">Sign Out</button>
@@ -35,12 +35,13 @@
                     </span>
                 </button>
             </div>
-            
+
         </ng-template>
 
         <hr>
 
         <a href="/register">Register</a>
-
+        <br>
+        <a href="/setup">Dev</a>
     </form>
 </div>

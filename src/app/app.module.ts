@@ -3,11 +3,15 @@ import { NgModule }          from '@angular/core';
 import { AppRoutingModule, routingComponents }  from './app-routing.module';
 import { AppComponent }      from './app.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { SetupComponent } from './setup/setup.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -22,7 +26,8 @@ var config = {
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    SetupComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,12 @@ var config = {
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
-    AngularFireStorageModule // storage
+    AngularFireStorageModule, // storage
+    MatStepperModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

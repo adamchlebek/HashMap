@@ -1,1 +1,51 @@
-<p>register works!</p>
+
+<div class="login">
+  <div class="topbar"></div>
+  <form>
+      <h2>Register</h2>
+
+      <div class="form-group">
+          <input type="text" class="form-control textbox" id="inputEmail" placeholder="Username">
+      </div>
+
+      <div class="form-group">
+        <input type="email" class="form-control textbox" id="inputEmail" placeholder="Email">
+      </div>
+
+      <div class="form-group">
+          <input type="password" class="form-control textbox" id="inputPassword" placeholder="Password">
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="form-control textbox" id="inputPassword" placeholder="Retype Password">
+      </div>
+
+      <button type="submit" class="btn btn-primary sign-in">Register</button>
+
+      <!-- user is an obvserable, need to subscribe to it with async -->
+      <div *ngIf="auth.user$ | async as user; else login">
+          {{ user | json }}
+          <hr>
+          <button class="button" (click)="auth.signOut()">Sign Out</button>
+      </div>
+
+      <ng-template #login>
+          <div class="form-group">
+              <button type="button" (click)="auth.googleSignin()" class="google-button">
+                  <span class="google-button__icon">
+                      <img style="width: 100%; vertical-align: baseline" src="../../assets/images/g-normal.png"/>
+                  </span>
+                  <span class="google-button__text">
+                      Sign up with Google
+                  </span>
+              </button>
+          </div>
+
+      </ng-template>
+
+      <hr>
+
+      <a href="/login">Already have an account?</a>
+
+  </form>
+</div>
