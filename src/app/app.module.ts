@@ -1,5 +1,5 @@
 import { BrowserModule }     from '@angular/platform-browser';
-import { NgModule }          from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA }          from '@angular/core';
 import { AppRoutingModule, routingComponents }  from './app-routing.module';
 import { AppComponent }      from './app.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -11,7 +11,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SetupComponent } from './setup/setup.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -40,8 +39,7 @@ var config = {
     MatStepperModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
