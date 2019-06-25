@@ -25,10 +25,18 @@
         </div>
 
         <ng-template #login>
-                <button type="button" (click)="auth.googleSignin()" class="btn btn-info sign-in"><fa name="google"></fa>  Sign in with Google</button>
+            <div class="form-group">
+                <button type="button" (click)="auth.googleSignin()" class="google-button">
+                    <span class="google-button__icon">
+                        <img style="width: 100%; vertical-align: baseline" src="../../assets/images/g-normal.png"/>
+                    </span>
+                    <span class="google-button__text">
+                        Sign in with Google
+                    </span>
+                </button>
+            </div>
+            
         </ng-template>
-
-        
 
         <hr>
 
