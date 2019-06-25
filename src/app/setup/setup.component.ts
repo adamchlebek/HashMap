@@ -8,18 +8,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./setup.component.scss']
 })
 export class SetupComponent implements OnInit {
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  steamID: string;
+  invalid: boolean = true;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor() {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    this.steamID = "";
+    this.invalid = true;
+  }
+
+  checkSteamID(){
+    if (this.steamID.length != 17){
+      this.invalid = true;
+      console.log("Error!");
+    }else{
+
+      this.invalid = false;
+    }
   }
 }

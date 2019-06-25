@@ -9,9 +9,13 @@
       <div class="container">
 
         <div class="row">
+          <div class="col" [hidden]="invalid">
+              <svg id="checkmark-svg" class="run-animation" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.3 193.3"><circle class="cls-1 circle" cx="96.65" cy="96.65" r="94.15"/><polyline class="cls-1 checkmark" points="46.9 101.4 76.9 131.4 146.4 61.9"/></svg>
+          </div>
           <div class="col">
-            <label>Steam</label>
-            <input type="text" class="textbox" id="inputEmail" placeholder="Steam ID">
+            <label class="game-header">Steam</label>
+            <br>
+            <input type="text" class="textbox" id="steamID" placeholder="Steam ID" maxlength=17 (keyup)="checkSteamID()" (keydown)="checkSteamID()" (keypress)="checkSteamID()" [(ngModel)]="steamID">
           </div>
           <div class="col">
             <h2>OR</h2>
