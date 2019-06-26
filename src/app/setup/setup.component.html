@@ -3,9 +3,9 @@
     <div class="topbar"></div>
       <h2>Setup</h2>
 
-      <div class="container">
-        <label>Region</label>
-        <select >
+      <div class="form-group">
+        <label for="dllRegion">Region</label>
+        <select id="ddlRegion" class="form-control">
           <option value=""></option>
           <option *ngFor="let region of regions | async" [value]="region.id">
             {{region.name}}
@@ -13,9 +13,9 @@
         </select>
       </div>
 
-      <div class="container">
-        <label>Platform</label>
-        <select >
+      <div class="form-group">
+        <label for="ddlPlatform">Platform</label>
+        <select id="ddlPlatform" class="form-control">
           <option value=""></option>
           <option *ngFor="let platform of platforms | async" [value]="platform.id">
             {{platform.name}}
@@ -23,9 +23,9 @@
         </select>
       </div>
 
-      <div class="container">
-        <label>Communication Preference</label>
-        <select >
+      <div class="form-group">
+        <label for="ddlComms">Communication Preference</label>
+        <select id="ddlComms" class="form-control">
           <option value=""></option>
           <option *ngFor="let com of comms | async" [value]="comms.id">
             {{com.name}}
@@ -33,7 +33,7 @@
         </select>
       </div>
 
-      <div class="container">
+      <div class="form-group">
         <label>Available Day(s)</label>
         <div class="weekDays-selector">
             <input type="checkbox" id="weekday-mon" class="weekday" />
