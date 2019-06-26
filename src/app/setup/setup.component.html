@@ -4,7 +4,7 @@
       <h2>Setup</h2>
 
       <div class="container">
-        <label>Region </label>
+        <label>Region</label>
         <select >
           <option value=""></option>
           <option *ngFor="let region of regions | async" [value]="region.id">
@@ -13,6 +13,35 @@
         </select>
       </div>
 
+      <div class="container">
+        <label>Platform</label>
+        <select >
+          <option value=""></option>
+          <option *ngFor="let platform of platforms | async" [value]="platform.id">
+            {{platform.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="container">
+        <label>Communication Preference</label>
+        <select >
+          <option value=""></option>
+          <option *ngFor="let com of comms | async" [value]="comms.id">
+            {{com.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="container">
+        <label>Available Day(s)</label>
+        <select >
+          <option value=""></option>
+          <option *ngFor="let day of days | async" [value]="days.id">
+            {{day.name}}
+          </option>
+        </select>
+      </div>
       <!-- <h5>Link Accounts</h5>
       <hr>
 
