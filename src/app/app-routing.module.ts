@@ -18,10 +18,7 @@ const routes: Routes = [
     redirectTo: '/about',
     pathMatch: 'full'
   },
-  { path: 'profile',
-    redirectTo: '/about',
-    pathMatch: 'full'
-  },
+  { path: 'profile', component: SetupComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent }
 ];
 
