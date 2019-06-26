@@ -10,6 +10,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SetupComponent } from './setup/setup.component';
 import { NavComponent } from './nav/nav.component';
+import { AboutComponent } from './about/about.component';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -26,7 +27,8 @@ var config = {
     AppComponent,
     routingComponents,
     SetupComponent,
-    NavComponent
+    NavComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

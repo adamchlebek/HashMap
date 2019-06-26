@@ -91,6 +91,7 @@ span.label {
   font-family: serif;
   font-weight: normal;
 }
+
 span.icon {
   background: url('/src/assets/images/g-normal.png') transparent 5px 50% no-repeat;
   display: inline-block;
@@ -98,6 +99,7 @@ span.icon {
   width: 42px;
   height: 42px;
 }
+
 span.buttonText {
   display: inline-block;
   vertical-align: middle;
@@ -107,4 +109,12 @@ span.buttonText {
   font-weight: bold;
   /* Use the Roboto font that is loaded in the <head> */
   font-family: 'Roboto', sans-serif;
+}
+
+.centerCard{
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }

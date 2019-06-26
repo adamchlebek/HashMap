@@ -1,3 +1,4 @@
+import { AboutComponent } from './about/about.component';
 import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent }       from './login/login.component';
@@ -10,9 +11,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'setup', component: SetupComponent, canActivate: [AuthGuard] },
   { path: '',
-    redirectTo: '/login',
+    redirectTo: '/',
     pathMatch: 'full'
-  }
+  },
+  { path: '', component: AboutComponent }
 ];
 
 @NgModule({
