@@ -11,6 +11,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SetupComponent } from './setup/setup.component';
 import { NavComponent } from './nav/nav.component';
 import { AboutComponent } from './about/about.component';
+import { HttpClientModule } from '@angular/common/http';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -35,11 +36,12 @@ var config = {
     AppRoutingModule,
     AngularFontAwesomeModule,
     AngularFireModule.initializeApp(config),
-    AngularFirestoreModule, // firestore
-    AngularFireAuthModule, // auth
-    AngularFireStorageModule, // storage
+    AngularFirestoreModule,       // firestore
+    AngularFireAuthModule,        // auth
+    AngularFireStorageModule,     // storage
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
