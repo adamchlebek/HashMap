@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Region } from './models/region.model';
 import { Observable } from 'rxjs';
+import { SetupService } from './setup.service';
 
 @Component({
   selector: 'app-setup',
@@ -16,10 +16,9 @@ export class SetupComponent implements OnInit {
   firstFormGroup  : FormGroup;
   secondFormGroup : FormGroup;
 
-  regionCollection: AngularFirestoreCollection<Region>;
   regions: Observable<Region[]>;
 
-  constructor(private _formBuilder: FormBuilder, private afs: AngularFirestore) {}
+  constructor(private _formBuilder: FormBuilder, private api: SetupService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -29,8 +28,7 @@ export class SetupComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
 
-    this.regionCollection = this.afs.collection('regions');
-    this.regions          = this.regionCollection.valueChanges();
+    this.regions = this.api.getRegions();
 
   }
 

@@ -3,7 +3,16 @@
     <div class="topbar"></div>
       <h2>Setup</h2>
 
-      <h5>Link Accounts</h5>
+      <div class="container">
+        <label>Region </label>
+        <select>
+          <option *ngFor="let region of regions | async" [value]="region.id">
+            {{region.name}}
+          </option>
+        </select>
+      </div>
+
+      <!-- <h5>Link Accounts</h5>
       <hr>
 
       <div class="container">
@@ -22,10 +31,5 @@
         </div>
 
         <hr>
-
-        <div *ngFor="let region of regions | async">
-          <h3>{{region | json }}</h3>
-        </div>
-
-      </div>
+      </div> -->
 </div>
