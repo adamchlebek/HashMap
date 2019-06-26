@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,12 @@ export class PubgService {
   constructor(private http: HttpClient) { }
 
   getTest() {
-    var url : string = `${this.api}/shards/steam/players?filter`;
-    return this.http.get(url);
+    let headers = new HttpHeaders().set('Authorization', 'auth-token');
+    let params  = new HttpParams().set('userId', '21');
+
+    let url : string = `${this.api}/shards/steam/`;
+
+    return this.http.get(url, { headers, params } ); 
   }
 
 }

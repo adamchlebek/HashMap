@@ -23,6 +23,9 @@
 
         <hr>
 
+        <div *ngFor="let region of regions | async">
+          <h3>{{region | json }}</h3>
+        </div>
 
       </div>
 </div>
