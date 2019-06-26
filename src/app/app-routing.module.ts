@@ -11,10 +11,18 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'setup', component: SetupComponent, canActivate: [AuthGuard] },
   { path: '',
-    redirectTo: '/',
+    redirectTo: '/about',
     pathMatch: 'full'
   },
-  { path: '', component: AboutComponent }
+  { path: 'network',
+    redirectTo: '/about',
+    pathMatch: 'full'
+  },
+  { path: 'profile',
+    redirectTo: '/about',
+    pathMatch: 'full'
+  },
+  { path: 'about', component: AboutComponent }
 ];
 
 @NgModule({
@@ -22,4 +30,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, RegisterComponent]
+export const routingComponents = [LoginComponent, RegisterComponent, SetupComponent]

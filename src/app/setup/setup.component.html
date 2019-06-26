@@ -5,7 +5,8 @@
 
       <div class="container">
         <label>Region </label>
-        <select>
+        <select >
+          <option value=""></option>
           <option *ngFor="let region of regions | async" [value]="region.id">
             {{region.name}}
           </option>
