@@ -10,12 +10,19 @@
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Find Friends</a>
+            <a class="nav-link" href="/network">Network</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" href="/profile">Profile</a>
         </li>
     </ul>
+
+    <!-- user is an obvserable, need to subscribe to it with async -->
+    <div *ngIf="auth.user$ | async as user; else login">
+        {{ user | json }}
+        <hr>
+        <button class="btn btn-warning" (click)="auth.signOut()">Sign Out</button>
+    </div>
 
     <ng-template #login>
         <div class="form-group">
