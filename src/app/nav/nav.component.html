@@ -19,8 +19,10 @@
 
     <!-- user is an obvserable, need to subscribe to it with async -->
     <div *ngIf="auth.user$ | async as user; else login">
-        {{ user | json }}
-        <hr>
+        <label style="padding-right: 18px; color:white;">Hello {{ user.displayName }}</label>
+        <span class="" style="width: 10px; padding-right: 18px;">
+            <img style="width: 100%; vertical-align: baseline;" src="{{user.photoURL}}"/>
+        </span>     
         <button class="btn btn-warning" (click)="auth.signOut()">Sign Out</button>
     </div>
 
