@@ -2,63 +2,83 @@
 <div class="setup">
     <div class="topbar"></div>
       <h2>Setup</h2>
-
-      <div class="form-group">
-        <label for="dllRegion">Region</label>
-        <select id="ddlRegion" class="form-control">
-          <option value=""></option>
-          <option *ngFor="let region of regions | async" [value]="region.id">
-            {{region.name}}
-          </option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="ddlPlatform">Platform</label>
-        <select id="ddlPlatform" class="form-control">
-          <option value=""></option>
-          <option *ngFor="let platform of platforms | async" [value]="platform.id">
-            {{platform.name}}
-          </option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="ddlComms">Communication Preference</label>
-        <select id="ddlComms" class="form-control">
-          <option value=""></option>
-          <option *ngFor="let com of comms | async" [value]="comms.id">
-            {{com.name}}
-          </option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Available Day(s)</label>
-        <div class="weekDays-selector">
-            <input type="checkbox" id="weekday-mon" class="weekday" />
-            <label for="weekday-mon">Mon</label>
-            <input type="checkbox" id="weekday-tue" class="weekday" />
-            <label for="weekday-tue">Tue</label>
-            <input type="checkbox" id="weekday-wed" class="weekday" />
-            <label for="weekday-wed">Wed</label>
-            <input type="checkbox" id="weekday-thu" class="weekday" />
-            <label for="weekday-thu">Thu</label>
-            <input type="checkbox" id="weekday-fri" class="weekday" />
-            <label for="weekday-fri">Fri</label>
-            <input type="checkbox" id="weekday-sat" class="weekday" />
-            <label for="weekday-sat">Sat</label>
-            <input type="checkbox" id="weekday-sun" class="weekday" />
-            <label for="weekday-sun">Sun</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="maskedName">Display Name</label>
+            <input type="text" class="form-control" id="maskedName"/>
+            <small id="nameHelp" class="form-text text-muted">Name displayed on profile.</small>
           </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="dllRegion">Region</label>
+            <select id="ddlRegion" class="form-control">
+              <option value=""></option>
+              <option *ngFor="let region of regions | async" [value]="region.id">
+                {{region.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ddlPlatform">Platform</label>
+            <select id="ddlPlatform" class="form-control">
+              <option value=""></option>
+              <option *ngFor="let platform of platforms | async" [value]="platform.id">
+                {{platform.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ddlComms">Communication Preference</label>
+            <select id="ddlComms" class="form-control">
+              <option value=""></option>
+              <option *ngFor="let com of comms | async" [value]="comms.id">
+                {{com.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Available Day(s)</label>
+            <div class="weekDays-selector">
+                <input type="checkbox" id="weekday-mon" class="weekday" />
+                <label for="weekday-mon">Mon</label>
+                <input type="checkbox" id="weekday-tue" class="weekday" />
+                <label for="weekday-tue">Tue</label>
+                <input type="checkbox" id="weekday-wed" class="weekday" />
+                <label for="weekday-wed">Wed</label>
+                <input type="checkbox" id="weekday-thu" class="weekday" />
+                <label for="weekday-thu">Thu</label>
+                <input type="checkbox" id="weekday-fri" class="weekday" />
+                <label for="weekday-fri">Fri</label>
+                <input type="checkbox" id="weekday-sat" class="weekday" />
+                <label for="weekday-sat">Sat</label>
+                <input type="checkbox" id="weekday-sun" class="weekday" />
+                <label for="weekday-sun">Sun</label>
+              </div>
+          </div>
+        </div>
+      </div>
 
-        <select >
-          <option value=""></option>
-          <option *ngFor="let day of days | async" [value]="days.id">
-            {{day.name}}
-          </option>
-        </select>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea class="form-control" id="bio" rows="3"></textarea>
+          </div>
+        </div>
       </div>
       <!-- <h5>Link Accounts</h5>
       <hr>
