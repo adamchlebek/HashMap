@@ -20,7 +20,10 @@ export class SetupService {
   constructor(private afs: AngularFirestore, private http: HttpClient) { }
 
   public getRegions() {
-    this.regionCollection = this.afs.collection('regions');
+    this.regionCollection = this.afs.collection('regions', ref => {
+      return ref.orderBy('name', 'desc');
+      //return ref.where('id', '==', 2);
+    });
     return this.regionCollection.valueChanges();
   }
 
