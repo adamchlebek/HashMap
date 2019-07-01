@@ -42,14 +42,13 @@ export class SetupService {
   }
 
   public getSteamGameList() {
-    //let headers = new HttpHeaders().set('Authorization', 'auth-token');
+    let headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
     let params  = new HttpParams().set('key', 'FF9EF8B9781E5ECEB5EF98640452607A');
-    params = params.append('format','json');
+    params      = params.append('format','json');
 
     let url : string = `${this.api}/ISteamApps/GetAppList/v0002/`;
 
-    //return this.http.get(url, { headers, params } ); 
-    return this.http.get(url, { params });
+    return this.http.get(url, { headers, params });
   }
   
 }
