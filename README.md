@@ -30,11 +30,11 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 | Languages  | Framework/Plugins and Tools |
 | ------     | ------ |
 | Typescript | Angular                       |
-| SQL        | Protractor End-to-End Testing |
+| FireStore  | Protractor End-to-End Testing |
 | HTML       | Jasime Karma                  |
-| CSS        | Microsft SQL Server Managment |
-| C#         | Web API                       |
-| JavaScript | Visual Studio Code            |
+| CSS        | Firebase                      |
+| JavaScript | Web API                       |
+|            | Visual Studio Code            |
 
 ## License
  This project is licensed under the MIT License. See [MIT License](LICENSE.md) files for details
