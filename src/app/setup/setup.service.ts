@@ -51,7 +51,7 @@ export class SetupService {
 
     let url : string = `${this.api}/ISteamApps/GetAppList/v0002/`;
 
-    return this.http.get("https://hashmapwebapi20190701031620.azurewebsites.net/api/games", { headers, params });
+    return this.http.get("https://hashmapwebapi20190701031620.azurewebsites.net/api/games");
   }
 
 }
