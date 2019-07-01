@@ -18,7 +18,7 @@ export class SetupService {
   platformCollection : AngularFirestoreCollection<Platform>;
   daysCollection     : AngularFirestoreCollection<Day>;
   commsCollection    : AngularFirestoreCollection<CommunicationPlatform>;
-  
+
   constructor(private afs: AngularFirestore, private http: HttpClient) { }
 
   public getRegions() {
@@ -42,13 +42,16 @@ export class SetupService {
   }
 
   public getSteamGameList() {
-    let headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
+    let headers = new HttpHeaders().set('Content-Type', 'text/plain');
+
+    //headers = headers.append('Access-Control-Allow-Origin', '*');
+
     let params  = new HttpParams().set('key', 'FF9EF8B9781E5ECEB5EF98640452607A');
     params      = params.append('format','json');
 
     let url : string = `${this.api}/ISteamApps/GetAppList/v0002/`;
 
-    return this.http.get(url, { headers, params });
+    return this.http.get("https://hashmapwebapi20190701031620.azurewebsites.net/api/games", { headers, params });
   }
-  
+
 }
