@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore'
 import { Region } from './models/region.model';
@@ -12,14 +11,12 @@ import { CommunicationPlatform } from './models/communication-platform.model';
 })
 export class SetupService {
 
-  readonly api = 'http://api.steampowered.com';
-
   regionCollection   : AngularFirestoreCollection<Region>;
   platformCollection : AngularFirestoreCollection<Platform>;
   daysCollection     : AngularFirestoreCollection<Day>;
   commsCollection    : AngularFirestoreCollection<CommunicationPlatform>;
 
-  constructor(private afs: AngularFirestore, private http: HttpClient) { }
+  constructor(private afs: AngularFirestore) { }
 
   public getRegions() {
     this.regionCollection = this.afs.collection('regions');
@@ -39,19 +36,6 @@ export class SetupService {
   public getComms() {
     this.commsCollection = this.afs.collection('communicationPlatform');
     return this.commsCollection.valueChanges();
-  }
-
-  public getSteamGameList() {
-    let headers = new HttpHeaders().set('Content-Type', 'text/plain');
-
-    //headers = headers.append('Access-Control-Allow-Origin', '*');
-
-    let params  = new HttpParams().set('key', 'FF9EF8B9781E5ECEB5EF98640452607A');
-    params      = params.append('format','json');
-
-    let url : string = `${this.api}/ISteamApps/GetAppList/v0002/`;
-
-    return this.http.get("https://hashmapwebapi20190701031620.azurewebsites.net/api/games", { headers, params });
   }
 
 }
