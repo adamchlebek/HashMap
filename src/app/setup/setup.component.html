@@ -1,5 +1,5 @@
-
-<div class="setup">
+<form>
+  <div class="setup">
     <div class="topbar"></div>
       <h2>Profile Setup</h2>
       <div class="row">
@@ -39,6 +39,20 @@
           <div class="form-group">
             <label for="ddlComms">Communication Preference</label>
             <select id="ddlComms" class="form-control">
+              <option value=""></option>
+              <option *ngFor="let com of comms | async" [value]="comms.id">
+                {{com.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="dllSteamGames">Steam Games</label>
+            <select id="ddlSteamGames" class="form-control">
               <option value=""></option>
               <option *ngFor="let com of comms | async" [value]="comms.id">
                 {{com.name}}
@@ -104,4 +118,6 @@
 
         <hr>
       </div> -->
-</div>
+  </div>
+</form>
+

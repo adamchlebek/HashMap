@@ -30,6 +30,10 @@ export class SetupComponent implements OnInit {
     // this.steamID = "";
     // this.invalid = true;
     this.getDropdowns();
+    this.api.getSteamGameList().subscribe(games =>
+    {
+      console.log(games);
+    });
   }
 
   checkSteamID(){
