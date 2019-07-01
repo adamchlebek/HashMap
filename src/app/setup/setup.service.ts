@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore'
 import { Region } from './models/region.model';
@@ -12,14 +11,12 @@ import { CommunicationPlatform } from './models/communication-platform.model';
 })
 export class SetupService {
 
-  readonly api = 'http://api.steampowered.com';
-
   regionCollection   : AngularFirestoreCollection<Region>;
   platformCollection : AngularFirestoreCollection<Platform>;
   daysCollection     : AngularFirestoreCollection<Day>;
   commsCollection    : AngularFirestoreCollection<CommunicationPlatform>;
 
-  constructor(private afs: AngularFirestore, private http: HttpClient) { }
+  constructor(private afs: AngularFirestore) { }
 
   public getRegions() {
     this.regionCollection = this.afs.collection('regions');
@@ -41,8 +38,11 @@ export class SetupService {
     return this.commsCollection.valueChanges();
   }
 
+<<<<<<< HEAD
   public getSteamGameList() {
     return this.http.get("https://hashmapwebapi20190701031620.azurewebsites.net/api/games");
   }
 
+=======
+>>>>>>> e9d8459dcdcdbcaf6278ff56ddeaed28d88d0d3a
 }
