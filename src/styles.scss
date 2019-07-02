@@ -13,6 +13,10 @@ h2{
   text-align: center;
 }
 
+.whitetext{
+  color: white;
+}
+
 .game-header{
   font-size: large;
   color: gray;
@@ -91,6 +95,78 @@ h2{
   white-space: nowrap;
 }
 
+.color-palette{
+
+  div .color{
+    width: 90px;
+    height: 90px;
+    left: 34%;
+    position: relative;
+    margin: 6px;
+    padding: 10px;
+  }
+
+  .light{
+   .cold8dee9{
+    background-color: #d8dee9;
+   }
+   .cole5e9f0{
+    background-color: #e5e9f0;
+   }
+   .coleceef4{
+    background-color: #eceef4;
+   }
+
+  }
+
+  .dark{
+    :not(h3) {
+      color: white;
+    }
+    .col2e3440{
+      background-color: #2e3440;
+    }
+    .col3b4252{
+      background-color: #3b4252;
+    }
+    .col434c5e{
+      background-color: #434c5e;
+    }
+    .col4c566a{
+      background-color: #4c566a;
+    }
+    .col8fbcbb{
+      background-color: #8fbcbb;
+    }
+    .col88c0d0{
+      background-color: #88c0d0;
+    }
+    .col81a1c1{
+      background-color: #81a1c1;
+    }
+    .col5e81ac{
+      background-color: #5e81ac;
+    }
+    .colbf616a{
+      background-color: #bf616a;
+    }
+    .cold08770{
+      background-color: #d08770;
+    }
+    .colebcb8b{
+      background-color: #ebcb8b;
+    }
+    .cola3be8c{
+      background-color: #a3be8c;
+    }
+    .colb48ead{
+      background-color: #b48ead;
+    }
+  }
+}
+
+
+
 #customBtn:hover {
   cursor: pointer;
 }
@@ -123,6 +199,10 @@ span.buttonText {
   padding: 0;
   margin-bottom: 15px;
   margin-top: 15px;
+}
+
+.color-palette{
+  text-align: center;
 }
 
 .header-card{
