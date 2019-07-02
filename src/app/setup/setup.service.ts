@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore'
@@ -16,7 +17,7 @@ export class SetupService {
   daysCollection     : AngularFirestoreCollection<Day>;
   commsCollection    : AngularFirestoreCollection<CommunicationPlatform>;
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private http: HttpClient) { }
 
   public getRegions() {
     this.regionCollection = this.afs.collection('regions');
@@ -38,11 +39,8 @@ export class SetupService {
     return this.commsCollection.valueChanges();
   }
 
-<<<<<<< HEAD
   public getSteamGameList() {
     return this.http.get("https://hashmapwebapi20190701031620.azurewebsites.net/api/games");
   }
 
-=======
->>>>>>> e9d8459dcdcdbcaf6278ff56ddeaed28d88d0d3a
 }
