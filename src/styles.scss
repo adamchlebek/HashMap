@@ -1,272 +1,243 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Stylish&display=swap');
-
 body{
-  font-family: 'Roboto Slab', serif;
-  background: #d8dee9;  /* fallback for old browsers */
-  background: -webkit-gradient(linear, left top, left bottom, from(#8fbcbb), to(#5e81ac)) fixed;  /* Chrome 10-25, Safari 5.1-6 */
+	font-family: 'Roboto Slab', serif;
+	background: #d8dee9;
+	/* fallback for old browsers */
+	background: -webkit-gradient(linear, left top, left bottom, from(#8fbcbb), to(#5e81ac)) fixed;
+	/* Chrome 10-25, Safari 5.1-6 */
 }
-
 h2{
-  padding: 10px;
-  text-align: center;
+	padding: 10px;
+	text-align: center;
 }
-
 .whitetext{
-  color: white;
+	color: white;
 }
-
 .game-header{
-  font-size: large;
-  color: gray;
+	font-size: large;
+	color: gray;
 }
-
 .center{
-  position: fixed;
-  top: 45%;
-  left: 45%;
-  margin-top: -150px;
-  margin-left: -150px;
+	position: fixed;
+	top: 45%;
+	left: 45%;
+	margin-top: -150px;
+	margin-left: -150px;
 }
-
 .topbar{
-  background-color:darkblue;
-
-  width: 100%;
-  height: 10px;
+	background-color:darkblue;
+	width: 100%;
+	height: 10px;
 }
-
 .steam{
-  float: left;
+	float: left;
 }
-
 .textbox{
-  border: 0;
-  outline: 0;
-  background: transparent;
-  border-bottom: 2px solid rgb(88, 88, 88);
+	border: 0;
+	outline: 0;
+	background: transparent;
+	border-bottom: 2px solid rgb(88, 88, 88);
 }
-
 .setup{
-  position: fixed;
-  top: 45%;
-  left: 35%;
-  margin-top: -200px;
-  margin-left: -150px;
-  border-style: solid;
-  border-radius: 5px;
-  padding: 50px;
-  padding-top: 0px;
-  background: rgb(245, 245, 245);
-  width: 50%;
+	position: fixed;
+	top: 45%;
+	left: 35%;
+	margin-top: -200px;
+	margin-left: -150px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 50px;
+	padding-top: 0px;
+	background: rgb(245, 245, 245);
+	width: 50%;
 }
-
 .login{
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  margin-top: -200px;
-  margin-left: -150px;
-  border-style: solid;
-  border-radius: 5px;
-  padding: 50px;
-  padding-top: 0px;
-  background: rgb(245, 245, 245);
+	position: fixed;
+	top: 45%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -150px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 50px;
+	padding-top: 0px;
+	background: rgb(245, 245, 245);
 }
-
 .login label{
-  color: black;
+	color: black;
 }
-
 .sign-in{
-  width: 100%;
-  margin: 15px 0px;
+	width: 100%;
+	margin: 15px 0px;
 }
-
 #customBtn {
-  display: inline-block;
-  background: white;
-  color: #444;
-  width: 190px;
-  border-radius: 5px;
-  border: thin solid #888;
-  box-shadow: 1px 1px 1px grey;
-  white-space: nowrap;
+	display: inline-block;
+	background: white;
+	color: #444;
+	width: 190px;
+	border-radius: 5px;
+	border: thin solid #888;
+	box-shadow: 1px 1px 1px grey;
+	white-space: nowrap;
 }
-
 .color-palette{
-
-  div .color{
-    width: 90px;
-    height: 90px;
-    left: 34%;
-    position: relative;
-    margin: 6px;
-    padding: 10px;
-  }
-
-  .light{
-   .cold8dee9{
-    background-color: #d8dee9;
-   }
-   .cole5e9f0{
-    background-color: #e5e9f0;
-   }
-   .coleceef4{
-    background-color: #eceef4;
-   }
-
-  }
-
-  .dark{
-    :not(h3) {
-      color: white;
-    }
-    .col2e3440{
-      background-color: #2e3440;
-    }
-    .col3b4252{
-      background-color: #3b4252;
-    }
-    .col434c5e{
-      background-color: #434c5e;
-    }
-    .col4c566a{
-      background-color: #4c566a;
-    }
-    .col8fbcbb{
-      background-color: #8fbcbb;
-    }
-    .col88c0d0{
-      background-color: #88c0d0;
-    }
-    .col81a1c1{
-      background-color: #81a1c1;
-    }
-    .col5e81ac{
-      background-color: #5e81ac;
-    }
-    .colbf616a{
-      background-color: #bf616a;
-    }
-    .cold08770{
-      background-color: #d08770;
-    }
-    .colebcb8b{
-      background-color: #ebcb8b;
-    }
-    .cola3be8c{
-      background-color: #a3be8c;
-    }
-    .colb48ead{
-      background-color: #b48ead;
-    }
-  }
+	div .color{
+		width: 90px;
+		height: 90px;
+		left: 34%;
+		position: relative;
+		margin: 6px;
+		padding: 10px;
+	}
+	.light{
+		.cold8dee9{
+			background-color: #d8dee9;
+		}
+		.cole5e9f0{
+			background-color: #e5e9f0;
+		}
+		.coleceef4{
+			background-color: #eceef4;
+		}
+	}
+	.dark{
+		:not(h3) {
+			color: white;
+		}
+		.col2e3440{
+			background-color: #2e3440;
+		}
+		.col3b4252{
+			background-color: #3b4252;
+		}
+		.col434c5e{
+			background-color: #434c5e;
+		}
+		.col4c566a{
+			background-color: #4c566a;
+		}
+		.col8fbcbb{
+			background-color: #8fbcbb;
+		}
+		.col88c0d0{
+			background-color: #88c0d0;
+		}
+		.col81a1c1{
+			background-color: #81a1c1;
+		}
+		.col5e81ac{
+			background-color: #5e81ac;
+		}
+		.colbf616a{
+			background-color: #bf616a;
+		}
+		.cold08770{
+			background-color: #d08770;
+		}
+		.colebcb8b{
+			background-color: #ebcb8b;
+		}
+		.cola3be8c{
+			background-color: #a3be8c;
+		}
+		.colb48ead{
+			background-color: #b48ead;
+		}
+	}
 }
-
-
-
 #customBtn:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 span.label {
-  font-family: serif;
-  font-weight: normal;
+	font-family: serif;
+	font-weight: normal;
 }
-
 span.icon {
-  background: url('/src/assets/images/g-normal.png') transparent 5px 50% no-repeat;
-  display: inline-block;
-  vertical-align: middle;
-  width: 42px;
-  height: 42px;
+	background: url('/src/assets/images/g-normal.png') transparent 5px 50% no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	width: 42px;
+	height: 42px;
 }
-
 span.buttonText {
-  display: inline-block;
-  vertical-align: middle;
-  padding-left: 0px;
-  padding-right: 42px;
-  font-size: 14px;
-  font-weight: bold;
-  /* Use the Roboto font that is loaded in the <head> */
-  font-family: 'Roboto', sans-serif;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 0px;
+	padding-right: 42px;
+	font-size: 14px;
+	font-weight: bold;
+	/* Use the Roboto font that is loaded in the <head> */
+	font-family: 'Roboto', sans-serif;
 }
-
 .centerCard{
-  margin: auto;
-  padding: 0;
-  margin-bottom: 15px;
-  margin-top: 15px;
+	margin: auto;
+	padding: 0;
+	margin-bottom: 15px;
+	margin-top: 15px;
 }
-
 .color-palette{
-  text-align: center;
+	text-align: center;
 }
-
 .header-card{
-  width: 100%;
-  height: 80%;
-  background: #8360c3;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #2ebf91, #8360c3);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: white;
-  text-align: center;
-
-  h1{
-    margin: 35px;
-    font-family: 'Stylish', sans-serif;
-    font-size: 6em;
-  }
-
-  p{
-    font-size: 1.5em;
-  }
-
-  .btn{
-    margin: 80px 0;
-    font-size: 1em;
-  }
+	width: 100%;
+	height: 80%;
+	background: #8360c3;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, #5e81ac, #8fbcbb);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to bottom, #5e81ac, #8fbcbb);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	color: white;
+	text-align: center;
+	h1{
+		margin: 35px;
+		font-family: 'Stylish', sans-serif;
+		font-size: 6em;
+	}
+	p{
+		font-size: 1.5em;
+	}
+	.btn{
+		margin: 80px 0;
+		font-size: 1em;
+	}
 }
-
 .header-body{
-  margin: 20px;
-  padding-bottom: 15px;
-
-  h2{
-    text-align: center;
-    text-decoration: underline overline;
-    padding: 20px;
-  }
-
-  h6{
-    text-align: center;
-    margin: 10px;
-  }
-
-  hr{
-    margin: 30px;
-  }
-
-  .subheader{
-    text-align: center;
-    margin: 0px 200px;
-    font-style: italic;
-  }
-
-  .card{
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
-    width: 18rem;
-    height: 17rem;
-    box-shadow: 5px 5px 15px -2px #503a79;
-  }
-
-  .table{
-    margin: 0 auto;
-    width: 50%;
-    text-align: center;
-  }
+	margin: 20px;
+	padding-bottom: 15px;
+	h2{
+		text-align: center;
+		text-decoration: underline overline;
+		padding: 20px;
+	}
+	h6{
+		text-align: center;
+		margin: 10px;
+	}
+	hr{
+		margin: 30px;
+	}
+	.subheader{
+		text-align: center;
+		margin: 0px 200px;
+		font-style: italic;
+	}
+	.card{
+		margin: 0 auto;
+		/* Added */
+		float: none;
+		/* Added */
+		margin-bottom: 10px;
+		/* Added */
+		width: 18rem;
+		height: 17rem;
+		box-shadow: 5px 5px 15px -2px #503a79;
+	}
+	.table{
+		margin: 0 auto;
+		width: 50%;
+		text-align: center;
+	}
 }

@@ -42,5 +42,4 @@ export class SetupService {
   public getSteamGameList() {
     return this.http.get("https://hashmapwebapi20190701031620.azurewebsites.net/api/games");
   }
-
 }
