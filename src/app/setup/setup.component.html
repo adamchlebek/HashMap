@@ -64,6 +64,39 @@
 
       <div class="row">
         <div class="col-md-12">
+          <!-- <div class="form-group"> -->
+            <mat-form-field>
+              <mat-chip-list #gameList aria-label="Game Selection">
+                <mat-chip 
+                  *ngFor="let game of games"
+                  [selectable]="selectable"
+                  [removable]="removeable"
+                  (removed)="remove(game)">
+                  {{game.name}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input
+                  placeholder="Add game..."
+                  #gameInput
+                  [formControl]="gameCtrl"
+                  [matAutocomplete]="auto"
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)">
+              </mat-chip-list>
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let game of filteredGames | async" [value]="game.id">
+                  {{game.name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
           <div class="form-group">
             <label>Available Day(s)</label>
             <div class="weekDays-selector">

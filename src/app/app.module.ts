@@ -12,6 +12,7 @@ import { SetupComponent } from './setup/setup.component';
 import { NavComponent } from './nav/nav.component';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatChipsModule, MatIconModule, MatAutocompleteModule, MatFormFieldModule } from '@angular/material';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -41,7 +42,11 @@ var config = {
     AngularFireStorageModule,     // storage
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
