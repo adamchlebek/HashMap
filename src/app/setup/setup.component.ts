@@ -16,6 +16,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { app } from './models/app.model';
 import { startWith, map } from 'rxjs/operators';
 import * as _ from "lodash";
+import { Profile } from './models/profile.model';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-setup',
@@ -46,9 +48,17 @@ export class SetupComponent implements OnInit {
   platforms  : Observable<Platform[]>;
   days       : Observable<Day[]>;
   comms      : Observable<CommunicationPlatform[]>;
+  profile    : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", steamApps: null};
 
-  constructor(private _formBuilder: FormBuilder, private api: SetupService, private steamApi: SteamApiService) 
-  { }
+  private uid : string;
+
+  constructor(private api: SetupService, private auth: AuthService) { 
+    this.auth.user$.subscribe(u => {
+      this.uid         = u.uid;
+      this.profile.uid = this.uid;
+      this.getProfile();
+    })
+  }
 
   ngOnInit() {
     this.getDropdowns();
@@ -63,18 +73,40 @@ export class SetupComponent implements OnInit {
     }
   }
 
+  getProfile() {
+    // prof is a DocumentData, typing as any to get past typescript mismatch issue
+    this.api.getProfile(this.uid).subscribe((prof : any) => {
+      if(prof.exists) {
+        this.profile = prof.data();
+        let sa       = this.steamApps;
+        let ssa      = [];
+        _.forEach(this.profile.steamApps, function(key) 
+        {
+          ssa.push(_.find(sa, ['appid', key]));
+        });
+        this.selectedApps = ssa;
+      } else {
+          // doc.data() will be undefined in this case
+        };
+      });
+  }
+
   getDropdowns() {
     this.api.getFireSteamGameList().subscribe((sapp) => {
       this.steamApps = sapp;
       this.filteredApps = this.appCtrl.valueChanges.pipe(
         startWith(null),
         map((steamApp: app | null) => steamApp ? this._filter(steamApp) : this.steamApps.slice()));
-      console.dir(this.steamApps);
     });
     this.regions   = this.api.getRegions();
     this.platforms = this.api.getPlatforms();
     this.days      = this.api.getDays();
     this.comms     = this.api.getComms();
+  }
+
+  save() {
+    this.profile.steamApps = _.map(this.selectedApps, 'appid');
+    this.api.saveProfile(this.profile);
   }
 
   add(event: MatChipInputEvent): void {
@@ -111,7 +143,7 @@ export class SetupComponent implements OnInit {
   }
 
   public createFilterFor(query:string) {
-    var lowerCaseQuery = query;
+    var lowerCaseQuery = query.toLowerCase();
 
     return function filterFn(app) {
       return (app.name.toLowerCase().indexOf(lowerCaseQuery) === 0)
