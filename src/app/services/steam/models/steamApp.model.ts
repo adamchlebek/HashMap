@@ -1,4 +1,5 @@
 export interface SteamApp {
-    appid : number,
-    name  : string
+    appid     : number,
+    developer : string,
+    name      : string
 }

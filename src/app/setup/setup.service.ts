@@ -6,6 +6,7 @@ import { Region } from './models/region.model';
 import { Platform } from './models/platform.model';
 import { Day } from './models/days.model';
 import { CommunicationPlatform } from './models/communication-platform.model';
+import { SteamApp } from '../services/steam/models/steamApp.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class SetupService {
   platformCollection : AngularFirestoreCollection<Platform>;
   daysCollection     : AngularFirestoreCollection<Day>;
   commsCollection    : AngularFirestoreCollection<CommunicationPlatform>;
+  steamAppCollection : AngularFirestoreCollection<SteamApp>;
 
   constructor(private afs: AngularFirestore, private http: HttpClient) { }
 
@@ -44,5 +46,10 @@ export class SetupService {
 
   public getSteamGameList() {
     return this.http.get("https://hashmapwebapi20190701031620.azurewebsites.net/api/games");
+  }
+
+  public getFireSteamGameList() {
+    this.steamAppCollection = this.afs.collection('steamGames');
+    return this.steamAppCollection.valueChanges();
   }
 }

@@ -52,45 +52,31 @@
 
       <div class="row">
         <div class="col-md-12">
-          <div class="form-group">
-            <label for="dllSteamGames">Steam Games</label>
-            <select id="ddlSteamGames" class="form-control">
-              <option value=""></option>
-              <option *ngFor="let com of comms | async" [value]="comms.id">
-                {{com.name}}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <label class="form-control-label">Misc</label>
+          <label class="form-control-label">Steam Games</label>
           <div class="mb-1">
-            <mat-form-field class="example-chip-list">
-              <mat-chip-list #gameList>
+            <mat-form-field class="example-chip-list" style="width: 100%;">
+              <mat-chip-list #appList>
                 <mat-chip 
-                  *ngFor="let game of games; let i=index"
+                  *ngFor="let app of selectedApps; let i=index"
                   [selectable]="true"
                   [removable]="true"
-                  (removed)="remove(game,i)">
-                  {{game.name}}
+                  (removed)="remove(app,i)">
+                  {{app.name}}
                   <mat-icon matChipRemove>cancel</mat-icon>
                 </mat-chip>
                 <input
                   placeholder="Add game..."
-                  #gameInput
-                  [formControl]="gameCtrl"
+                  #appInput
+                  [formControl]="appCtrl"
                   [matAutocomplete]="auto"
-                  [matChipInputFor]="gameList"
+                  [matChipInputFor]="appList"
                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                   [matChipInputAddOnBlur]="addOnBlur"
                   (matChipInputTokenEnd)="add($event)">
               </mat-chip-list>
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                <mat-option *ngFor="let game of filteredGames | async" [value]="game">
-                  {{game.name}}
+                <mat-option *ngFor="let app of filteredApps | async" [value]="app">
+                  {{app.name}}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>

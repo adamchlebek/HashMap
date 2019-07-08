@@ -29,17 +29,14 @@ export class SetupComponent implements OnInit {
   removable                    = true;
   addOnBlur                    = false;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  gameCtrl                     = new FormControl();
+  appCtrl                      = new FormControl();
 
-  filteredGames: Observable<string[]>;
+  filteredApps: Observable<string[]>;
   
-  games    : any[] = [{ appId: 1, name: "Escape From Tarkov"}];
-  allGames : any[] = [{ appId: 1, name: "Escape From Tarkov"},
-                      { appId: 2, name: "Overwatch"}, 
-                      { appId: 3, name: "League Of Legends"},
-                      { appId: 4, name: "PUBG"}];
+  selectedApps : any[] = [];
+  steamApps    : SteamApp[];
 
-  @ViewChild('gameInput', {static: false}) gameInput: ElementRef<HTMLInputElement>;
+  @ViewChild('appInput', {static: false}) appInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   steamID: string  = "";
@@ -49,19 +46,11 @@ export class SetupComponent implements OnInit {
   platforms  : Observable<Platform[]>;
   days       : Observable<Day[]>;
   comms      : Observable<CommunicationPlatform[]>;
-  steamGames : any;
 
   constructor(private _formBuilder: FormBuilder, private api: SetupService, private steamApi: SteamApiService) 
-  {
-    this.filteredGames = this.gameCtrl.valueChanges.pipe(
-      startWith(null),
-      map((game: app | null) => game ? this._filter(game) : this.allGames.slice()));
-  }
+  { }
 
   ngOnInit() {
-    // set when declared.
-    // this.steamID = "";
-    // this.invalid = true;
     this.getDropdowns();
   }
 
@@ -75,6 +64,13 @@ export class SetupComponent implements OnInit {
   }
 
   getDropdowns() {
+    this.api.getFireSteamGameList().subscribe((sapp) => {
+      this.steamApps = sapp;
+      this.filteredApps = this.appCtrl.valueChanges.pipe(
+        startWith(null),
+        map((steamApp: app | null) => steamApp ? this._filter(steamApp) : this.steamApps.slice()));
+      console.dir(this.steamApps);
+    });
     this.regions   = this.api.getRegions();
     this.platforms = this.api.getPlatforms();
     this.days      = this.api.getDays();
@@ -90,24 +86,24 @@ export class SetupComponent implements OnInit {
   }
 
   remove(game: app): void {
-    const index = this.games.indexOf(game);
+    const index = this.selectedApps.indexOf(game);
 
     if (index >= 0) {
-      this.games.splice(index, 1);
+      this.selectedApps.splice(index, 1);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.games.push(event.option.value);
-    this.gameInput.nativeElement.value = '';
-    this.gameCtrl.setValue(null);
+    this.selectedApps.push(event.option.value);
+    this.appInput.nativeElement.value = '';
+    this.appCtrl.setValue(null);
   }
 
   private _filter(text: any): any[] {
-    let ga  = this.games;
-    var list = _.filter(this.allGames, (g:app) => 
+    let ga  = this.selectedApps;
+    var list = _.filter(this.steamApps, (g:SteamApp) => 
     {
-      return _.findIndex(ga, <any>{'appId':g.appId}) === -1;
+      return _.findIndex(ga, <any>{'appid':g.appid}) === -1;
     });
 
     var results = text ? list.filter(this.createFilterFor(text)) : list.filter(this.createFilterFor(''));
@@ -117,8 +113,8 @@ export class SetupComponent implements OnInit {
   public createFilterFor(query:string) {
     var lowerCaseQuery = query;
 
-    return function filterFn(game) {
-      return (game.name.toLowerCase().indexOf(lowerCaseQuery) === 0)
+    return function filterFn(app) {
+      return (app.name.toLowerCase().indexOf(lowerCaseQuery) === 0)
     }
   }
 
