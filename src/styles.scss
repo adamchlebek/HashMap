@@ -12,6 +12,7 @@ h2{
 	padding: 10px;
 	text-align: center;
 }
+
 .whitetext{
 	color: white;
 }
@@ -200,7 +201,7 @@ span.buttonText {
 		font-size: 1.5em;
 	}
 	.btn{
-		margin: 80px 0;
+		margin: 20px 0;
 		font-size: 1em;
 	}
 }
@@ -244,3 +245,15 @@ span.buttonText {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.centerAlign{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 550px;
+  padding: 5px;
+}
+
+fa{
+  margin: 0 5px;
+}

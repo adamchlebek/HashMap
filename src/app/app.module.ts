@@ -12,8 +12,9 @@ import { SetupComponent } from './setup/setup.component';
 import { NavComponent } from './nav/nav.component';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatChipsModule, MatIconModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatChipsModule, MatIconModule, MatTabsModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ReleaseRubricComponent } from './release-rubric/release-rubric.component';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -31,7 +32,8 @@ var config = {
     routingComponents,
     SetupComponent,
     NavComponent,
-    AboutComponent
+    AboutComponent,
+    ReleaseRubricComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ var config = {
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

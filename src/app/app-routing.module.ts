@@ -5,9 +5,11 @@ import { LoginComponent }       from './login/login.component';
 import { RegisterComponent }    from './register/register.component';
 import { SetupComponent } from './setup/setup.component';
 import { AuthGuard } from './auth.guard';
+import { ReleaseRubricComponent } from './release-rubric/release-rubric.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
+  { path: 'rubric', component: ReleaseRubricComponent},
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'setup', component: SetupComponent, canActivate: [AuthGuard] },
   { path: '',
