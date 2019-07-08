@@ -143,10 +143,10 @@ export class SetupComponent implements OnInit {
   }
 
   public createFilterFor(query:string) {
-    var lowerCaseQuery = query.toLowerCase();
+    var lowerCaseQuery = query.toString().toLowerCase();
 
     return function filterFn(app) {
-      return (app.name.toLowerCase().indexOf(lowerCaseQuery) === 0)
+      return (app.name.toString().toLowerCase().indexOf(lowerCaseQuery) === 0)
     }
   }
 
