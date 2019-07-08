@@ -12,7 +12,8 @@ import { SetupComponent } from './setup/setup.component';
 import { NavComponent } from './nav/nav.component';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatChipsModule, MatIconModule, MatAutocompleteModule, MatFormFieldModule } from '@angular/material';
+import { MatChipsModule, MatIconModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -44,7 +45,12 @@ var config = {
     ReactiveFormsModule,
     HttpClientModule,
     MatChipsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule
   ],

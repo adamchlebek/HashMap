@@ -15,6 +15,7 @@ import { SteamAppList } from '../services/steam/models/steam-app-list.model';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { app } from './models/app.model';
 import { startWith, map } from 'rxjs/operators';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-setup',
@@ -26,14 +27,16 @@ export class SetupComponent implements OnInit {
   visible                      = true;
   selectable                   = true;
   removable                    = true;
-  addOnBlur                    = true;
+  addOnBlur                    = false;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   gameCtrl                     = new FormControl();
 
-  filteredGames: Observable<app[]>;
+  filteredGames: Observable<string[]>;
   
-  games    : app[] = [{ appId: 1, name: "Escape From Tarkov"}];
-  allGames : app[] = [{ appId: 2, name: "Overwatch"}, { appId: 3, name: "League Of Legends"},
+  games    : any[] = [{ appId: 1, name: "Escape From Tarkov"}];
+  allGames : any[] = [{ appId: 1, name: "Escape From Tarkov"},
+                      { appId: 2, name: "Overwatch"}, 
+                      { appId: 3, name: "League Of Legends"},
                       { appId: 4, name: "PUBG"}];
 
   @ViewChild('gameInput', {static: false}) gameInput: ElementRef<HTMLInputElement>;
@@ -60,12 +63,6 @@ export class SetupComponent implements OnInit {
     // this.steamID = "";
     // this.invalid = true;
     this.getDropdowns();
-    this.steamApi.getSteamGameList().subscribe((games: any) =>
-    {
-      this.steamGames = games;
-      //console.log(games);
-
-    });
   }
 
   checkSteamID(){
@@ -82,27 +79,13 @@ export class SetupComponent implements OnInit {
     this.platforms = this.api.getPlatforms();
     this.days      = this.api.getDays();
     this.comms     = this.api.getComms();
-
   }
 
   add(event: MatChipInputEvent): void {
     // Add fruit only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
     if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        //this.games.push(value.trim());
-      }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.gameCtrl.setValue(null);
+      // do nothing user cannot add games
     }
   }
 
@@ -115,17 +98,28 @@ export class SetupComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    var id = event.option.viewValue;
-    console.log(id);
-    //this.games.push();
+    this.games.push(event.option.value);
     this.gameInput.nativeElement.value = '';
     this.gameCtrl.setValue(null);
   }
 
-  private _filter(game: app): app[] {
-    const filterValue = game.appId;
+  private _filter(text: any): any[] {
+    let ga  = this.games;
+    var list = _.filter(this.allGames, (g:app) => 
+    {
+      return _.findIndex(ga, <any>{'appId':g.appId}) === -1;
+    });
 
-    return this.allGames.filter(game => game.appId == filterValue);
+    var results = text ? list.filter(this.createFilterFor(text)) : list.filter(this.createFilterFor(''));
+    return results;
+  }
+
+  public createFilterFor(query:string) {
+    var lowerCaseQuery = query;
+
+    return function filterFn(game) {
+      return (game.name.toLowerCase().indexOf(lowerCaseQuery) === 0)
+    }
   }
 
 }
