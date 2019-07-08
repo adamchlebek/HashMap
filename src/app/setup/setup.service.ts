@@ -7,6 +7,7 @@ import { Platform } from './models/platform.model';
 import { Day } from './models/days.model';
 import { CommunicationPlatform } from './models/communication-platform.model';
 import { SteamApp } from '../services/steam/models/steamApp.model';
+import { Profile } from './models/profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +53,17 @@ export class SetupService {
     this.steamAppCollection = this.afs.collection('steamGames');
     return this.steamAppCollection.valueChanges();
   }
+
+  public getProfile(uid: string) {
+    var profileRef = this.afs.doc(`profiles/${uid}`);
+    return profileRef.get();
+  }
+
+  public saveProfile(profile : Profile) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<Profile> = this.afs.doc(`profiles/${profile.uid}`);
+
+    return userRef.set(profile, { merge: true });
+  }
+
 }

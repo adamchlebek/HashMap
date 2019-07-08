@@ -44,10 +44,6 @@ export class AuthService {
     return this.router.navigate(['/about']);
   } // end of signout
 
-  public hello() {
-    console.log("Hello!");
-  }
-
   private updateUserData(user) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);

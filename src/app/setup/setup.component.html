@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<form>
+<ng-form #myForm="ngForm">
 <div class="card" style="margin: 18px">
   <div class="card-body">
     <!-- <div class="topbar"></div> -->
@@ -8,14 +8,14 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="maskedName">Display Name</label>
-            <input type="text" class="form-control" id="maskedName" value=""/>
+            <input type="text" class="form-control" id="maskedName" name="name" [(ngModel)]="profile.displayName"/>
             <small id="nameHelp" class="form-text text-muted">Name displayed on profile.</small>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="dllRegion">Region</label>
-            <select id="ddlRegion" class="form-control">
+            <select id="ddlRegion" class="form-control" name="region" [(ngModel)]="profile.regionId">
               <option value=""></option>
               <option *ngFor="let region of regions | async" [value]="region.id">
                 {{region.name}}
@@ -29,7 +29,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="ddlPlatform">Platform</label>
-            <select id="ddlPlatform" class="form-control">
+            <select id="ddlPlatform" class="form-control" name="platform" [(ngModel)]="profile.platformId">
               <option value=""></option>
               <option *ngFor="let platform of platforms | async" [value]="platform.id">
                 {{platform.name}}
@@ -40,9 +40,9 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="ddlComms">Communication Preference</label>
-            <select id="ddlComms" class="form-control">
+            <select id="ddlComms" class="form-control" name="comms" [(ngModel)]="profile.communicationPlatformId">
               <option value=""></option>
-              <option *ngFor="let com of comms | async" [value]="comms.id">
+              <option *ngFor="let com of comms | async" [value]="com.id">
                 {{com.name}}
               </option>
             </select>
@@ -112,8 +112,14 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for="bio">Bio <small class="text-muted font-italic">Optional</small></label>
-            <textarea class="form-control" id="bio" rows="3"></textarea>
+            <textarea class="form-control" id="bio" rows="3" name="bio" [(ngModel)]="profile.bio"></textarea>
           </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary" style="float: right" (click)="save()">Save</button>
         </div>
       </div>
       <!-- <h5>Link Accounts</h5>
@@ -142,5 +148,5 @@
       </div> -->
   </div>
 </div>
-</form>
+</ng-form>
 
