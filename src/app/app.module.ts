@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule, MatIconModule, MatTabsModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ReleaseRubricComponent } from './release-rubric/release-rubric.component';
+import { ToastrModule } from 'ngx-toastr';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -55,7 +56,8 @@ var config = {
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatTabsModule
+    MatTabsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

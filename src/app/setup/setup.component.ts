@@ -18,6 +18,7 @@ import { startWith, map } from 'rxjs/operators';
 import * as _ from "lodash";
 import { Profile } from './models/profile.model';
 import { AuthService } from '../services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-setup',
@@ -34,7 +35,7 @@ export class SetupComponent implements OnInit {
   appCtrl                      = new FormControl();
 
   filteredApps: Observable<string[]>;
-  
+
   selectedApps : any[] = [];
   steamApps    : SteamApp[];
 
@@ -52,7 +53,7 @@ export class SetupComponent implements OnInit {
 
   private uid : string;
 
-  constructor(private api: SetupService, private auth: AuthService) { 
+  constructor(private api: SetupService, private auth: AuthService, private toastr: ToastrService) {
     this.auth.user$.subscribe(u => {
       this.uid         = u.uid;
       this.profile.uid = this.uid;
@@ -80,7 +81,7 @@ export class SetupComponent implements OnInit {
         this.profile = prof.data();
         let sa       = this.steamApps;
         let ssa      = [];
-        _.forEach(this.profile.steamApps, function(key) 
+        _.forEach(this.profile.steamApps, function(key)
         {
           ssa.push(_.find(sa, ['appid', key]));
         });
@@ -107,6 +108,12 @@ export class SetupComponent implements OnInit {
   save() {
     this.profile.steamApps = _.map(this.selectedApps, 'appid');
     this.api.saveProfile(this.profile);
+
+    //If Save is successfull
+    this.showToaster();
+
+    //If Save is error
+    //this.showToasterError();
   }
 
   add(event: MatChipInputEvent): void {
@@ -133,7 +140,7 @@ export class SetupComponent implements OnInit {
 
   private _filter(text: any): any[] {
     let ga  = this.selectedApps;
-    var list = _.filter(this.steamApps, (g:SteamApp) => 
+    var list = _.filter(this.steamApps, (g:SteamApp) =>
     {
       return _.findIndex(ga, <any>{'appid':g.appid}) === -1;
     });
@@ -148,6 +155,18 @@ export class SetupComponent implements OnInit {
     return function filterFn(app) {
       return (app.name.toLowerCase().indexOf(lowerCaseQuery) === 0)
     }
+  }
+
+  showToaster(){
+    this.toastr.success("Your profile has successfully been saved!", "Success!" ,{
+      timeOut :  5000
+    })
+  }
+
+  showToasterError(){
+    this.toastr.error("There was an error saving your profile.", "Error!" ,{
+      timeOut :  5000
+    })
   }
 
 }
