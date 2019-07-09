@@ -18,7 +18,7 @@ import { startWith, map } from 'rxjs/operators';
 import * as _ from "lodash";
 import { Profile } from './models/profile.model';
 import { AuthService } from '../services/auth/auth.service';
-import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../utility/notification/notification.service';
 
 @Component({
   selector: 'app-setup',
@@ -53,7 +53,7 @@ export class SetupComponent implements OnInit {
 
   private uid : string;
 
-  constructor(private api: SetupService, private auth: AuthService, private toastr: ToastrService) {
+  constructor(private api: SetupService, private auth: AuthService, private notificationService: NotificationService) {
     this.auth.user$.subscribe(u => {
       this.uid         = u.uid;
       this.profile.uid = this.uid;
@@ -110,10 +110,8 @@ export class SetupComponent implements OnInit {
     this.api.saveProfile(this.profile);
 
     //If Save is successfull
-    this.showToaster();
-
-    //If Save is error
-    //this.showToasterError();
+    this.notificationService.showSuccessWithTimeout("Profile saved successfully.","Success.",5000);
+    // this.notificationService.showSuccess("Profile saved successfully.","Success.");
   }
 
   add(event: MatChipInputEvent): void {
@@ -156,17 +154,4 @@ export class SetupComponent implements OnInit {
       return (app.name.toString().toLowerCase().indexOf(lowerCaseQuery) === 0)
     }
   }
-
-  showToaster(){
-    this.toastr.success("Your profile has successfully been saved!", "Success!" ,{
-      timeOut :  5000
-    })
-  }
-
-  showToasterError(){
-    this.toastr.error("There was an error saving your profile.", "Error!" ,{
-      timeOut :  5000
-    })
-  }
-
 }
