@@ -17,6 +17,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ReleaseRubricComponent } from './release-rubric/release-rubric.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './profile/profile.component';
+import { NetworkComponent } from './network/network.component';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -36,7 +37,8 @@ var config = {
     NavComponent,
     AboutComponent,
     ReleaseRubricComponent,
-    ProfileComponent
+    ProfileComponent,
+    NetworkComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { SetupComponent } from './setup/setup.component';
 import { AuthGuard } from './auth.guard';
 import { ReleaseRubricComponent } from './release-rubric/release-rubric.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NetworkComponent } from './network/network.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -16,10 +17,7 @@ const routes: Routes = [
     redirectTo: '/about',
     pathMatch: 'full'
   },
-  { path: 'network',
-    redirectTo: '/about',
-    pathMatch: 'full'
-  },
+  { path: 'network', component: NetworkComponent, canActivate: [AuthGuard]},
   { path: 'setup', component: SetupComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
