@@ -16,9 +16,10 @@ export class NotificationService {
 
   showSuccessWithTimeout(message, title, timespan){
     this.toastr.success(message, title ,{
+      //maxOpened     : 1,
       timeOut       :  timespan,
       positionClass : "toast-top-center",
-      closeButton   : true
+      closeButton   : true,
     })
   }
 
