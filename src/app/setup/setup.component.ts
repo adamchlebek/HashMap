@@ -14,7 +14,7 @@ import { SteamApp } from '../services/steam/models/steamApp.model';
 import { SteamAppList } from '../services/steam/models/steam-app-list.model';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { app } from './models/app.model';
-import { startWith, map } from 'rxjs/operators';
+import { startWith, map, timeout } from 'rxjs/operators';
 import * as _ from "lodash";
 import { Profile } from './models/profile.model';
 import { AuthService } from '../services/auth/auth.service';
@@ -111,6 +111,7 @@ export class SetupComponent implements OnInit {
 
     //If Save is successfull
     this.notificationService.showSuccessWithTimeout("Profile saved successfully.","Success.",5000);
+    window.location.href = '/profile?saved=true';
     // this.notificationService.showSuccess("Profile saved successfully.","Success.");
   }
 
@@ -153,5 +154,9 @@ export class SetupComponent implements OnInit {
     return function filterFn(app) {
       return (app.name.toString().toLowerCase().indexOf(lowerCaseQuery) === 0)
     }
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 }
