@@ -273,7 +273,41 @@ fa{
 }
 
 
+// Collin begin obsessed with colors
+.btn-primary {
+    color: #fff;
+    background-color: #a3be8c;
+	border-color: #a3be8c;
+}
+.btn-primary:hover {
+	background-color: #a3be8c;
+	border-color: #eceef4;
+}
+.weekDays-selector input[type=checkbox] + label {
+	display: inline-block;
+	border-radius: 6px;
+	background: #dddddd;
+	height: 40px;
+	width: 40px;
+	margin-right: 3px;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+  }
+  
+  .weekDays-selector input[type=checkbox]:checked + label {
+	background: #a3be8c !important;//rgb(178, 84, 221);
+	color: #ffffff;
+  }
+.mat-chip.mat-standard-chip {
+	background-color: #a3be8c !important;
+	color: #ffffff !important;
+}
 
+.mat-chip.mat-standard-chip.mat-chip-remove {
+    color: #2e3440 !important; // rgba(0,0,0,.87);
+    opacity: .4;
+}
 /* REPURPOSED TOASTER CSS */
 
 /* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
