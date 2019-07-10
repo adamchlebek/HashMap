@@ -318,7 +318,7 @@ fa {
 	text-align: center;
 	cursor: pointer;
   }
-  
+
 .weekDays-selector input[type=checkbox]:checked + label {
 	background: #88c0d0 !important;//rgb(178, 84, 221);
 	color: #ffffff;
@@ -580,3 +580,112 @@ button.toast-close-button {
 		width: 25em;
 	}
 }
+
+//Setup CSS
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-option-img {
+  vertical-align: middle;
+}
+
+.cls-1{
+  fill:none;
+  stroke:#231f20;
+  stroke-miterlimit:10;
+  stroke-width:5px;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  display: block;
+
+  .cls-1 {
+    stroke: green;
+  }
+}
+
+.circle {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+}
+
+.checkmark {
+  stroke-dasharray: 150;
+  stroke-dashoffset: 150;
+}
+
+.run-animation {
+  .circle {
+    animation: 1.5s circleDraw forwards;
+  }
+
+  .checkmark {
+    animation: 0.50s checkmarkDraw forwards;
+    animation-delay: .75s;
+  }
+}
+
+
+
+// Animation
+
+@keyframes circleDraw {
+  from {
+    stroke-dashoffset: 700;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes checkmarkDraw {
+  from {
+    stroke-dashoffset: 150;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.weekDays-selector input {
+  display: none!important;
+}
+
+.weekDays-selector input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
+  height: 40px;
+  width: 40px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=checkbox]:checked + label {
+  background: rgb(178, 84, 221);
+  color: #ffffff;
+}
+
+.disabled{
+  cursor: default !important;
+}
+
