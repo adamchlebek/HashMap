@@ -276,11 +276,11 @@ fa{
 // Collin begin obsessed with colors
 .btn-primary {
     color: #fff;
-    background-color: #a3be8c;
-	border-color: #a3be8c;
+    background-color: #88c0d0;
+	border-color: #88c0d0;
 }
 .btn-primary:hover {
-	background-color: #a3be8c;
+	background-color: #88c0d0;
 	border-color: #eceef4;
 }
 .weekDays-selector input[type=checkbox] + label {
@@ -295,12 +295,12 @@ fa{
 	cursor: pointer;
   }
   
-  .weekDays-selector input[type=checkbox]:checked + label {
-	background: #a3be8c !important;//rgb(178, 84, 221);
+.weekDays-selector input[type=checkbox]:checked + label {
+	background: #88c0d0 !important;//rgb(178, 84, 221);
 	color: #ffffff;
-  }
+}
 .mat-chip.mat-standard-chip {
-	background-color: #a3be8c !important;
+	background-color: #88c0d0 !important;
 	color: #ffffff !important;
 }
 
@@ -460,7 +460,7 @@ fa{
 	pointer-events: auto;
   }
   .toast-success {
-	background-color: #a3be8c;
+	background-color: #88c0d0;
   }
   .toast-error {
 	background-color: #bf616a;
