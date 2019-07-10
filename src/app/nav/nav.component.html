@@ -1,44 +1,55 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">LOGO HERE</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExample04">
-    <ul class="navbar-nav mr-auto">
+  <a class="navbar-brand" href="/">LOGO HERE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarsExample04">
+     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/about">Home <span class="sr-only">(current)</span></a>
+           <a class="nav-link" href="/about">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li>
+           <a class="divider">|</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/rubric">Rubric</a>
-      </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/network">Network</a>
+           <a class="nav-link" href="/rubric">Rubric</a>
+        </li>
+        <li>
+           <a class="divider">|</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/profile">Profile</a>
+           <a class="nav-link" href="/network">Network</a>
         </li>
-    </ul>
-
-    <!-- user is an obvserable, need to subscribe to it with async -->
-    <div *ngIf="auth.user$ | async as user; else login" class="form-group">
+        <li>
+           <a class="divider">|</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" href="/setup">Setup</a>
+        </li>
+        <li>
+           <a class="divider">|</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" href="/profile">Profile</a>
+        </li>
+     </ul>
+     <!-- user is an obvserable, need to subscribe to it with async -->
+     <div *ngIf="auth.user$ | async as user; else login" class="form-group">
         <label class="welcomeText">Hello, {{ user.displayName }}!</label>
-        <img class="avatar" src="{{user.photoURL}}"/>
+        <a href="/profile"><img class="avatar" src="{{user.photoURL}}"/></a>
         <button class="btn btn-light" (click)="auth.signOut()">Sign Out</button>
-    </div>
-
-    <ng-template #login>
+     </div>
+     <ng-template #login>
         <div class="form-group">
-            <button type="button" (click)="auth.googleSignin()" class="google-button">
-                <span class="google-button__icon">
-                    <img style="width: 100%; vertical-align: baseline" src="../../assets/images/g-normal.png"/>
-                </span>
-                <span class="google-button__text">
-                    Sign in with Google
-                </span>
-            </button>
+           <button type="button" (click)="auth.googleSignin()" class="google-button">
+           <span class="google-button__icon">
+           <img style="width: 100%; vertical-align: baseline" src="../../assets/images/g-normal.png"/>
+           </span>
+           <span class="google-button__text">
+           Sign in with Google
+           </span>
+           </button>
         </div>
-    </ng-template>
-
-    </div>
+     </ng-template>
+  </div>
 </nav>
