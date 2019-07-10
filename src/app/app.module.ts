@@ -57,7 +57,11 @@ var config = {
     MatAutocompleteModule,
     MatFormFieldModule,
     MatTabsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      maxOpened: 1,
+      autoDismiss: true
+    }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
