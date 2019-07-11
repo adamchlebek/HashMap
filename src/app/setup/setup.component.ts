@@ -115,6 +115,21 @@ export class SetupComponent implements OnInit {
     // this.notificationService.showSuccess("Profile saved successfully.","Success.");
   }
 
+  isDaySelected(id : number) {
+    return _.includes(this.profile.days, id);
+  }
+
+  dayChange(event, d: Day) {
+    if(event.target.checked) {
+      this.profile.days.push(d.id);
+    } else {
+      //this.profile.days.slice(this.profile.days.indexOf(d.id),1);
+      this.profile.days = _.remove(this.profile.days, function(dayId) {
+        return (dayId != d.id)
+      });
+    }
+  }
+
   add(event: MatChipInputEvent): void {
     // Add fruit only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
