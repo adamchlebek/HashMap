@@ -9,6 +9,7 @@ export interface Profile {
     regionId                : number;//Region;
     platformId              : number;//Platform;
     communicationPlatformId : number;//CommunicationPlatform;
+    days                    : number[];
     steamApps               : number[];//SteamApp[];
     bio                     : string;
 }
