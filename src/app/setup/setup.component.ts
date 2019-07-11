@@ -34,7 +34,7 @@ export class SetupComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   appCtrl                      = new FormControl();
 
-  filteredApps : Observable<string[]>;
+  filteredApps: Observable<string[]>;
 
   selectedApps : any[] = [];
   steamApps    : SteamApp[];
@@ -49,7 +49,7 @@ export class SetupComponent implements OnInit {
   platforms  : Observable<Platform[]>;
   days       : Observable<Day[]>;
   comms      : Observable<CommunicationPlatform[]>;
-  profile    : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", days:null, steamApps: null};
+  profile    : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", steamApps: null};
 
   private uid : string;
 
@@ -115,21 +115,6 @@ export class SetupComponent implements OnInit {
     // this.notificationService.showSuccess("Profile saved successfully.","Success.");
   }
 
-  isDaySelected(id : number) {
-    return _.includes(this.profile.days, id);
-  }
-
-  dayChange(event, d: Day) {
-    if(event.target.checked) {
-      this.profile.days.push(d.id);
-    } else {
-      //this.profile.days.slice(this.profile.days.indexOf(d.id),1);
-      this.profile.days = _.remove(this.profile.days, function(dayId) {
-        return (dayId != d.id)
-      });
-    }
-  }
-
   add(event: MatChipInputEvent): void {
     // Add fruit only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
@@ -171,7 +156,7 @@ export class SetupComponent implements OnInit {
     }
   }
 
-  // delay(ms: number) {
-  //   return new Promise( resolve => setTimeout(resolve, ms) );
-  // }
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 }
