@@ -1,5 +1,5 @@
 <div class="card" style="margin: 18px">
-  <div class="card-body" *ngIf="profile != null">
+  <div class="card-body" *ngIf="isLoaded | async">
       <!-- <div class="topbar"></div> -->
       <h5 class="card-title">{{profile.displayName}}</h5>
       <div class="row">
@@ -75,5 +75,14 @@
             </div>
         </div>
       </div>
+  </div>
+  <div class="card-body" *ngIf="noProfile">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-control d-flex justify-content-center">
+          <label>Navigate to the Setup tab to create a profile.</label>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

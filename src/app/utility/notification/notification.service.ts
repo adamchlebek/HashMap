@@ -20,7 +20,15 @@ export class NotificationService {
       timeOut       :  timespan,
       positionClass : "toast-top-center",
       closeButton   : true,
-    })
+    });
+  }
+
+  showErrorWithTimeout(message, title, timespan) {
+    this.toastr.error(message, title,{
+      timeOut       :  timespan,
+      positionClass : "toast-top-center",
+      closeButton   : true,
+    });
   }
 
   showHTMLMessage(message, title) {

@@ -32,7 +32,8 @@ export class ProfileComponent implements OnInit {
   comm        : CommunicationPlatform;
   platform    : Platform;
   profile     : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", days:null, steamApps: null};
-  isLoading   : boolean = true;
+  isLoaded    : Promise<boolean>;
+  noProfile   : boolean = false;
 
 
   constructor(private route: ActivatedRoute, 
@@ -79,10 +80,12 @@ export class ProfileComponent implements OnInit {
         this.api.getPlatform(this.profile.platformId.toString()).subscribe((platform : any) => {
           this.platform = platform.data();
         });
-        this.isLoading = false;
+        this.isLoaded = Promise.resolve(true);
       } else {
-          //this.notificationService.showError("Could not find profile.")
+        this.notificationService.showErrorWithTimeout("Profile not found.","Error", 5000);
+        this.noProfile = true;
       } // end of if profile exists
+      
     });
   } // end of get profile
 
