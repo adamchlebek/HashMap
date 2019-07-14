@@ -1,47 +1,76 @@
 <div class="card" style="margin: 18px">
-  <div class="card-body">
+  <div class="card-body" *ngIf="profile != null">
       <!-- <div class="topbar"></div> -->
-      <h5 class="card-title">[DISPLAY NAME HERE]</h5>
+      <h5 class="card-title">{{profile.displayName}}</h5>
       <div class="row">
         <div class="col-md-6">
-            <div class="form-group">
-              <label for="maskedName">[REAL NAME HERE]</label>
-            </div>
-            <img style="width: 25%; vertical-align: baseline" src="../../assets/images/g-normal.png"/>
-            <div class="form-group">
-                <label for="bio">Bio</label>
+          <div *ngIf="auth.user$ | async as user" class="">
+              <div class="form-group">
+                <label for="maskedName">{{ user.displayName }}</label>
               </div>
+              <!-- <img style="width: 25%; vertical-align: baseline" src="../../assets/images/g-normal.png"/> -->
+              <div class="form-group">
+                <img class="avatar"  src="{{user.photoURL}}"/>
+              </div>
+              <div class="form-group">
+                <label for="bio">{{profile.bio}}</label>
+              </div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-              <label for="dllRegion">[REGION HERE]</label>
+              <label for="">Region: </label>
+              <label>{{region.name}}</label>
             </div>
             <div class="form-group">
-              <label for="ddlPlatform">Platform</label>
+              <label for="ddlPlatform">Platform: </label>
+              <label>{{platform.name}}</label>
             </div>
             <div class="form-group">
-              <label for="ddlComms">Communication Preference</label>
+              <label for="ddlComms">Communication Preference: </label>
+              <label>{{comm.name}}</label>
             </div>
             <div class="form-group">
               <label class="form-control-label">Steam Games</label>
+              <div class="mb-1">
+                  <mat-chip-list aria-label="Steam Games">
+                    <mat-chip *ngFor="let app of steamApps">
+                      {{app.name}}
+                    </mat-chip>
+                  </mat-chip-list>
+              </div>
             </div>
             <div class="form-group">
               <label>Available Day(s)</label>
               <div class="weekDays-selector">
-                  <input type="checkbox" id="weekday-mon" disabled="disabled" class="weekday disabled" />
+                <ng-container *ngIf="isDaySelected(1)">
+                  <input type="checkbox" id="weekday-mon" disabled="disabled" [checked]="true"  class="weekday disabled" />
                   <label for="weekday-mon">Mon</label>
-                  <input type="checkbox" id="weekday-tue" disabled="disabled" class="weekday disabled" />
-                  <label for="weekday-tue">Tue</label>
-                  <input type="checkbox" id="weekday-wed" disabled="disabled" class="weekday disabled" />
-                  <label for="weekday-wed">Wed</label>
-                  <input type="checkbox" id="weekday-thu" disabled="disabled" class="weekday disabled" />
-                  <label for="weekday-thu">Thu</label>
-                  <input type="checkbox" id="weekday-fri" disabled="disabled" class="weekday disabled" />
-                  <label for="weekday-fri">Fri</label>
-                  <input type="checkbox" id="weekday-sat" disabled="disabled" class="weekday disabled" />
-                  <label for="weekday-sat">Sat</label>
-                  <input type="checkbox" id="weekday-sun" disabled="disabled" class="weekday disabled" />
-                  <label for="weekday-sun">Sun</label>
+                </ng-container>
+                <ng-container *ngIf="isDaySelected(2)">
+                    <input type="checkbox" id="weekday-tue" disabled="disabled" [checked]="true" class="weekday disabled" />
+                    <label for="weekday-tue">Tue</label>
+                </ng-container>
+                <ng-container  *ngIf="isDaySelected(3)">
+                    <input type="checkbox" id="weekday-wed" disabled="disabled" [checked]="true" class="weekday disabled" />
+                    <label for="weekday-wed">Wed</label>
+                </ng-container>
+                <ng-container  *ngIf="isDaySelected(4)">
+                    <input type="checkbox" id="weekday-thu" disabled="disabled" [checked]="true" class="weekday disabled" />
+                    <label for="weekday-thu">Thu</label>
+                </ng-container>
+                <ng-container *ngIf="isDaySelected(5)">
+                    <input type="checkbox" id="weekday-fri" disabled="disabled" [checked]="true" class="weekday disabled" />
+                    <label for="weekday-fri">Fri</label>
+                </ng-container>
+                <ng-container *ngIf="isDaySelected(6)">
+                    <input type="checkbox" id="weekday-sat" disabled="disabled" [checked]="true" class="weekday disabled" />
+                    <label for="weekday-sat">Sat</label>
+                </ng-container>
+                <ng-container *ngIf="isDaySelected(7)">
+                    <input type="checkbox" id="weekday-sun" disabled="disabled" [checked]="true" class="weekday disabled" />
+                    <label for="weekday-sun">Sun</label>
+                </ng-container>
               </div>
             </div>
         </div>

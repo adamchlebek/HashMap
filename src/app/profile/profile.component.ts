@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
   comm        : CommunicationPlatform;
   platform    : Platform;
   profile     : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", days:null, steamApps: null};
+  isLoading   : boolean = true;
 
 
   constructor(private route: ActivatedRoute, 
@@ -43,7 +44,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.fromSaved = params['saved'];
-      console.log(this.fromSaved); // Print the parameter to the console.
+      //console.log(this.fromSaved); // Print the parameter to the console.
 
       if (this.fromSaved == 'true'){
         //If Save is successfull
@@ -51,8 +52,9 @@ export class ProfileComponent implements OnInit {
       }
     });
     this.auth.user$.subscribe(u => {
-      this.uid         = u.uid;
+      this.uid  = u.uid;
       this.getProfile();
+      this.days = this.setupAPI.getDays();
     })
   } // end of ngOnInit
 
@@ -61,28 +63,31 @@ export class ProfileComponent implements OnInit {
     this.setupAPI.getProfile(this.uid).subscribe((prof : any) => {
       if(prof.exists) {
         this.profile = prof.data();
-        let sa       = this.steamApps;
+        let sa : SteamApp[] = [];
         this.profile.steamApps.forEach((appId) => {
           this.api.getSteamApp(appId.toString()).subscribe((app : any) =>{
-            sa.push(app);
+            sa.push(app.data());
           });
         });
         this.steamApps = sa;
         this.api.getRegion(this.profile.regionId.toString()).subscribe((region:any) => {
-          this.region = region;
+          this.region = region.data();
         });
         this.api.getComm(this.profile.communicationPlatformId.toString()).subscribe((comm : any) => {
-          this.comm = comm;
+          this.comm = comm.data();
         });
         this.api.getPlatform(this.profile.platformId.toString()).subscribe((platform : any) => {
-          this.platform = platform;
+          this.platform = platform.data();
         });
+        this.isLoading = false;
       } else {
           //this.notificationService.showError("Could not find profile.")
-      }
+      } // end of if profile exists
     });
-  }
+  } // end of get profile
 
-  
+  isDaySelected(id : number) {
+    return _.includes(this.profile.days, id);
+  } // end of isDaySelected
 
 }
