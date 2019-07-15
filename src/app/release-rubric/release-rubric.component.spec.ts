@@ -1,6 +1,9 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReleaseRubricComponent } from './release-rubric.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { MatTabsModule } from '@angular/material';
 
 describe('ReleaseRubricComponent', () => {
   let component: ReleaseRubricComponent;
@@ -8,7 +11,8 @@ describe('ReleaseRubricComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReleaseRubricComponent ]
+      declarations: [ ReleaseRubricComponent ],
+      imports: [ AngularFontAwesomeModule, MatTabsModule, BrowserAnimationsModule ]
     })
     .compileComponents();
   }));
