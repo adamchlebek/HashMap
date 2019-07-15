@@ -63,7 +63,7 @@ export class SetupService {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<Profile> = this.afs.doc(`profiles/${profile.uid}`);
 
-    return userRef.set(profile, { merge: true });
+    return userRef.set(profile, {  mergeFields: ['bio','communicationPlatformId','days','displayName','platformId','regionId','steamApps','uid'] });
   }
 
 }

@@ -108,11 +108,8 @@ export class SetupComponent implements OnInit {
   save() {
     this.profile.steamApps = _.map(this.selectedApps, 'appid');
     this.api.saveProfile(this.profile);
-
-    //If Save is successfull
     this.notificationService.showSuccessWithTimeout("Profile saved successfully.","Success.",5000);
     window.location.href = '/profile?saved=true';
-    // this.notificationService.showSuccess("Profile saved successfully.","Success.");
   }
 
   isDaySelected(id : number) {
