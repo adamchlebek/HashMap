@@ -87,10 +87,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'HashMap Web App'`, () => {
+  it(`should have as title 'HashMap'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('HashMap Web App');
+    expect(app.title).toEqual('HashMap');
   });
 });
 
