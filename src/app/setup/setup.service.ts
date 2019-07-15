@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore'
-import { Region } from './models/region.model';
-import { Platform } from './models/platform.model';
-import { Day } from './models/days.model';
-import { CommunicationPlatform } from './models/communication-platform.model';
-import { SteamApp } from '../services/steam/models/steamApp.model';
-import { Profile } from './models/profile.model';
+import { HttpClient }                 from '@angular/common/http';
+import { Injectable }                 from '@angular/core';
+import { AngularFireAuth }            from '@angular/fire/auth';
+import { AngularFirestore, 
+         AngularFirestoreDocument, 
+         AngularFirestoreCollection } from '@angular/fire/firestore'
+import { Region }                     from './models/region.model';
+import { Platform }                   from './models/platform.model';
+import { Day }                        from './models/days.model';
+import { CommunicationPlatform }      from './models/communication-platform.model';
+import { SteamApp }                   from '../services/steam/models/steamApp.model';
+import { Profile }                    from './models/profile.model';
 
 @Injectable({
   providedIn: 'root'

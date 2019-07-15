@@ -8,7 +8,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
-import { config } from 'process';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +22,16 @@ import { ReleaseRubricComponent } from './release-rubric/release-rubric.componen
 import { ProfileComponent } from './profile/profile.component';
 import { NetworkComponent } from './network/network.component';
 import { BehaviorSubject } from 'rxjs';
+
+var config = {
+  apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
+  authDomain        : "hashmaporbyt.firebaseapp.com",
+  databaseURL       : "https://hashmaporbyt.firebaseio.com",
+  projectId         : "hashmaporbyt",
+  storageBucket     : "hashmaporbyt.appspot.com",
+  messagingSenderId : "988913741592",
+  appId             : "1:988913741592:web:7044428c9379127f"
+};
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
