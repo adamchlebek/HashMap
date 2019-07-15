@@ -12,7 +12,7 @@ import { SetupComponent }                                     from './setup/setu
 import { NavComponent }                                       from './nav/nav.component';
 import { AboutComponent }                                     from './about/about.component';
 import { HttpClientModule }                                   from '@angular/common/http';
-import {BrowserAnimationsModule}                              from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule }                              from '@angular/platform-browser/animations';
 import { ReleaseRubricComponent }                             from './release-rubric/release-rubric.component';
 import { ToastrModule }                                       from 'ngx-toastr';
 import { ProfileComponent }                                   from './profile/profile.component';
