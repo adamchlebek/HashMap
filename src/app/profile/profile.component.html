@@ -1,5 +1,5 @@
 <div class="card" style="margin: 18px">
-  <div class="card-body" *ngIf="isLoaded | async">
+  <div class="card-body" *ngIf="profile && region && platform && comm">
       <!-- <div class="topbar"></div> -->
       <h5 class="card-title">{{profile.displayName}}</h5>
       <div class="row">
