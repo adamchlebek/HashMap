@@ -21,6 +21,7 @@ import { ReleaseRubricComponent } from './release-rubric/release-rubric.componen
 import { ProfileComponent } from './profile/profile.component';
 import { NetworkComponent } from './network/network.component';
 import { BehaviorSubject } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -63,8 +64,8 @@ describe('AppComponent', () => {
         ToastrModule.forRoot({
           maxOpened: 1,
           autoDismiss: true
-        }
-        )
+        }),
+        RouterModule.forRoot([]),
       ],
       declarations: [
         AppComponent,
