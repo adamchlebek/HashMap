@@ -1,5 +1,6 @@
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
-import { MatChipsModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatTabsModule } from '@angular/material';
+import { MatChipsModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatFormFieldModule,
+  MatInputModule, MatAutocompleteModule, MatTabsModule } from '@angular/material';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
@@ -23,14 +24,22 @@ import { NetworkComponent } from './network/network.component';
 import { BehaviorSubject } from 'rxjs';
 import { RouterModule } from '@angular/router';
 
-var config = {
-  apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
-  authDomain        : "hashmaporbyt.firebaseapp.com",
-  databaseURL       : "https://hashmaporbyt.firebaseio.com",
-  projectId         : "hashmaporbyt",
-  storageBucket     : "hashmaporbyt.appspot.com",
-  messagingSenderId : "988913741592",
-  appId             : "1:988913741592:web:7044428c9379127f"
+const config = {
+  apiKey            : 'AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg',
+  authDomain        : 'hashmaporbyt.firebaseapp.com',
+  databaseURL       : 'https://hashmaporbyt.firebaseio.com',
+  projectId         : 'hashmaporbyt',
+  storageBucket     : 'hashmaporbyt.appspot.com',
+  messagingSenderId : '988913741592',
+  appId             : '1:988913741592:web:7044428c9379127f'
+};
+const FirestoreStub = {
+  collection: (name: string) => ({
+    doc: (_id: string) => ({
+      valueChanges: () => new BehaviorSubject({ foo: 'bar' }),
+      set: (_d: any) => new Promise((resolve, _reject) => resolve()),
+    }),
+  }),
 };
 
 describe('AppComponent', () => {
@@ -94,12 +103,3 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('HashMap');
   });
 });
-
-const FirestoreStub = {
-  collection: (name: string) => ({
-    doc: (_id: string) => ({
-      valueChanges: () => new BehaviorSubject({ foo: 'bar' }),
-      set: (_d: any) => new Promise((resolve, _reject) => resolve()),
-    }),
-  }),
-};

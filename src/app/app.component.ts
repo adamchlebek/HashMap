@@ -9,5 +9,4 @@ import { BehaviorSubject } from 'rxjs';
 
 export class AppComponent {
   title = 'HashMap';
-  
 }

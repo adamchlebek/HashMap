@@ -6,7 +6,7 @@ describe('ProfileService', () => {
   let serviceStub: any;
   beforeEach(async(() => {
     serviceStub = {
-      getRegion: () =>('test')
+      getRegion: () => ('test')
     };
 
     TestBed.configureTestingModule({

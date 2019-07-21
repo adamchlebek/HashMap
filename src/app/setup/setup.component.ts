@@ -11,9 +11,9 @@ import { Day } from './models/days.model';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import { SteamApp } from '../services/steam/models/steamApp.model';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { app } from './models/app.model';
+import { App } from './models/app.model';
 import { startWith, map, timeout } from 'rxjs/operators';
-import * as _ from "lodash";
+import * as _ from 'lodash';
 import { Profile } from './models/profile.model';
 import { AuthService } from '../services/auth/auth.service';
 import { NotificationService } from '../utility/notification/notification.service';
@@ -25,69 +25,66 @@ import { NotificationService } from '../utility/notification/notification.servic
 })
 export class SetupComponent implements OnInit {
 
-  visible                      = true;
-  selectable                   = true;
-  removable                    = true;
-  addOnBlur                    = false;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = false;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  appCtrl                      = new FormControl();
+  appCtrl = new FormControl();
 
   filteredApps: Observable<string[]>;
 
-  selectedApps : any[] = [];
-  steamApps    : SteamApp[];
+  selectedApps: any[] = [];
+  steamApps: SteamApp[];
 
   @ViewChild('appInput', {static: false}) appInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  steamID: string  = "";
-  invalid: boolean = true;
+  steamID = '';
+  invalid = true;
+  regions: Observable<Region[]>;
+  platforms: Observable<Platform[]>;
+  days: Observable<Day[]>;
+  comms: Observable<CommunicationPlatform[]>;
+  profile: Profile = { uid: '', displayName: '', regionId: null, platformId: null, communicationPlatformId: null, bio: '', days: null, steamApps: null };
 
-  regions    : Observable<Region[]>;
-  platforms  : Observable<Platform[]>;
-  days       : Observable<Day[]>;
-  comms      : Observable<CommunicationPlatform[]>;
-  profile    : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", days:null, steamApps: null};
-
-  private uid : string;
+  private uid: string;
 
   constructor(private api: SetupService, private auth: AuthService, private notificationService: NotificationService) {
     this.auth.user$.subscribe(u => {
       this.uid         = u.uid;
       this.profile.uid = this.uid;
       this.getProfile();
-    })
+    });
   }
 
   ngOnInit() {
     this.getDropdowns();
   }
 
-  checkSteamID(){
-    if (this.steamID.length != 17){
+  checkSteamID() {
+    if (this.steamID.length !== 17) {
       this.invalid = true;
-      console.log("Error!");
-    }else{
+    } else {
       this.invalid = false;
     }
   }
 
   getProfile() {
     // prof is a DocumentData, typing as any to get past typescript mismatch issue
-    this.api.getProfile(this.uid).subscribe((prof : any) => {
-      if(prof.exists) {
+    this.api.getProfile(this.uid).subscribe((prof: any) => {
+      if (prof.exists) {
         this.profile = prof.data();
         let sa       = this.steamApps;
         let ssa      = [];
-        _.forEach(this.profile.steamApps, function(key)
-        {
+        _.forEach(this.profile.steamApps, (key) => {
           ssa.push(_.find(sa, ['appid', key]));
         });
         this.selectedApps = ssa;
       } else {
           // doc.data() will be undefined in this case
-        };
-      });
+      }
+    });
   }
 
   getDropdowns() {
@@ -95,7 +92,7 @@ export class SetupComponent implements OnInit {
       this.steamApps = sapp;
       this.filteredApps = this.appCtrl.valueChanges.pipe(
         startWith(null),
-        map((steamApp: app | null) => steamApp ? this._filter(steamApp) : this.steamApps.slice()));
+        map((steamApp: App | null) => steamApp ? this._filter(steamApp) : this.steamApps.slice()));
     });
     this.regions   = this.api.getRegions();
     this.platforms = this.api.getPlatforms();
@@ -106,21 +103,21 @@ export class SetupComponent implements OnInit {
   save() {
     this.profile.steamApps = _.map(this.selectedApps, 'appid');
     this.api.saveProfile(this.profile);
-    this.notificationService.showSuccessWithTimeout("Profile saved successfully.","Success.",5000);
+    this.notificationService.showSuccessWithTimeout('Profile saved successfully.', 'Success.', 5000);
     window.location.href = '/profile?saved=true';
   }
 
-  isDaySelected(id : number) {
+  isDaySelected(id: number) {
     return _.includes(this.profile.days, id);
   }
 
   dayChange(event, d: Day) {
-    if(event.target.checked) {
+    if (event.target.checked) {
       this.profile.days.push(d.id);
     } else {
-      //this.profile.days.slice(this.profile.days.indexOf(d.id),1);
-      this.profile.days = _.remove(this.profile.days, function(dayId) {
-        return (dayId != d.id)
+      // this.profile.days.slice(this.profile.days.indexOf(d.id),1);
+      this.profile.days = _.remove(this.profile.days, (dayId) => {
+        return (dayId !== d.id);
       });
     }
   }
@@ -133,7 +130,7 @@ export class SetupComponent implements OnInit {
     }
   }
 
-  remove(game: app): void {
+  remove(game: App): void {
     const index = this.selectedApps.indexOf(game);
 
     if (index >= 0) {
@@ -148,22 +145,21 @@ export class SetupComponent implements OnInit {
   }
 
   private _filter(text: any): any[] {
-    let ga  = this.selectedApps;
-    var list = _.filter(this.steamApps, (g:SteamApp) =>
-    {
-      return _.findIndex(ga, <any>{'appid':g.appid}) === -1;
+    const ga  = this.selectedApps;
+    const list = _.filter(this.steamApps, (g: SteamApp) => {
+      return _.findIndex(ga, {'appid': g.appid}) === -1;
     });
 
-    var results = text ? list.filter(this.createFilterFor(text)) : list.filter(this.createFilterFor(''));
+    const results = text ? list.filter(this.createFilterFor(text)) : list.filter(this.createFilterFor(''));
     return results;
   }
 
-  public createFilterFor(query:string) {
-    var lowerCaseQuery = query.toString().toLowerCase();
+  public createFilterFor(query: string) {
+    const lowerCaseQuery = query.toString().toLowerCase();
 
-    return function filterFn(app) {
-      return (app.name.toString().toLowerCase().indexOf(lowerCaseQuery) === 0)
-    }
+    return function filterFn(app: any) {
+      return (app.name.toString().toLowerCase().indexOf(lowerCaseQuery) === 0);
+    };
   }
 
   delay(ms: number) {

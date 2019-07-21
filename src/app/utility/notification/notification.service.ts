@@ -1,4 +1,4 @@
-import { Injectable }    from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -10,23 +10,22 @@ export class NotificationService {
 
   showSuccess(message, title) {
     this.toastr.success(message, title, {
-      disableTimeOut:true
+      disableTimeOut: true
     });
   }
 
-  showSuccessWithTimeout(message, title, timespan){
-    this.toastr.success(message, title ,{
-      //maxOpened     : 1,
+  showSuccessWithTimeout(message, title, timespan) {
+    this.toastr.success(message, title , {
       timeOut       :  timespan,
-      positionClass : "toast-top-center",
+      positionClass : 'toast-top-center',
       closeButton   : true,
     });
   }
 
   showErrorWithTimeout(message, title, timespan) {
-    this.toastr.error(message, title,{
+    this.toastr.error(message, title, {
       timeOut       :  timespan,
-      positionClass : "toast-top-center",
+      positionClass : 'toast-top-center',
       closeButton   : true,
     });
   }
@@ -34,7 +33,7 @@ export class NotificationService {
   showHTMLMessage(message, title) {
     this.toastr.success(message, title, {
       enableHtml : true
-    })
+    });
   }
 
 }
