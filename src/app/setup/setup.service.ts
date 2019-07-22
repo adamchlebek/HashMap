@@ -9,6 +9,7 @@ import { CommunicationPlatform } from './models/communication-platform.model';
 import { SteamApp } from '../services/steam/models/steamApp.model';
 import { Profile } from './models/profile.model';
 
+/** Defines Injectable */
 @Injectable({
   providedIn: 'root'
 })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+/** Setup Component Links */
 @Component({
   selector: 'app-network',
   templateUrl: './network.component.html',

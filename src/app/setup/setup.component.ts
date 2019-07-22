@@ -18,6 +18,7 @@ import { Profile } from './models/profile.model';
 import { AuthService } from '../services/auth/auth.service';
 import { NotificationService } from '../utility/notification/notification.service';
 
+/** Setup Component Links */
 @Component({
   selector: 'app-setup',
   templateUrl: './setup.component.html',

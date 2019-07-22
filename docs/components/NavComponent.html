@@ -64,6 +64,13 @@
     <code>src/app/nav/nav.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Setup Component Links </p>
+
+    </p>
 
 
     <p class="comment">
@@ -171,12 +178,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/nav/nav.component.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/nav/nav.component.ts:17</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><hr>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -240,14 +249,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/app/nav/nav.component.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/nav/nav.component.ts:27</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Nav Component Initialization</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -284,7 +295,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/nav/nav.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/nav/nav.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -300,15 +311,29 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { AuthService } from &#x27;../services/auth/auth.service&#x27;;
 
+/** Setup Component Links */
 @Component({
   selector: &#x27;app-nav&#x27;,
   templateUrl: &#x27;./nav.component.html&#x27;,
   styleUrls: [&#x27;./nav.component.scss&#x27;]
 })
+
+/**************************************************
+ * @author Adam Chlebek and Colin Larson
+ * @version 1.0
+ * @description Creates Navigation Bar for all
+ * components on the page.
+ *************************************************/
 export class NavComponent implements OnInit {
+  /***********************************************************
+   * @param auth
+   * @description Creates an instance of nav component.
+   *********************************************************/
+   constructor(public auth: AuthService) { }
 
-  constructor(public auth: AuthService) { }
-
+  /**
+   * Nav Component Initialization
+   */
   ngOnInit() {
   }
 
