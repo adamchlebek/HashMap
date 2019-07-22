@@ -119,8 +119,8 @@ export class SetupComponent implements OnInit {
     this.api.getProfile(this.uid).subscribe((prof: any) => {
       if (prof.exists) {
         this.profile = prof.data();
-        const sa       = this.steamApps;
-        const ssa      = [];
+        let sa       = this.steamApps;
+        let ssa      = [];
         _.forEach(this.profile.steamApps, (key) => {
           ssa.push(_.find(sa, ['appid', key]));
         });

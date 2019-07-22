@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit {
     this.setupAPI.getProfile(this.uid).subscribe((prof: any) => {
       if (prof.exists) {
         this.profile = prof.data();
-        const sa: SteamApp[] = [];
+        let sa: SteamApp[] = [];
         this.profile.steamApps.forEach((appId) => {
           this.api.getSteamApp(appId.toString()).subscribe((app: any) => {
             sa.push(app.data());
