@@ -17,8 +17,9 @@ import { ReleaseRubricComponent }                             from './release-ru
 import { ToastrModule }                                       from 'ngx-toastr';
 import { ProfileComponent }                                   from './profile/profile.component';
 import { NetworkComponent }                                   from './network/network.component';
-import { MatChipsModule, MatIconModule, MatTabsModule, 
-        MatAutocompleteModule, MatFormFieldModule, 
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatChipsModule, MatIconModule, MatTabsModule,
+        MatAutocompleteModule, MatFormFieldModule,
         MatInputModule, MatButtonModule, MatCheckboxModule }  from '@angular/material';
 
 var config = {
@@ -62,6 +63,7 @@ var config = {
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    NgbCarouselModule,
     MatTabsModule,
     ToastrModule.forRoot({
       maxOpened: 1,
