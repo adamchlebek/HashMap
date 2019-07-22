@@ -3,6 +3,10 @@
 
 [![Angular](https://img.shields.io/badge/Angular-v8.0-red.svg)](https://angular.io/)
 
+
+Live Demo: [Link](https://www.hashmap.ga)
+
+
 This project was created for CIS 350. HashMap is a location based friend search for people who play similar games to you! You can connect many of your accounts and settings to find friends near you.
 
 ## Running unit tests
