@@ -7,7 +7,15 @@ import { ReleaseRubricComponent } from './release-rubric/release-rubric.componen
 import { ProfileComponent } from './profile/profile.component';
 import { NetworkComponent } from './network/network.component';
 
+/**********************************************
+ * @class AppRoutingModule
+ * @author Adam Chlebek
+ * @version 1.0
+ * @description Manage routes of all components
+ * * notifcations
+ *********************************************/
 const routes: Routes = [
+  /** Routes collection for all components */
   { path: 'rubric', component: ReleaseRubricComponent},
   { path: '',
     redirectTo: '/about',
