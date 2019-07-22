@@ -12,16 +12,40 @@ import { Profile } from './models/profile.model';
 @Injectable({
   providedIn: 'root'
 })
+/**************************************************
+ * @author Collin Larson
+ * @version 1.0
+ * @description Setup Service class handles the
+ * API methods to get profile options
+ *************************************************/
 export class SetupService {
 
+  /** Region collection */
   regionCollection: AngularFirestoreCollection<Region>;
+
+  /** Platform collection */
   platformCollection: AngularFirestoreCollection<Platform>;
+
+  /** Days collection */
   daysCollection: AngularFirestoreCollection<Day>;
+
+  /** Comms collection */
   commsCollection: AngularFirestoreCollection<CommunicationPlatform>;
+
+  /** Steam App collection */
   steamAppCollection: AngularFirestoreCollection<SteamApp>;
 
+  /***********************************************************
+   * @param afs Angular Fire Store
+   * @param http Http Client
+   * @description Creates an instance of setup service.
+   **********************************************************/
   constructor(private afs: AngularFirestore, private http: HttpClient) { }
 
+  /****************************************
+   * Gets regions
+   * @returns an observable of regions
+   ***************************************/
   public getRegions() {
     this.regionCollection = this.afs.collection('regions', ref => {
       return ref.orderBy('name', 'desc');
@@ -29,35 +53,57 @@ export class SetupService {
     return this.regionCollection.valueChanges();
   }
 
+  /***************************************
+   * Gets days
+   * @returns an observable of days
+   **************************************/
   public getDays() {
     this.daysCollection = this.afs.collection('days');
     return this.daysCollection.valueChanges();
   }
 
+  /****************************************
+   * Gets platforms
+   * @returns an observable of platforms
+   ***************************************/
   public getPlatforms() {
     this.platformCollection = this.afs.collection('platform');
     return this.platformCollection.valueChanges();
   }
 
+  /***************************************
+   * Gets comms
+   * @returns an observable of comms
+   **************************************/
   public getComms() {
     this.commsCollection = this.afs.collection('communicationPlatform');
     return this.commsCollection.valueChanges();
   }
 
-  public getSteamGameList() {
-    return this.http.get('https://hashmapwebapi20190701031620.azurewebsites.net/api/games');
-  }
-
+  /******************************************
+   * Gets fire steam game list
+   * @returns an observable of steam games
+   *****************************************/
   public getFireSteamGameList() {
     this.steamAppCollection = this.afs.collection('steamGames');
     return this.steamAppCollection.valueChanges();
   }
 
+  /************************************************
+   * Gets profile
+   * @param uid user id
+   * @returns an observable of a user profile
+   ***********************************************/
   public getProfile(uid: string) {
     const profileRef = this.afs.doc(`profiles/${uid}`);
     return profileRef.get();
   }
 
+  /************************************************
+   * Saves profile
+   * @param profile user profile to be saved
+   * @returns an observable of a user profile
+   ***********************************************/
   public saveProfile(profile: Profile) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<Profile> = this.afs.doc(`profiles/${profile.uid}`);

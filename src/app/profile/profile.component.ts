@@ -14,38 +14,71 @@ import { SteamApp } from '../services/steam/models/steamApp.model';
 import * as _ from 'lodash';
 import { ProfileService } from './profile.service';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
 
+/**************************************************
+ * @author Collin Larson
+ * @version 1.0
+ * @description Profile Component class handles the
+ * front end logic of loading the user profile.
+ *************************************************/
+export class ProfileComponent implements OnInit {
+  /** FromSaved represents if a user is comming from the setup page after a save */
   fromSaved: any;
+
+  /** uid represents a users id */
   private uid: string;
+
+  /** an array of steam apps */
   steamApps: SteamApp[];
-  regions: Observable<Region[]>;
-  platforms: Observable<Platform[]>;
+
+  /** observable of day array */
   days: Observable<Day[]>;
-  comms: Observable<CommunicationPlatform[]>;
+
+  /** A region */
   region: Region;
+
+  /** A communication platform */
   comm: CommunicationPlatform;
+
+  /** A platform */
   platform: Platform;
+
+  /** preloading a default profile */
   profile: Profile = {uid: '', displayName: '', regionId: null, platformId: null, communicationPlatformId: null,
   bio: '', days: null, steamApps: null};
+  /** a boolean promise to check if data has come back from firebase */
   isLoaded: Promise<boolean>;
+
+  /** Check if user has a saved profile */
   noProfile = false;
 
 
-  constructor(private route: ActivatedRoute, 
-              private notificationService: NotificationService, 
-              private auth: AuthService, 
+  /***********************************************************
+   * @param route activated route
+   * @param notificationService ngx toaster service
+   * @param auth auth service
+   * @param setupAPI setup api
+   * @param api profile api
+   * @description Creates an instance of profile component.
+   *********************************************************/
+  constructor(private route: ActivatedRoute,
+              private notificationService: NotificationService,
+              private auth: AuthService,
               private setupAPI: SetupService,
               private api: ProfileService) { }
 
+  /****************************************
+   * Component controller initialization
+   ***************************************/
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      // this.fromSaved = params['saved'];
+      this.fromSaved = params['saved'];
       if (this.fromSaved === 'true') {
         // If Save is successfull
         this.notificationService.showSuccessWithTimeout('Profile saved successfully.', 'Success.', 5000);
@@ -58,6 +91,10 @@ export class ProfileComponent implements OnInit {
     });
   } // end of ngOnInit
 
+  /******************************************
+   * Gets profile from google firebase, and
+   * fills out the ngModule respectively.
+   *****************************************/
   getProfile() {
     // prof is a DocumentData, typing as any to get past typescript mismatch issue
     this.setupAPI.getProfile(this.uid).subscribe((prof: any) => {
@@ -87,6 +124,11 @@ export class ProfileComponent implements OnInit {
     });
   } // end of get profile
 
+  /**************************************
+   * Determines whether day selected is
+   * @param id => day id
+   * @returns boolean
+   *************************************/
   isDaySelected(id: number) {
     return _.includes(this.profile.days, id);
   } // end of isDaySelected

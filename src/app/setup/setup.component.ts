@@ -23,33 +23,78 @@ import { NotificationService } from '../utility/notification/notification.servic
   templateUrl: './setup.component.html',
   styleUrls: ['./setup.component.scss']
 })
+/**************************************************
+ * @author Collin Larson
+ * @version 1.0
+ * @description Setup Component class handles the
+ * front end logic of saving the user profile.
+ *************************************************/
 export class SetupComponent implements OnInit {
 
+  /** Material Chip Variable */
   visible = true;
+
+  /** Material Chip Variable */
   selectable = true;
+
+  /** Material Chip Variable */
   removable = true;
+
+  /** Material Chip Variable */
   addOnBlur = false;
+
+  /** Material Chip Key codes */
   separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  /** New FormControl */
   appCtrl = new FormControl();
 
+  /** observable of string array */
   filteredApps: Observable<string[]>;
 
+  /** selected steam app array */
   selectedApps: any[] = [];
+
+  /** all steam apps array */
   steamApps: SteamApp[];
 
+  /** watching html input */
   @ViewChild('appInput', {static: false}) appInput: ElementRef<HTMLInputElement>;
+
+  /** watching material input */
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
+  /** default steam ID */
   steamID = '';
-  invalid = true;
-  regions: Observable<Region[]>;
-  platforms: Observable<Platform[]>;
-  days: Observable<Day[]>;
-  comms: Observable<CommunicationPlatform[]>;
-  profile: Profile = { uid: '', displayName: '', regionId: null, platformId: null, communicationPlatformId: null, bio: '', days: null, steamApps: null };
 
+  /** invalid boolean */
+  invalid = true;
+
+  /** observable of region array */
+  regions: Observable<Region[]>;
+
+  /** observable of platform array */
+  platforms: Observable<Platform[]>;
+
+  /** observable of day array */
+  days: Observable<Day[]>;
+
+  /** observable of comms array */
+  comms: Observable<CommunicationPlatform[]>;
+
+  /** preloading a default profile */
+  profile: Profile = { uid: '', displayName: '', regionId: null, platformId: null,
+    communicationPlatformId: null, bio: '', days: null, steamApps: null };
+
+  /** uid represents a users id */
   private uid: string;
 
+  /***************************************************
+   * Creates an instance of setup component.
+   * @param api setup service api
+   * @param auth suth service
+   * @param notificationService ngx toaster service
+   **************************************************/
   constructor(private api: SetupService, private auth: AuthService, private notificationService: NotificationService) {
     this.auth.user$.subscribe(u => {
       this.uid         = u.uid;
@@ -58,18 +103,16 @@ export class SetupComponent implements OnInit {
     });
   }
 
+  /****************************************
+   * Component controller initialization
+   ***************************************/
   ngOnInit() {
     this.getDropdowns();
   }
 
-  checkSteamID() {
-    if (this.steamID.length !== 17) {
-      this.invalid = true;
-    } else {
-      this.invalid = false;
-    }
-  }
-
+  /***************************
+   * Gets users profile
+   **************************/
   getProfile() {
     // prof is a DocumentData, typing as any to get past typescript mismatch issue
     this.api.getProfile(this.uid).subscribe((prof: any) => {
@@ -82,11 +125,15 @@ export class SetupComponent implements OnInit {
         });
         this.selectedApps = ssa;
       } else {
-          // doc.data() will be undefined in this case
+        // doc.data() will be undefined in this case
       }
     });
   }
 
+  /*******************************************
+   * Gets regions, platforms, days, comms,
+   * and app dropdowns
+   *****************************************/
   getDropdowns() {
     this.api.getFireSteamGameList().subscribe((sapp) => {
       this.steamApps = sapp;
@@ -100,6 +147,9 @@ export class SetupComponent implements OnInit {
     this.comms     = this.api.getComms();
   }
 
+  /******************************************
+   * Saves user's profile & transfers page
+   *****************************************/
   save() {
     this.profile.steamApps = _.map(this.selectedApps, 'appid');
     this.api.saveProfile(this.profile);
@@ -107,10 +157,20 @@ export class SetupComponent implements OnInit {
     window.location.href = '/profile?saved=true';
   }
 
+  /****************************************
+   * Determines whether day selected is
+   * @param id day id
+   * @returns boolean day selected
+   ***************************************/
   isDaySelected(id: number) {
     return _.includes(this.profile.days, id);
   }
 
+  /***************************************
+   * Days change event handler
+   * @param event js event
+   * @param d day obj
+   **************************************/
   dayChange(event, d: Day) {
     if (event.target.checked) {
       this.profile.days.push(d.id);
@@ -122,14 +182,22 @@ export class SetupComponent implements OnInit {
     }
   }
 
+  /****************************************
+   * Add App event handler
+   * @param event js event
+   ***************************************/
   add(event: MatChipInputEvent): void {
-    // Add fruit only when MatAutocomplete is not open
+    // Add app only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
     if (!this.matAutocomplete.isOpen) {
       // do nothing user cannot add games
     }
   }
 
+  /************************************************
+   * Removes steam app from selected list
+   * @param game steam app obj
+   ***********************************************/
   remove(game: App): void {
     const index = this.selectedApps.indexOf(game);
 
@@ -138,12 +206,21 @@ export class SetupComponent implements OnInit {
     }
   }
 
+  /*****************************************
+   * Selected app event handler
+   * @param event matieral event
+   ****************************************/
   selected(event: MatAutocompleteSelectedEvent): void {
     this.selectedApps.push(event.option.value);
     this.appInput.nativeElement.value = '';
     this.appCtrl.setValue(null);
   }
 
+  /**********************************************
+   * Filters input text from app list
+   * @param text inputted filter text
+   * @returns filtered list of steam apps
+   *********************************************/
   private _filter(text: any): any[] {
     const ga  = this.selectedApps;
     const list = _.filter(this.steamApps, (g: SteamApp) => {
@@ -154,6 +231,11 @@ export class SetupComponent implements OnInit {
     return results;
   }
 
+  /***********************************************
+   * Creating list based on user input
+   * @param query inputted filter text
+   * @returns filtered list of steam apps
+   **********************************************/
   public createFilterFor(query: string) {
     const lowerCaseQuery = query.toString().toLowerCase();
 
@@ -162,6 +244,11 @@ export class SetupComponent implements OnInit {
     };
   }
 
+  /*********************************
+   * Create ms delay
+   * @param ms milli second
+   * @returns a timeout promise
+   ********************************/
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }

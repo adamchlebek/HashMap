@@ -17,8 +17,10 @@ import { ReleaseRubricComponent } from './release-rubric/release-rubric.componen
 import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './profile/profile.component';
 import { NetworkComponent } from './network/network.component';
-import { MatChipsModule, MatIconModule, MatTabsModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatChipsModule, MatIconModule, MatTabsModule, MatAutocompleteModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
 
+/** Google Firebase configuration */
 const config = {
   apiKey            : 'AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg',
   authDomain        : 'hashmaporbyt.firebaseapp.com',
@@ -29,6 +31,9 @@ const config = {
   appId             : '1:988913741592:web:7044428c9379127f'
 };
 
+/***********************************************
+ * Ng module declarions, imports, and providers
+ **********************************************/
 @NgModule({
   declarations: [
     AppComponent,
