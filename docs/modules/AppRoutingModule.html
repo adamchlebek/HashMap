@@ -83,10 +83,11 @@ import { NetworkComponent } from &#x27;./network/network.component&#x27;;
  * @author Adam Chlebek
  * @version 1.0
  * @description Manage routes of all components
- * * notifcations
+ * notifcations
  *********************************************/
+
+/** Routes collection for all components */
 const routes: Routes &#x3D; [
-  /** Routes collection for all components */
   { path: &#x27;rubric&#x27;, component: ReleaseRubricComponent},
   { path: &#x27;&#x27;,
     redirectTo: &#x27;/about&#x27;,
@@ -98,6 +99,9 @@ const routes: Routes &#x3D; [
   { path: &#x27;profile&#x27;, component: ProfileComponent, canActivate: [AuthGuard] }
 ];
 
+/**
+ * Defines NgModule
+ */
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

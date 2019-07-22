@@ -11,10 +11,11 @@ import { NetworkComponent } from './network/network.component';
  * @author Adam Chlebek
  * @version 1.0
  * @description Manage routes of all components
- * * notifcations
+ * notifcations
  *********************************************/
+
+/** Routes collection for all components */
 const routes: Routes = [
-  /** Routes collection for all components */
   { path: 'rubric', component: ReleaseRubricComponent},
   { path: '',
     redirectTo: '/about',
@@ -26,6 +27,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
 ];
 
+/**
+ * Defines NgModule
+ */
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

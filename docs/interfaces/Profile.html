@@ -64,6 +64,15 @@
             <code>src/app/setup/models/profile.model.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <hr>
+<p>Profile interface (model)</p>
+<hr>
+
+            </p>
 
 
         <section>
@@ -140,6 +149,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profile&#39;s bio </p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -169,6 +184,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profile&#39;s Communication Platform </p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -198,6 +219,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profile&#39;s available Days </p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -227,6 +254,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Prodile Display Name </p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -256,6 +289,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profile&#39;s Platform </p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -285,6 +324,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profile&#39;s region </p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -314,6 +359,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profile&#39;s game interests </p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -343,6 +394,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profile Id </p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -351,13 +408,28 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Profile {
+    /** Profile Id */
     uid: string;
+
+    /** Prodile Display Name */
     displayName: string;
+
+    /** Profile&#x27;s region */
     regionId: number;
+
+    /** Profile&#x27;s Platform */
     platformId: number;
+
+    /** Profile&#x27;s Communication Platform */
     communicationPlatformId: number;
+
+    /** Profile&#x27;s available Days */
     days: number[];
+
+    /** Profile&#x27;s game interests */
     steamApps: number[];
+
+    /** Profile&#x27;s bio */
     bio: string;
 }
 </code></pre>
