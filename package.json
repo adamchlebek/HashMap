@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "ng build --prod && firebase deploy",
-    "cc": "ng test --code-coverage"
+    "cc": "ng test --code-coverage",
+    "compodoc": "npx compodoc -p tsconfig.app.json --output docs"
   },
   "private": true,
   "dependencies": {
