@@ -8,7 +8,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { NetworkComponent } from './network/network.component';
 
 /**********************************************
- * @class AppRoutingModule
  * @author Adam Chlebek
  * @version 1.0
  * @description Manage routes of all components
