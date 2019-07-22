@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './services/auth/auth.service';
 import { take, map, tap } from 'rxjs/operators';
 
+/** Defines Injectable */
 @Injectable({
   providedIn: 'root'
 })

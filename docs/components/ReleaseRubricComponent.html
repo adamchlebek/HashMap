@@ -64,6 +64,13 @@
     <code>src/app/release-rubric/release-rubric.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Setup Component Links </p>
+
+    </p>
 
 
     <p class="comment">
@@ -156,10 +163,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/release-rubric/release-rubric.component.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/release-rubric/release-rubric.component.ts:9</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of release rubric component.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -195,14 +208,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/release-rubric/release-rubric.component.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/app/release-rubric/release-rubric.component.ts:19</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Release Rubric Component Initialization</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -220,6 +235,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 
+/** Setup Component Links */
 @Component({
   selector: &#x27;app-release-rubric&#x27;,
   templateUrl: &#x27;./release-rubric.component.html&#x27;,
@@ -227,8 +243,14 @@
 })
 export class ReleaseRubricComponent implements OnInit {
 
+  /**
+   * Creates an instance of release rubric component.
+   */
   constructor() { }
 
+  /**
+   * Release Rubric Component Initialization
+   */
   ngOnInit() {
   }
 

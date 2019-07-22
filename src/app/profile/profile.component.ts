@@ -14,7 +14,7 @@ import { SteamApp } from '../services/steam/models/steamApp.model';
 import * as _ from 'lodash';
 import { ProfileService } from './profile.service';
 
-
+/** Setup Component Links */
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
