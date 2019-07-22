@@ -194,6 +194,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -208,6 +209,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>authService</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -299,6 +304,11 @@
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">authService</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -326,7 +336,7 @@ import { AuthService } from &#x27;../services/auth/auth.service&#x27;;
  *************************************************/
 export class NavComponent implements OnInit {
   /***********************************************************
-   * @param auth
+   * @param auth authService
    * @description Creates an instance of nav component.
    *********************************************************/
    constructor(public auth: AuthService) { }

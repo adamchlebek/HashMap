@@ -16,7 +16,7 @@ import { AuthService } from '../services/auth/auth.service';
  *************************************************/
 export class NavComponent implements OnInit {
   /***********************************************************
-   * @param auth
+   * @param auth authService
    * @description Creates an instance of nav component.
    *********************************************************/
    constructor(public auth: AuthService) { }
