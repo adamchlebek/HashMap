@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReleaseRubricComponent implements OnInit {
 
+  /**
+   * Creates an instance of release rubric component.
+   */
   constructor() { }
 
+  /**
+   * Release Rubric Component Initialization
+   */
   ngOnInit() {
   }
 
