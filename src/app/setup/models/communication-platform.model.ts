@@ -1,4 +1,4 @@
 export interface CommunicationPlatform {
-    id   : number;
-    name : string;
+    id: number;
+    name: string;
 }

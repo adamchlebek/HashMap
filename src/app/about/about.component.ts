@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    //this.getLocation();
+    // this.getLocation();
   }
 
   // getLocation() {

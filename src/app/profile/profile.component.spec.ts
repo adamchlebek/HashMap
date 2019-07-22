@@ -8,14 +8,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
 
-var config = {
-  apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
-  authDomain        : "hashmaporbyt.firebaseapp.com",
-  databaseURL       : "https://hashmaporbyt.firebaseio.com",
-  projectId         : "hashmaporbyt",
-  storageBucket     : "hashmaporbyt.appspot.com",
-  messagingSenderId : "988913741592",
-  appId             : "1:988913741592:web:7044428c9379127f"
+const config = {
+  apiKey            : 'AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg',
+  authDomain        : 'hashmaporbyt.firebaseapp.com',
+  databaseURL       : 'https://hashmaporbyt.firebaseio.com',
+  projectId         : 'hashmaporbyt',
+  storageBucket     : 'hashmaporbyt.appspot.com',
+  messagingSenderId : '988913741592',
+  appId             : '1:988913741592:web:7044428c9379127f'
 };
 
 describe('ProfileComponent', () => {
@@ -28,7 +28,7 @@ describe('ProfileComponent', () => {
       imports      : [ MatChipsModule, RouterModule.forRoot([]), ToastrModule.forRoot({
         maxOpened: 1,
         autoDismiss: true
-      }), 
+      }),
       AngularFireModule.initializeApp(config), HttpClientModule],
       providers    : [AngularFirestore, AngularFireAuth]
     })

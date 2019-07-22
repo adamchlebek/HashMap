@@ -3,7 +3,7 @@ import { NotificationService } from './notification.service';
 import { ToastrModule } from 'ngx-toastr';
 
 describe('NotificationService', () => {
-  let serviceStub: any;
+  // let serviceStub: any;
   beforeEach(() => TestBed.configureTestingModule({
     providers : [NotificationService],
     imports   : [ToastrModule.forRoot({
