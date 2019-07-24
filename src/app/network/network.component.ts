@@ -27,7 +27,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
 
-
 @Component({
   selector: 'app-network',
   templateUrl: './network.component.html',
@@ -49,14 +48,15 @@ export class NetworkComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+
     console.log(row);
   }
 
-  accepted(){
+  accepted(row){
     console.log('Accepted');
   }
 
-  declined(){
+  declined(row){
     console.log('Declined');
   }
 
