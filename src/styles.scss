@@ -20,6 +20,7 @@ h2 {
 
   .mat-column-image {
     width: 8%;
+    text-align: center;
   }
 
   .mat-column-buttons {
@@ -28,6 +29,19 @@ h2 {
 
   .mat-column-name {
     width: 40%;
+    text-align: left;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  mat-form-field {
+    padding: 10px;
+  }
+
+  mat-label {
+    color: white;
   }
 }
 

@@ -20,7 +20,8 @@ import { NetworkComponent }                                   from './network/ne
 import { MatChipsModule, MatIconModule, MatTabsModule,
         MatAutocompleteModule, MatFormFieldModule,
         MatInputModule, MatButtonModule, MatCheckboxModule,
-        MatTableModule }  from '@angular/material';
+        MatTableModule, MatSelectModule, MatDialogModule }  from '@angular/material';
+import { ProfileModalComponent } from './profile-modal/profile-modal.component';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -41,7 +42,8 @@ var config = {
     AboutComponent,
     ReleaseRubricComponent,
     ProfileComponent,
-    NetworkComponent
+    NetworkComponent,
+    ProfileModalComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,8 @@ var config = {
     MatAutocompleteModule,
     MatFormFieldModule,
     MatTableModule,
+    MatDialogModule,
+    MatSelectModule,
     MatTabsModule,
     ToastrModule.forRoot({
       maxOpened: 1,
@@ -72,6 +76,7 @@ var config = {
     )
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ProfileModalComponent]
 })
 export class AppModule { }

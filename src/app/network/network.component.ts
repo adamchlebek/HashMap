@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
+import { MatDialog } from '@angular/material';
 
 export interface PeriodicElement {
   name: string;
   position: number;
   weight: number;
   symbol: string;
+}
+
+export interface Food {
+  value: string;
+  viewValue: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -28,12 +35,30 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class NetworkComponent implements OnInit {
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
+  openModal(row){
+    const dialogRef = this.dialog.open(ProfileModalComponent, {
+      width: '80%',
+      data: {name: 'Adam', animal: 'Dog'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    console.log(row);
+  }
+
   displayedColumns: string[] = ['image', 'name', 'region', 'buttons'];
   dataSource = ELEMENT_DATA;
+
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
 
 }
