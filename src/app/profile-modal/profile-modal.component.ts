@@ -22,5 +22,4 @@ export class ProfileModalComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

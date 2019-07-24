@@ -52,6 +52,14 @@ export class NetworkComponent implements OnInit {
     console.log(row);
   }
 
+  accepted(){
+    console.log('Accepted');
+  }
+
+  declined(){
+    console.log('Declined');
+  }
+
   displayedColumns: string[] = ['image', 'name', 'region', 'buttons'];
   dataSource = ELEMENT_DATA;
 

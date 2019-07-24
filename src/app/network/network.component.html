@@ -45,7 +45,7 @@
     <!-- Accept/Reject Column -->
     <ng-container matColumnDef="buttons">
       <th mat-header-cell *matHeaderCellDef> Accept/Reject </th>
-      <td mat-cell *matCellDef="let element"><button class="btn btn-light">✅</button> / <button class="btn btn-light">❌</button> </td>
+      <td mat-cell *matCellDef="let element"><button class="btn btn-light" (click)="accepted()">✅</button> / <button class="btn btn-light" (click)="declined()">❌</button> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
