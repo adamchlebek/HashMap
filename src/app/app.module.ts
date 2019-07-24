@@ -17,10 +17,10 @@ import { ReleaseRubricComponent }                             from './release-ru
 import { ToastrModule }                                       from 'ngx-toastr';
 import { ProfileComponent }                                   from './profile/profile.component';
 import { NetworkComponent }                                   from './network/network.component';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatChipsModule, MatIconModule, MatTabsModule,
         MatAutocompleteModule, MatFormFieldModule,
-        MatInputModule, MatButtonModule, MatCheckboxModule }  from '@angular/material';
+        MatInputModule, MatButtonModule, MatCheckboxModule,
+        MatTableModule }  from '@angular/material';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -63,7 +63,7 @@ var config = {
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    NgbCarouselModule,
+    MatTableModule,
     MatTabsModule,
     ToastrModule.forRoot({
       maxOpened: 1,
