@@ -1,45 +1,58 @@
-<h3 style="color: white; text-align: center; padding: 20px;">Welcome to your Network!</h3>
+<div class="card" style="margin: 18px">
+  <div class="card-body">
+    <h5 class="card-title">Networking</h5>
+    <div class="row">
+      <div class="col-12">
+        <div class="">
+          <mat-form-field>
+            <mat-label>By Game</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-<div class="network_table">
-    <mat-form-field>
-      <mat-label>By Game</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+          <mat-table [dataSource]="dataSource" class="mat-elevation-z8 network">
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+            <!-- Image Column -->
+            <ng-container matColumnDef="image">
+              <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <img class="network_image" (click)="openModal(element)"
+                  src="https://images.pexels.com/photos/695644/pexels-photo-695644.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+              </mat-cell>
+            </ng-container>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 network" >
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef class="centered">Name</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+            <!-- Region Column -->
+            <ng-container matColumnDef="region">
+              <mat-header-cell *matHeaderCellDef>Region</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.symbol}}</mat-cell>
+            </ng-container>
 
-    <!-- Image Column -->
-    <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef> Image </th>
-      <td mat-cell *matCellDef="let element"><img class="network_image" (click)="openModal(element)" src="https://images.pexels.com/photos/695644/pexels-photo-695644.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/> </td>
-    </ng-container>
+            <!-- Accept/Reject Column -->
+            <ng-container matColumnDef="buttons">
+              <mat-header-cell *matHeaderCellDef>Accept/Reject</mat-header-cell>
+              <mat-cell *matCellDef="let element"><button class="btn btn-light"
+                  (click)="accepted(element)">✅</button> / <button class="btn btn-light"
+                  (click)="declined(element)">❌</button>
+              </mat-cell>
+            </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef class="centered"> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <!-- Region Column -->
-    <ng-container matColumnDef="region">
-      <th mat-header-cell *matHeaderCellDef> Region </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-    </ng-container>
-
-    <!-- Accept/Reject Column -->
-    <ng-container matColumnDef="buttons">
-      <th mat-header-cell *matHeaderCellDef> Accept/Reject </th>
-      <td mat-cell *matCellDef="let element"><button class="btn btn-light" (click)="accepted(element)">✅</button> / <button class="btn btn-light" (click)="declined(element)">❌</button> </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- <h3 style="color: white; text-align: center; padding: 20px;"></h3> -->
