@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { MatDialog } from '@angular/material';
+import { NetworkService } from './network.service';
+import { Profile } from '../setup/models/profile.model';
+import { DocumentSnapshot } from '@angular/fire/firestore';
 
 export interface PeriodicElement {
   name: string;
@@ -34,9 +37,26 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class NetworkComponent implements OnInit {
-  constructor(public dialog: MatDialog) { }
+
+  profiles: Profile[];
+
+  constructor(public dialog: MatDialog, private api: NetworkService) { }
 
   ngOnInit() {
+    
+  }
+
+  findFriends() {
+    this.api.getProfiles().subscribe((profiles$: any) => {
+
+      let profiles = [];
+
+      profiles$.docs.forEach((profile: DocumentSnapshot<Profile>) => {
+        profiles.push(profile.data());
+      });
+
+      this.profiles = profiles;
+    });
   }
 
   openModal(row){
