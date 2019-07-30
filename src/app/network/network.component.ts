@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { NetworkService } from './network.service';
 import { Profile } from '../setup/models/profile.model';
 import { DocumentSnapshot } from '@angular/fire/firestore';
+import { SwiperOptions } from 'swiper';
 
 export interface PeriodicElement {
   name: string;
@@ -40,10 +41,19 @@ export class NetworkComponent implements OnInit {
 
   profiles: Profile[];
 
+  config: SwiperOptions = {
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    spaceBetween: 30
+  };
+
   constructor(public dialog: MatDialog, private api: NetworkService) { }
 
   ngOnInit() {
-    
+    this.findFriends();
   }
 
   findFriends() {

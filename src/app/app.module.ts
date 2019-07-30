@@ -22,6 +22,7 @@ import { MatChipsModule, MatIconModule, MatTabsModule,
         MatInputModule, MatButtonModule, MatCheckboxModule,
         MatTableModule, MatSelectModule, MatDialogModule }  from '@angular/material';
 import { ProfileModalComponent } from './profile-modal/profile-modal.component';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
 var config = {
   apiKey            : "AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg",
@@ -69,11 +70,11 @@ var config = {
     MatDialogModule,
     MatSelectModule,
     MatTabsModule,
+    NgxUsefulSwiperModule,
     ToastrModule.forRoot({
       maxOpened: 1,
       autoDismiss: true
-    }
-    )
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
