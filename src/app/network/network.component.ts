@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { MatDialog } from '@angular/material';
 import { NetworkService } from './network.service';
-import { Observable } from 'rxjs';
 import { Profile } from '../setup/models/profile.model';
-import { QuerySnapshot, DocumentSnapshot } from '@angular/fire/firestore';
+import { DocumentSnapshot } from '@angular/fire/firestore';
+import { SwiperOptions } from 'swiper';
 
 export interface PeriodicElement {
   name: string;
@@ -39,19 +39,33 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class NetworkComponent implements OnInit {
 
-  profiles : Profile[];
+  profiles: Profile[];
+
+  config: SwiperOptions = {
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    spaceBetween: 30
+  };
 
   constructor(public dialog: MatDialog, private api: NetworkService) { }
 
   ngOnInit() {
-    this.api.getUsers().subscribe((users$: any) => {
-      console.log(users$);
-      console.log(users$.docs);
-      let users = []
-      users$.docs.forEach((user: DocumentSnapshot<Profile>) => {
-        users.push(user.data());
+    this.findFriends();
+  }
+
+  findFriends() {
+    this.api.getProfiles().subscribe((profiles$: any) => {
+
+      let profiles = [];
+
+      profiles$.docs.forEach((profile: DocumentSnapshot<Profile>) => {
+        profiles.push(profile.data());
       });
-      this.profiles = users;
+
+      this.profiles = profiles;
     });
   }
 

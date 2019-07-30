@@ -8,9 +8,9 @@ export class NetworkService {
 
   constructor(private afs: AngularFirestore) { }
 
-  public getUsers() {
-    var users$ = this.afs.collection('profiles', ref => ref.where('regionId', '==', '1'));
-    return users$.get();
+  public getProfiles() {
+    var profiles$ = this.afs.collection('profiles', ref => ref.where('regionId', '==', '1'));
+    return profiles$.get();
   }
 
 }
