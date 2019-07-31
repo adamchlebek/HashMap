@@ -357,6 +357,17 @@ fa {
 	border-color: #eceef4;
 }
 
+.btn-danger {
+    color: #fff;
+    background-color: #bf616a;
+	border-color: #bf616a;
+}
+
+.btn-danger:hover {
+	background-color: #bf616a;
+	border-color: #eceef4;
+}
+
 .weekDays-selector input[type=checkbox]+label {
 	display: inline-block;
 	border-radius: 6px;

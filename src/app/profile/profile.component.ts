@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   region      : Region;
   comm        : CommunicationPlatform;
   platform    : Platform;
-  profile     : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", days:null, steamApps: null};
+  profile     : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", days:null, steamApps: null, _steamAppChips: null};
   isLoaded    : Promise<boolean>;
   noProfile   : boolean = false;
 

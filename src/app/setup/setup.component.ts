@@ -47,7 +47,7 @@ export class SetupComponent implements OnInit {
   platforms  : Observable<Platform[]>;
   days       : Observable<Day[]>;
   comms      : Observable<CommunicationPlatform[]>;
-  profile    : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", days:null, steamApps: null};
+  profile    : Profile = {uid:"", displayName: "", regionId: null, platformId: null, communicationPlatformId: null, bio: "", days:null, steamApps: null, _steamAppChips: null};
 
   private uid : string;
 

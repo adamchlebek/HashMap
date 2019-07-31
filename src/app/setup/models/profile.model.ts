@@ -12,4 +12,5 @@ export interface Profile {
     days                    : number[];
     steamApps               : number[];//SteamApp[];
     bio                     : string;
+    _steamAppChips: SteamApp[];
 }

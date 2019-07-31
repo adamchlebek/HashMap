@@ -5,6 +5,9 @@ import { NetworkService } from './network.service';
 import { Profile } from '../setup/models/profile.model';
 import { DocumentSnapshot } from '@angular/fire/firestore';
 import { SwiperOptions } from 'swiper';
+import { SteamApp } from '../services/steam/models/steamApp.model';
+import { ProfileService } from '../profile/profile.service';
+import * as _ from 'lodash';
 
 export interface PeriodicElement {
   name: string;
@@ -40,6 +43,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class NetworkComponent implements OnInit {
 
   profiles: Profile[];
+  steamApps: SteamApp[];
 
   config: SwiperOptions = {
     pagination: { el: '.swiper-pagination', clickable: true },
@@ -50,7 +54,7 @@ export class NetworkComponent implements OnInit {
     spaceBetween: 30
   };
 
-  constructor(public dialog: MatDialog, private api: NetworkService) { }
+  constructor(public dialog: MatDialog, private api: NetworkService, private profileAPI: ProfileService) { }
 
   ngOnInit() {
     this.findFriends();
@@ -59,15 +63,29 @@ export class NetworkComponent implements OnInit {
   findFriends() {
     this.api.getProfiles().subscribe((profiles$: any) => {
 
-      let profiles = [];
+      let profiles: Profile[] = [];
 
       profiles$.docs.forEach((profile: DocumentSnapshot<Profile>) => {
         profiles.push(profile.data());
       });
 
-      this.profiles = profiles;
+      profiles.forEach((prof: Profile) => {
+        let apps = [];
+        prof.steamApps.forEach((appId) => {
+          this.profileAPI.getSteamApp(appId.toString()).subscribe((app : any) =>{
+            apps.push(app.data());
+          });
+        });
+        prof._steamAppChips = apps;
+      });
+
+      this.profiles  = profiles;
     });
   }
+
+  isDaySelected(profile: Profile, id: number) {
+    return _.includes(profile.days, id);
+  } // end of isDaySelected
 
   openModal(row){
     const dialogRef = this.dialog.open(ProfileModalComponent, {
