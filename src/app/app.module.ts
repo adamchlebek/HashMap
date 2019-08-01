@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NetworkComponent } from './network/network.component';
 import { MatChipsModule, MatIconModule, MatTabsModule, MatAutocompleteModule } from '@angular/material';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { FriendCardComponent } from './friend-card/friend-card.component';
 
 /** Google Firebase configuration */
 const config = {
@@ -43,7 +44,8 @@ const config = {
     AboutComponent,
     ReleaseRubricComponent,
     ProfileComponent,
-    NetworkComponent
+    NetworkComponent,
+    FriendCardComponent
   ],
   imports: [
     BrowserModule,

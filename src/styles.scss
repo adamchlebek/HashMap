@@ -85,6 +85,23 @@ h2 {
 	background: rgb(245, 245, 245);
 }
 
+.form-group span{
+  font-size: small;
+  color: gray;
+}
+
+.contain {
+  margin: 5px;
+}
+
+.friends-list {
+  height: 350px;
+  width: 400px;
+  border: 1px solid #ccc;
+  font: 16px/26px Georgia, Garamond, Serif;
+  overflow: auto;
+}
+
 .login label {
 	color: black;
 }
@@ -604,6 +621,15 @@ button.toast-close-button {
 
 .example-option-img {
   vertical-align: middle;
+}
+
+.friend-icon {
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 15px;
+  margin-top: 20%;
 }
 
 .cls-1{
