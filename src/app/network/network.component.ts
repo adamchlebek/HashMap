@@ -40,8 +40,9 @@ export class NetworkComponent implements OnInit {
     pagination: { el: '.swiper-pagination', clickable: true },
     navigation: {
       nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
+      prevEl: '.swiper-button-prev',
     },
+    keyboard: true,
     spaceBetween: 30
   };
 
@@ -65,7 +66,6 @@ export class NetworkComponent implements OnInit {
       this.uid  = u.uid;
       this.getProfile();
     });
-    this.findFriends();
   }
 
   /******************************************
@@ -77,22 +77,7 @@ export class NetworkComponent implements OnInit {
     this.setupAPI.getProfile(this.uid).subscribe((prof: any) => {
       if (prof.exists) {
         this.profile = prof.data();
-        // let sa: SteamApp[] = [];
-        // this.profile.steamApps.forEach((appId) => {
-        //   this.api.getSteamApp(appId.toString()).subscribe((app: any) => {
-        //     sa.push(app.data());
-        //   });
-        // });
-        // this.steamApps = sa;
-        // this.api.getRegion(this.profile.regionId.toString()).subscribe((region: any) => {
-        //   this.region = region.data();
-        // });
-        // this.api.getComm(this.profile.communicationPlatformId.toString()).subscribe((comm: any) => {
-        //   this.comm = comm.data();
-        // });
-        // this.api.getPlatform(this.profile.platformId.toString()).subscribe((platform: any) => {
-        //   this.platform = platform.data();
-        // });
+        this.findFriends();
       } else {
         this.notificationService.showErrorWithTimeout('Profile not found.', 'Error', 5000);
       } // end of if profile exists
@@ -103,12 +88,12 @@ export class NetworkComponent implements OnInit {
    * Finds friends
    ******************************/
   findFriends() {
-    this.api.getProfiles().subscribe((profiles$: any) => {
+    this.api.getProfiles(this.profile).subscribe((profiles$: any) => {
 
       let profiles: Profile[] = [];
-
       profiles$.docs.forEach((profile: DocumentSnapshot<Profile>) => {
-        profiles.push(profile.data());
+        if ((profile.id != this.uid) && !_.find(this.profile.friends, {id: profile.id}) )
+          profiles.push(profile.data());
       });
 
       profiles.forEach((prof: Profile) => {
@@ -124,12 +109,16 @@ export class NetworkComponent implements OnInit {
     });
   }
 
-
   addFriend(prof: Profile, index: number) {
+    if (this.profile.friends == null) {
+      this.profile.friends = [];
+    }
+
     this.profile.friends.push(this.afs.doc(`profiles/${prof.uid}`).ref);
+    
     this.setupAPI.saveProfile(this.profile).then((val:any) => {
       this.friendSwiper.swiper.removeSlide(index);
-      this.notificationService.showSuccessWithTimeout('Friend added successfully.', 'Success.', 5000);
+      this.notificationService.showSuccessWithTimeout('Friend added successfully.', 'Success.', 1000);
     });
   }
 
