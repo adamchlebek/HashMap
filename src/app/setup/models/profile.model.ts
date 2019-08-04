@@ -1,3 +1,5 @@
+import { SteamApp } from 'src/app/services/steam/models/steamApp.model';
+
 /*******************************
  * Profile interface (model)
  ******************************/
@@ -25,4 +27,7 @@ export interface Profile {
 
     /** Profile's bio */
     bio: string;
+
+    /** List of steam app chips (client side only) */
+    _steamAppChips: SteamApp[];
 }

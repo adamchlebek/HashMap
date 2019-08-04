@@ -85,7 +85,7 @@ export class SetupComponent implements OnInit {
 
   /** preloading a default profile */
   profile: Profile = { uid: '', displayName: '', regionId: null, platformId: null,
-    communicationPlatformId: null, bio: '', days: null, steamApps: null };
+    communicationPlatformId: null, bio: '', days: null, steamApps: null, _steamAppChips: null };
 
   /** uid represents a users id */
   private uid: string;

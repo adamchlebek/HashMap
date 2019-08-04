@@ -13,11 +13,57 @@ h2 {
 	text-align: center;
 }
 
+.network_table {
+  width: 100%;
+  padding: 0px 250px;
+  padding-bottom: 50px;
+
+  .mat-column-image {
+    width: 8%;
+    text-align: center;
+  }
+
+  .mat-column-buttons {
+    text-align: right;
+  }
+
+  .mat-column-name {
+    width: 40%;
+    text-align: left;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  mat-form-field {
+    padding: 10px;
+  }
+
+  mat-label {
+    color: white;
+  }
+}
+
+.network {
+  width: 100%;
+}
+
 .divider {
 	cursor: default;
 	color: rgba(255, 255, 255, .5) !important;
 	padding: 0.5rem 0.5rem;
 	display: block;
+}
+
+
+.network_image {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  padding: 8px;
 }
 
 .strong {
@@ -325,6 +371,17 @@ fa {
 
 .btn-primary:hover {
 	background-color: #88c0d0;
+	border-color: #eceef4;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #bf616a;
+	border-color: #bf616a;
+}
+
+.btn-danger:hover {
+	background-color: #bf616a;
 	border-color: #eceef4;
 }
 
