@@ -30,4 +30,8 @@ export interface Profile {
 
     /** List of steam app chips (client side only) */
     _steamAppChips: SteamApp[];
+
+    friends: any[];
+
+    _friends: Profile[];
 }

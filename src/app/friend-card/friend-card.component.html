@@ -1,17 +1,19 @@
 <div class="card contain">
   <div class="card-body">
-    <div class="row">
-      <div class="col-md-2">
-        <img src="../../assets/images/g-normal.png" class="friend-icon"  />
-      </div>
-      <div class ="col-md-10">
+    <ng-container *ngFor="let friend of friends">
         <div class="row">
-          Adam Chlebek
+          <div class="col-2">
+            <img src="../../assets/images/g-normal.png" class="friend-icon"  />
+          </div>
+          <div class ="col-10">
+            <div class="row">
+              {{friend.displayName}}
+            </div>
+            <div class="row">
+              {{friend.bio}}
+            </div>
+          </div>
         </div>
-        <div class="row">
-          More Information
-        </div>
-      </div>
-    </div>
+    </ng-container>
   </div>
 </div>

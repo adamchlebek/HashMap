@@ -1,8 +1,8 @@
 <div class="card" style="margin: 18px">
   <div class="card-body">
-    <swiper class="swiper" [config]="config">
+    <swiper class="swiper" [config]="config" #friendSwiper>
       <div class="swiper-wrapper">
-        <ng-container *ngFor="let profile of profiles">
+        <ng-container *ngFor="let profile of profiles; let i = index;">
           <div class="swiper-slide">
             <div class="card" style="margin: 18px">
               <div class="card-body">
@@ -84,8 +84,8 @@
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <button type="button" class="btn btn-danger" style="float: left">Hard Pass</button>
-                    <button type="button" class="btn btn-primary" style="float: right" >Add</button>
+                    <button type="button" class="btn btn-danger" style="float: left" (click)="decline(profile, i)">Hard Pass</button>
+                    <button type="button" class="btn btn-primary" style="float: right" (click)="addFriend(profile, i)">Add</button>
                   </div>
                 </div>
               </div>

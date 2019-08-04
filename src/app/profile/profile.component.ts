@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
 
   /** preloading a default profile */
   profile: Profile = {uid: '', displayName: '', regionId: null, platformId: null, communicationPlatformId: null,
-  bio: '', days: null, steamApps: null, _steamAppChips: null};
+  bio: '', days: null, steamApps: null, _steamAppChips: null, friends: null, _friends: null};
   /** a boolean promise to check if data has come back from firebase */
   isLoaded: Promise<boolean>;
 
@@ -88,7 +88,6 @@ export class ProfileComponent implements OnInit {
     this.auth.user$.subscribe(u => {
       this.uid  = u.uid;
       this.getProfile();
-      this.days = this.setupAPI.getDays();
     });
   } // end of ngOnInit
 
@@ -101,6 +100,7 @@ export class ProfileComponent implements OnInit {
     this.setupAPI.getProfile(this.uid).subscribe((prof: any) => {
       if (prof.exists) {
         this.profile = prof.data();
+        let friends: Profile[] = [];
         let sa: SteamApp[] = [];
         this.profile.steamApps.forEach((appId) => {
           this.api.getSteamApp(appId.toString()).subscribe((app: any) => {
@@ -117,6 +117,14 @@ export class ProfileComponent implements OnInit {
         this.api.getPlatform(this.profile.platformId.toString()).subscribe((platform: any) => {
           this.platform = platform.data();
         });
+        _.forEach(this.profile.friends, function(profRef) {
+          profRef.get().then((friendSnapShot: any) => {
+            if(friendSnapShot.exists) {
+              friends.push(friendSnapShot.data());
+            }
+          });
+        });
+        this.profile._friends = friends;
         this.isLoaded = Promise.resolve(true);
       } else {
         this.notificationService.showErrorWithTimeout('Profile not found.', 'Error', 5000);
