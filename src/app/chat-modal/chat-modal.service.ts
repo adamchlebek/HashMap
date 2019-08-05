@@ -28,8 +28,9 @@ export class ChatModalService {
       );
   }
 
-  async create() {
+  async create(chatId) {
     const { uid } = await this.auth.getUser();
+    const chatRef = this.afs.doc(`chats/${chatId}`);
 
     const data = {
       uid,
@@ -38,8 +39,8 @@ export class ChatModalService {
       messages: []
     };
 
-    const docRef = await this.afs.collection('chats').add(data);
-
+    return chatRef.set(data);
+    //const docRef = await this.afs.collection('chats').add(data);
     //return this.router.navigate(['chats', docRef.id]);
   }
   
