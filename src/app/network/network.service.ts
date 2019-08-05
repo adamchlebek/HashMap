@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Profile } from '../setup/models/profile.model';
 
+/** Defines Injectable */
 @Injectable({
   providedIn: 'root'
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Profile } from '../setup/models/profile.model';
 
+/** Setup Component Links */
 @Component({
   selector: 'app-friend-card',
   templateUrl: './friend-card.component.html',
@@ -17,10 +18,11 @@ export class FriendCardComponent implements OnInit {
 
   /** Input of friends for component */
   @Input() friends: Profile[];
-  
+
   /** Creates an instance of friend card component. */
   constructor() { }
 
+  /** Defines ngOnInit */
   ngOnInit() {
   }
 
