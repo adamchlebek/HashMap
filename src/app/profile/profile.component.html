@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group">
-              <label>Friends List <span>## Total Friends</span></label>
+              <label>Friends List <span>{{ profile._friends.length }} Total Friends</span></label>
               <div class="friends-list">
                 <app-friend-card [friends]="profile._friends"></app-friend-card>
               </div>
