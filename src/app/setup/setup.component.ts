@@ -187,6 +187,7 @@ export class SetupComponent implements OnInit {
       this.profile.days = _.remove(this.profile.days, (dayId) => {
         return (dayId !== d.id);
       });
+      console.log(this.profile.days);
     }
   }
 

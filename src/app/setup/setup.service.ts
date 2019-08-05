@@ -108,7 +108,7 @@ export class SetupService {
   public saveProfile(profile: Profile) {
     // Sets user data to firestore on login
     const userRef: any= this.afs.doc(`profiles/${profile.uid}`);
-
+    console.log(profile.days);
     return userRef.set({
       uid: profile.uid,
       displayName: profile.displayName,
@@ -119,7 +119,7 @@ export class SetupService {
       steamApps: profile.steamApps,
       bio: profile.bio,
       photoURL: profile.photoURL
-    }, { merge: true });
+    });
   }
 
 }
