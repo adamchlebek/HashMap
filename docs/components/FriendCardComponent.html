@@ -64,6 +64,13 @@
     <code>src/app/friend-card/friend-card.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Setup Component Links </p>
+
+    </p>
 
 
     <p class="comment">
@@ -170,7 +177,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/friend-card/friend-card.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/friend-card/friend-card.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -202,7 +209,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/friend-card/friend-card.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/friend-card/friend-card.component.ts:20</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -244,14 +251,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/app/friend-card/friend-card.component.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/friend-card/friend-card.component.ts:26</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Defines ngOnInit </p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -270,6 +279,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
 import { Profile } from &#x27;../setup/models/profile.model&#x27;;
 
+/** Setup Component Links */
 @Component({
   selector: &#x27;app-friend-card&#x27;,
   templateUrl: &#x27;./friend-card.component.html&#x27;,
@@ -286,10 +296,11 @@ export class FriendCardComponent implements OnInit {
 
   /** Input of friends for component */
   @Input() friends: Profile[];
-  
+
   /** Creates an instance of friend card component. */
   constructor() { }
 
+  /** Defines ngOnInit */
   ngOnInit() {
   }
 
