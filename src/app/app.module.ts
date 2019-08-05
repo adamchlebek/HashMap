@@ -24,6 +24,7 @@ import { MatChipsModule, MatIconModule, MatTabsModule,
 import { ProfileModalComponent } from './profile-modal/profile-modal.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { FriendCardComponent } from './friend-card/friend-card.component';
+import { ChatButtonComponent } from './chat-button/chat-button.component';
 
 /** Google Firebase configuration */
 const config = {
@@ -50,7 +51,8 @@ const config = {
     ProfileComponent,
     NetworkComponent,
     FriendCardComponent,
-    ProfileModalComponent
+    ProfileModalComponent,
+    ChatButtonComponent
   ],
   imports: [
     BrowserModule,
