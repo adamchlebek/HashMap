@@ -107,8 +107,7 @@ export class SetupService {
    ***********************************************/
   public saveProfile(profile: Profile) {
     // Sets user data to firestore on login
-    const userRef: any= this.afs.doc(`profiles/${profile.uid}`);
-    console.log(profile.days);
+    const userRef = this.afs.doc(`profiles/${profile.uid}`);
     return userRef.set({
       uid: profile.uid,
       displayName: profile.displayName,

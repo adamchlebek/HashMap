@@ -158,9 +158,10 @@ export class SetupComponent implements OnInit {
   save() {
     this.profile.steamApps = _.map(this.selectedApps, 'appid');
     this.profile.photoURL = this.photoURL;
-    this.api.saveProfile(this.profile);
-    this.notificationService.showSuccessWithTimeout('Profile saved successfully.', 'Success.', 5000);
-    window.location.href = '/profile?saved=true';
+    this.api.saveProfile(this.profile).then((t) => {
+      this.notificationService.showSuccessWithTimeout('Profile saved successfully.', 'Success.', 5000);
+      window.location.href = '/profile?saved=true';
+    });
   }
 
   /****************************************
@@ -187,7 +188,6 @@ export class SetupComponent implements OnInit {
       this.profile.days = _.remove(this.profile.days, (dayId) => {
         return (dayId !== d.id);
       });
-      console.log(this.profile.days);
     }
   }
 
