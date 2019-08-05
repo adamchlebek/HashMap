@@ -60,13 +60,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-277c3c4e625a42405bb6ef7afb1662c1"' : 'data-target="#xs-components-links-module-AppModule-277c3c4e625a42405bb6ef7afb1662c1"' }>
+                                            'data-target="#components-links-module-AppModule-20e38d2d8b49e5ff0b7cbc84ffaf242b"' : 'data-target="#xs-components-links-module-AppModule-20e38d2d8b49e5ff0b7cbc84ffaf242b"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-277c3c4e625a42405bb6ef7afb1662c1"' :
-                                            'id="xs-components-links-module-AppModule-277c3c4e625a42405bb6ef7afb1662c1"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-20e38d2d8b49e5ff0b7cbc84ffaf242b"' :
+                                            'id="xs-components-links-module-AppModule-20e38d2d8b49e5ff0b7cbc84ffaf242b"' }>
                                             <li class="link">
                                                 <a href="components/AboutComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AboutComponent</a>
@@ -74,6 +74,14 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <li class="link">
                                                 <a href="components/AppComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/ChatButtonComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ChatButtonComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/FriendCardComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">FriendCardComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/NavComponent.html"
@@ -113,6 +121,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
                                     <a href="injectables/AuthService.html" data-type="entity-link">AuthService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/NetworkService.html" data-type="entity-link">NetworkService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/NotificationService.html" data-type="entity-link">NotificationService</a>

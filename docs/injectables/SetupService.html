@@ -930,9 +930,19 @@ export class SetupService {
    ***********************************************/
   public saveProfile(profile: Profile) {
     // Sets user data to firestore on login
-    const userRef: AngularFirestoreDocument&lt;Profile&gt; &#x3D; this.afs.doc(&#x60;profiles/${profile.uid}&#x60;);
-
-    return userRef.set(profile, { merge: true });
+    const userRef &#x3D; this.afs.doc(&#x60;profiles/${profile.uid}&#x60;);
+    return userRef.set({
+      uid: profile.uid,
+      displayName: profile.displayName,
+      regionId: profile.regionId,
+      platformId: profile.platformId,
+      communicationPlatformId: profile.communicationPlatformId,
+      days: profile.days,
+      steamApps: profile.steamApps,
+      bio: profile.bio,
+      photoURL: profile.photoURL,
+      friends: profile.friends
+    });
   }
 
 }

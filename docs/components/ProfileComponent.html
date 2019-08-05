@@ -211,7 +211,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/profile/profile.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/profile/profile.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -351,8 +351,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/app/profile/profile.component.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/profile/profile.component.ts:99</a></div>
                 </td>
             </tr>
 
@@ -395,8 +395,8 @@ fills out the ngModule respectively.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/app/profile/profile.component.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/app/profile/profile.component.ts:142</a></div>
                 </td>
             </tr>
 
@@ -475,8 +475,8 @@ fills out the ngModule respectively.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/app/profile/profile.component.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/profile/profile.component.ts:81</a></div>
                 </td>
             </tr>
 
@@ -621,7 +621,7 @@ fills out the ngModule respectively.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/profile/profile.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/profile/profile.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -653,7 +653,7 @@ fills out the ngModule respectively.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/profile/profile.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/profile/profile.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -720,7 +720,8 @@ fills out the ngModule respectively.</p>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{uid: &#x27;&#x27;, displayName: &#x27;&#x27;, regionId: null, platformId: null, communicationPlatformId: null,
-  bio: &#x27;&#x27;, days: null, steamApps: null}</code>
+  bio: &#x27;&#x27;, days: null, steamApps: null, _steamAppChips: null, friends: null, _friends: null, photoURL: null,
+  _region: null, _communicationPlatform: null, _platform: null}</code>
                         </td>
                     </tr>
                         <tr>
@@ -897,12 +898,14 @@ export class ProfileComponent implements OnInit {
 
   /** preloading a default profile */
   profile: Profile &#x3D; {uid: &#x27;&#x27;, displayName: &#x27;&#x27;, regionId: null, platformId: null, communicationPlatformId: null,
-  bio: &#x27;&#x27;, days: null, steamApps: null};
+  bio: &#x27;&#x27;, days: null, steamApps: null, _steamAppChips: null, friends: null, _friends: null, photoURL: null,
+  _region: null, _communicationPlatform: null, _platform: null};
   /** a boolean promise to check if data has come back from firebase */
   isLoaded: Promise&lt;boolean&gt;;
 
   /** Check if user has a saved profile */
   noProfile &#x3D; false;
+
 
 
   /***********************************************************
@@ -933,7 +936,6 @@ export class ProfileComponent implements OnInit {
     this.auth.user$.subscribe(u &#x3D;&gt; {
       this.uid  &#x3D; u.uid;
       this.getProfile();
-      this.days &#x3D; this.setupAPI.getDays();
     });
   } // end of ngOnInit
 
@@ -946,6 +948,7 @@ export class ProfileComponent implements OnInit {
     this.setupAPI.getProfile(this.uid).subscribe((prof: any) &#x3D;&gt; {
       if (prof.exists) {
         this.profile &#x3D; prof.data();
+        let friends: Profile[] &#x3D; [];
         let sa: SteamApp[] &#x3D; [];
         this.profile.steamApps.forEach((appId) &#x3D;&gt; {
           this.api.getSteamApp(appId.toString()).subscribe((app: any) &#x3D;&gt; {
@@ -962,6 +965,14 @@ export class ProfileComponent implements OnInit {
         this.api.getPlatform(this.profile.platformId.toString()).subscribe((platform: any) &#x3D;&gt; {
           this.platform &#x3D; platform.data();
         });
+        _.forEach(this.profile.friends, (profRef) &#x3D;&gt; {
+          profRef.get().then((friendSnapShot: any) &#x3D;&gt; {
+            if (friendSnapShot.exists) {
+              friends.push(friendSnapShot.data());
+            }
+          });
+        });
+        this.profile._friends &#x3D; friends;
         this.isLoaded &#x3D; Promise.resolve(true);
       } else {
         this.notificationService.showErrorWithTimeout(&#x27;Profile not found.&#x27;, &#x27;Error&#x27;, 5000);
@@ -984,7 +995,7 @@ export class ProfileComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;card&quot; style&#x3D;&quot;margin: 18px&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;card centerCard&quot; style&#x3D;&quot;width: 90%;&quot;&gt;
   &lt;div class&#x3D;&quot;card-body&quot; *ngIf&#x3D;&quot;profile &amp;&amp; region &amp;&amp; platform &amp;&amp; comm&quot;&gt;
       &lt;!-- &lt;div class&#x3D;&quot;topbar&quot;&gt;&lt;/div&gt; --&gt;
       &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{profile.displayName}}&lt;/h5&gt;
@@ -1059,6 +1070,13 @@ export class ProfileComponent implements OnInit {
                 &lt;/ng-container&gt;
               &lt;/div&gt;
             &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+              &lt;label&gt;Friends List &lt;span&gt;{{ profile._friends.length }} Total Friends&lt;/span&gt;&lt;/label&gt;
+              &lt;div class&#x3D;&quot;friends-list&quot;&gt;
+                &lt;app-friend-card [friends]&#x3D;&quot;profile._friends&quot;&gt;&lt;/app-friend-card&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;
@@ -1112,8 +1130,8 @@ export class ProfileComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="card" style="margin: 18px">  <div class="card-body" *ngIf="profile && region && platform && comm">      <!-- <div class="topbar"></div> -->      <h5 class="card-title">{{profile.displayName}}</h5>      <div class="row">        <div class="col-md-6">          <div *ngIf="auth.user$ | async as user" class="">              <div class="form-group">                <label for="maskedName">{{ user.displayName }}</label>              </div>              <!-- <img style="width: 25%; vertical-align: baseline" src="../../assets/images/g-normal.png"/> -->              <div class="form-group">                <img class="avatar"  src="{{user.photoURL}}"/>              </div>              <div class="form-group">                <label for="bio">{{profile.bio}}</label>              </div>            </div>        </div>        <div class="col-md-6">            <div class="form-group">              <label class="col-md-6 pl-0">Region: </label>              <label class="col-md-6 pl-0 strong">{{region.name}}</label>            </div>            <div class="form-group">              <label class="col-md-6 pl-0">Platform: </label>              <label class="col-md-6 pl-0 strong">{{platform.name}}</label>            </div>            <div class="form-group">              <label  class="col-md-6 pl-0">Communication Preference: </label>              <label  class="col-md-6 pl-0 strong">{{comm.name}}</label>            </div>            <div class="form-group">              <label class="form-control-label">Steam Games</label>              <div class="mb-1">                  <mat-chip-list aria-label="Steam Games">                    <mat-chip *ngFor="let app of steamApps">                      {{app.name}}                    </mat-chip>                  </mat-chip-list>              </div>            </div>            <div class="form-group">              <label>Available Day(s)</label>              <div class="weekDays-selector">                <ng-container *ngIf="isDaySelected(1)">                  <input type="checkbox" id="weekday-mon" disabled="disabled" [checked]="true"  class="weekday disabled" />                  <label for="weekday-mon">Mon</label>                </ng-container>                <ng-container *ngIf="isDaySelected(2)">                    <input type="checkbox" id="weekday-tue" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-tue">Tue</label>                </ng-container>                <ng-container  *ngIf="isDaySelected(3)">                    <input type="checkbox" id="weekday-wed" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-wed">Wed</label>                </ng-container>                <ng-container  *ngIf="isDaySelected(4)">                    <input type="checkbox" id="weekday-thu" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-thu">Thu</label>                </ng-container>                <ng-container *ngIf="isDaySelected(5)">                    <input type="checkbox" id="weekday-fri" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-fri">Fri</label>                </ng-container>                <ng-container *ngIf="isDaySelected(6)">                    <input type="checkbox" id="weekday-sat" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-sat">Sat</label>                </ng-container>                <ng-container *ngIf="isDaySelected(7)">                    <input type="checkbox" id="weekday-sun" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-sun">Sun</label>                </ng-container>              </div>            </div>        </div>      </div>  </div>  <div class="card-body" *ngIf="noProfile">    <div class="row">      <div class="col-md-12">        <div class="form-control d-flex justify-content-center">          <label>Navigate to the Setup tab to create a profile.</label>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'NavComponent', 'selector': 'app-nav'},{'name': 'NetworkComponent', 'selector': 'app-network'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReleaseRubricComponent', 'selector': 'app-release-rubric'},{'name': 'SetupComponent', 'selector': 'app-setup'}];
+        var COMPONENT_TEMPLATE = '<div><div class="card centerCard" style="width: 90%;">  <div class="card-body" *ngIf="profile && region && platform && comm">      <!-- <div class="topbar"></div> -->      <h5 class="card-title">{{profile.displayName}}</h5>      <div class="row">        <div class="col-md-6">          <div *ngIf="auth.user$ | async as user" class="">              <div class="form-group">                <label for="maskedName">{{ user.displayName }}</label>              </div>              <!-- <img style="width: 25%; vertical-align: baseline" src="../../assets/images/g-normal.png"/> -->              <div class="form-group">                <img class="avatar"  src="{{user.photoURL}}"/>              </div>              <div class="form-group">                <label for="bio">{{profile.bio}}</label>              </div>            </div>        </div>        <div class="col-md-6">            <div class="form-group">              <label class="col-md-6 pl-0">Region: </label>              <label class="col-md-6 pl-0 strong">{{region.name}}</label>            </div>            <div class="form-group">              <label class="col-md-6 pl-0">Platform: </label>              <label class="col-md-6 pl-0 strong">{{platform.name}}</label>            </div>            <div class="form-group">              <label  class="col-md-6 pl-0">Communication Preference: </label>              <label  class="col-md-6 pl-0 strong">{{comm.name}}</label>            </div>            <div class="form-group">              <label class="form-control-label">Steam Games</label>              <div class="mb-1">                  <mat-chip-list aria-label="Steam Games">                    <mat-chip *ngFor="let app of steamApps">                      {{app.name}}                    </mat-chip>                  </mat-chip-list>              </div>            </div>            <div class="form-group">              <label>Available Day(s)</label>              <div class="weekDays-selector">                <ng-container *ngIf="isDaySelected(1)">                  <input type="checkbox" id="weekday-mon" disabled="disabled" [checked]="true"  class="weekday disabled" />                  <label for="weekday-mon">Mon</label>                </ng-container>                <ng-container *ngIf="isDaySelected(2)">                    <input type="checkbox" id="weekday-tue" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-tue">Tue</label>                </ng-container>                <ng-container  *ngIf="isDaySelected(3)">                    <input type="checkbox" id="weekday-wed" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-wed">Wed</label>                </ng-container>                <ng-container  *ngIf="isDaySelected(4)">                    <input type="checkbox" id="weekday-thu" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-thu">Thu</label>                </ng-container>                <ng-container *ngIf="isDaySelected(5)">                    <input type="checkbox" id="weekday-fri" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-fri">Fri</label>                </ng-container>                <ng-container *ngIf="isDaySelected(6)">                    <input type="checkbox" id="weekday-sat" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-sat">Sat</label>                </ng-container>                <ng-container *ngIf="isDaySelected(7)">                    <input type="checkbox" id="weekday-sun" disabled="disabled" [checked]="true" class="weekday disabled" />                    <label for="weekday-sun">Sun</label>                </ng-container>              </div>            </div>            <div class="form-group">              <label>Friends List <span>{{ profile._friends.length }} Total Friends</span></label>              <div class="friends-list">                <app-friend-card [friends]="profile._friends"></app-friend-card>              </div>            </div>        </div>      </div>  </div>  <div class="card-body" *ngIf="noProfile">    <div class="row">      <div class="col-md-12">        <div class="form-control d-flex justify-content-center">          <label>Navigate to the Setup tab to create a profile.</label>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChatButtonComponent', 'selector': 'app-chat-button'},{'name': 'FriendCardComponent', 'selector': 'app-friend-card'},{'name': 'NavComponent', 'selector': 'app-nav'},{'name': 'NetworkComponent', 'selector': 'app-network'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReleaseRubricComponent', 'selector': 'app-release-rubric'},{'name': 'SetupComponent', 'selector': 'app-setup'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ProfileComponent'};
 </script>
