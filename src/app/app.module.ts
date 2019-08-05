@@ -88,6 +88,6 @@ const config = {
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ProfileModalComponent]
+  entryComponents: [ProfileModalComponent, ChatModalComponent]
 })
 export class AppModule { }
