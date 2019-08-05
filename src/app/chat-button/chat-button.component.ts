@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+/** Setup Component Links */
 @Component({
   selector: 'app-chat-button',
   templateUrl: './chat-button.component.html',
@@ -17,6 +18,7 @@ export class ChatButtonComponent implements OnInit {
   /** Creates an instance of chat button component. */
   constructor() { }
 
+  /** Defines ngOnInit */
   ngOnInit() {
   }
 
