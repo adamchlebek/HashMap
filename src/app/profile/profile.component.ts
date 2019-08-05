@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
 
   /** preloading a default profile */
   profile: Profile = {uid: '', displayName: '', regionId: null, platformId: null, communicationPlatformId: null,
-  bio: '', days: null, steamApps: null, _steamAppChips: null, friends: null, _friends: null};
+  bio: '', days: null, steamApps: null, _steamAppChips: null, friends: null, _friends: null, photoURL: null};
   /** a boolean promise to check if data has come back from firebase */
   isLoaded: Promise<boolean>;
 
