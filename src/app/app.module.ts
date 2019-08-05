@@ -21,7 +21,6 @@ import { MatChipsModule, MatIconModule, MatTabsModule,
         MatAutocompleteModule, MatFormFieldModule,
         MatInputModule, MatButtonModule, MatCheckboxModule,
         MatTableModule, MatSelectModule, MatDialogModule, MatExpansionModule } from '@angular/material';
-import { ProfileModalComponent } from './profile-modal/profile-modal.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { FriendCardComponent } from './friend-card/friend-card.component';
 import { ChatButtonComponent } from './chat-button/chat-button.component';
@@ -51,7 +50,6 @@ const config = {
     ProfileComponent,
     NetworkComponent,
     FriendCardComponent,
-    ProfileModalComponent,
     ChatButtonComponent
   ],
   imports: [
@@ -86,6 +84,6 @@ const config = {
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ProfileModalComponent]
+  entryComponents: []
 })
 export class AppModule { }

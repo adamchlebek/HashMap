@@ -31,16 +31,25 @@ export interface Profile {
     /** Profile's bio */
     bio: string;
 
+    /** Profiles photo */
     photoURL: string;
 
     /** List of steam app chips (client side only) */
     _steamAppChips: SteamApp[];
 
+    /** friends snapshot */
     friends: any[];
 
+    /** friends list */
     _friends: Profile[];
+
+    /** client side region */
     _region: Region;
+
+    /** client side platform */
     _platform: Platform;
+
+    /** client side comm platform */
     _communicationPlatform: CommunicationPlatform;
 
 
