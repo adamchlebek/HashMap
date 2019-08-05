@@ -179,6 +179,8 @@ export class SetupComponent implements OnInit {
    **************************************/
   dayChange(event, d: Day) {
     if (event.target.checked) {
+      if (this.profile.days == null)
+        this.profile.days = [];
       this.profile.days.push(d.id);
     } else {
       // this.profile.days.slice(this.profile.days.indexOf(d.id),1);
