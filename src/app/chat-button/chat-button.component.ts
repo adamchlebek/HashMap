@@ -16,7 +16,7 @@ export class ChatButtonComponent implements OnInit {
 
   openModal() {
     const dialogRef = this.dialog.open(ChatModalComponent, {
-      width: '600px',
+      width: '1000px',
       height: '700px'
     });
   }
