@@ -117,7 +117,8 @@ export class SetupService {
       days: profile.days,
       steamApps: profile.steamApps,
       bio: profile.bio,
-      photoURL: profile.photoURL
+      photoURL: profile.photoURL,
+      friends: profile.friends
     });
   }
 
