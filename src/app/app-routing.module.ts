@@ -21,7 +21,7 @@ const routes: Routes = [
     redirectTo: '/about',
     pathMatch: 'full'
   },
-  { path: 'network', component: NetworkComponent, canActivate: [AuthGuard]},
+  { path: 'network', component: NetworkComponent},
   { path: 'setup', component: SetupComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }

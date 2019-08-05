@@ -85,10 +85,14 @@ export class SetupComponent implements OnInit {
 
   /** preloading a default profile */
   profile: Profile = { uid: '', displayName: '', regionId: null, platformId: null,
-    communicationPlatformId: null, bio: '', days: null, steamApps: null };
+    communicationPlatformId: null, bio: '', days: null, steamApps: null, _steamAppChips: null,
+    friends: null, _friends: null, photoURL: null,
+    _region: null, _communicationPlatform: null, _platform: null };
 
   /** uid represents a users id */
   private uid: string;
+
+  private photoURL: string;
 
   /***************************************************
    * Creates an instance of setup component.
@@ -98,8 +102,9 @@ export class SetupComponent implements OnInit {
    **************************************************/
   constructor(private api: SetupService, private auth: AuthService, private notificationService: NotificationService) {
     this.auth.user$.subscribe(u => {
-      this.uid         = u.uid;
+      this.uid = u.uid;
       this.profile.uid = this.uid;
+      this.photoURL = u.photoURL;
       this.getProfile();
     });
   }
@@ -153,9 +158,11 @@ export class SetupComponent implements OnInit {
    *****************************************/
   save() {
     this.profile.steamApps = _.map(this.selectedApps, 'appid');
-    this.api.saveProfile(this.profile);
-    this.notificationService.showSuccessWithTimeout('Profile saved successfully.', 'Success.', 5000);
-    window.location.href = '/profile?saved=true';
+    this.profile.photoURL = this.photoURL;
+    this.api.saveProfile(this.profile).then((t) => {
+      this.notificationService.showSuccessWithTimeout('Profile saved successfully.', 'Success.', 5000);
+      window.location.href = '/profile?saved=true';
+    });
   }
 
   /****************************************
@@ -174,6 +181,9 @@ export class SetupComponent implements OnInit {
    **************************************/
   dayChange(event, d: Day) {
     if (event.target.checked) {
+      if (this.profile.days == null) {
+        this.profile.days = [];
+      }
       this.profile.days.push(d.id);
     } else {
       // this.profile.days.slice(this.profile.days.indexOf(d.id),1);

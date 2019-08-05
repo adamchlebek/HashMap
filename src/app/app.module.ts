@@ -17,8 +17,14 @@ import { ReleaseRubricComponent } from './release-rubric/release-rubric.componen
 import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './profile/profile.component';
 import { NetworkComponent } from './network/network.component';
-import { MatChipsModule, MatIconModule, MatTabsModule, MatAutocompleteModule } from '@angular/material';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatChipsModule, MatIconModule, MatTabsModule,
+        MatAutocompleteModule, MatFormFieldModule,
+        MatInputModule, MatButtonModule, MatCheckboxModule,
+        MatTableModule, MatSelectModule, MatDialogModule, MatExpansionModule } from '@angular/material';
+import { ProfileModalComponent } from './profile-modal/profile-modal.component';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { FriendCardComponent } from './friend-card/friend-card.component';
+import { ChatButtonComponent } from './chat-button/chat-button.component';
 
 /** Google Firebase configuration */
 const config = {
@@ -43,7 +49,10 @@ const config = {
     AboutComponent,
     ReleaseRubricComponent,
     ProfileComponent,
-    NetworkComponent
+    NetworkComponent,
+    FriendCardComponent,
+    ProfileModalComponent,
+    ChatButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -64,15 +73,19 @@ const config = {
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatFormFieldModule,
+    MatTableModule,
+    MatDialogModule,
+    MatSelectModule,
     MatTabsModule,
+    MatExpansionModule,
+    NgxUsefulSwiperModule,
     ToastrModule.forRoot({
       maxOpened: 1,
       autoDismiss: true
-    }
-    )
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ProfileModalComponent]
 })
 export class AppModule { }

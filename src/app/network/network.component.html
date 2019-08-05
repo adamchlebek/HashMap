@@ -1,1 +1,110 @@
-<h3 style="color: white; text-align: center; padding: 20px;">This page is currently under construction!</h3>
+<div class="card" style="margin: 18px">
+  <div class="card-body">
+    <swiper class="swiper" [config]="config" #friendSwiper>
+      <div class="swiper-wrapper">
+        <ng-container *ngFor="let profile of profiles; let i = index;">
+          <div class="swiper-slide">
+            <div class="card" style="margin: 18px">
+              <div class="card-body">
+                <h3 class="card-title" style="text-align: center">{{profile.displayName}}</h3>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group" >
+                      <img class="avatar" src="{{profile.photoURL}}"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <div class="fom-group">
+                      <label>Region Id: {{profile._region.name}}</label>    
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label>Platform: {{profile._platform.name}}</label>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="fom-group">
+                      <label>Communication Preference: {{profile._communicationPlatform.name}}</label>    
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Steam Games</label>
+                      <div class="">
+                        <mat-chip-list aria-label="Steam Games">
+                          <mat-chip *ngFor="let app of profile._steamAppChips">
+                            {{app.name}}
+                          </mat-chip>
+                        </mat-chip-list>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label>Available Day(s)</label>
+                      <div class="weekDays-selector">
+                        <ng-container *ngIf="isDaySelected(profile,1)">
+                          <input type="checkbox" id="weekday-mon" disabled="disabled" [checked]="true"  class="weekday disabled" />
+                          <label for="weekday-mon">Mon</label>
+                        </ng-container>
+                        <ng-container *ngIf="isDaySelected(profile,2)">
+                            <input type="checkbox" id="weekday-tue" disabled="disabled" [checked]="true" class="weekday disabled" />
+                            <label for="weekday-tue">Tue</label>
+                        </ng-container>
+                        <ng-container  *ngIf="isDaySelected(profile,3)">
+                            <input type="checkbox" id="weekday-wed" disabled="disabled" [checked]="true" class="weekday disabled" />
+                            <label for="weekday-wed">Wed</label>
+                        </ng-container>
+                        <ng-container  *ngIf="isDaySelected(profile,4)">
+                            <input type="checkbox" id="weekday-thu" disabled="disabled" [checked]="true" class="weekday disabled" />
+                            <label for="weekday-thu">Thu</label>
+                        </ng-container>
+                        <ng-container *ngIf="isDaySelected(profile,5)">
+                            <input type="checkbox" id="weekday-fri" disabled="disabled" [checked]="true" class="weekday disabled" />
+                            <label for="weekday-fri">Fri</label>
+                        </ng-container>
+                        <ng-container *ngIf="isDaySelected(profile,6)">
+                            <input type="checkbox" id="weekday-sat" disabled="disabled" [checked]="true" class="weekday disabled" />
+                            <label for="weekday-sat">Sat</label>
+                        </ng-container>
+                        <ng-container *ngIf="isDaySelected(profile,7)">
+                            <input type="checkbox" id="weekday-sun" disabled="disabled" [checked]="true" class="weekday disabled" />
+                            <label for="weekday-sun">Sun</label>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label>Bio: {{profile.bio}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-danger" style="float: left" (click)="decline(profile, i)">Hard Pass</button>
+                    <button type="button" class="btn btn-primary" style="float: right" (click)="addFriend(profile, i)">Add</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <!-- <div class="swiper-pagination"></div> -->
+      <!-- <div class="swiper-button-next"></div> -->
+      <!-- <div class="swiper-button-prev"></div> -->
+    </swiper>
+  </div>
+</div>
+
+<!-- <h3 style="color: white; text-align: center; padding: 20px;"></h3> -->
