@@ -86,4 +86,6 @@ const config = {
   bootstrap: [AppComponent],
   entryComponents: []
 })
+
+/** Created AppModule class */
 export class AppModule { }
