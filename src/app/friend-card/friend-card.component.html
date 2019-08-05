@@ -10,10 +10,21 @@
               <h5>{{friend.displayName}}</h5>
             </div>
             <div class="row">
-              {{friend.bio}}
+              <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-description>
+                      Bio
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  {{friend.bio}}
+                </mat-expansion-panel>
+              </mat-accordion>
             </div>
           </div>
         </div>
     </ng-container>
   </div>
 </div>
+
+
