@@ -86,7 +86,8 @@ export class SetupComponent implements OnInit {
   /** preloading a default profile */
   profile: Profile = { uid: '', displayName: '', regionId: null, platformId: null,
     communicationPlatformId: null, bio: '', days: null, steamApps: null, _steamAppChips: null,
-    friends: null, _friends: null, photoURL: null };
+    friends: null, _friends: null, photoURL: null,
+    _region: null, _communicationPlatform: null, _platform: null };
 
   /** uid represents a users id */
   private uid: string;
@@ -180,8 +181,9 @@ export class SetupComponent implements OnInit {
    **************************************/
   dayChange(event, d: Day) {
     if (event.target.checked) {
-      if (this.profile.days == null)
+      if (this.profile.days == null) {
         this.profile.days = [];
+      }
       this.profile.days.push(d.id);
     } else {
       // this.profile.days.slice(this.profile.days.indexOf(d.id),1);

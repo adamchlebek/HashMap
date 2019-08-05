@@ -46,13 +46,19 @@ export class NetworkComponent implements OnInit {
     spaceBetween: 30
   };
 
-  /*************************************************************
+
+  /******************************************************
    * Creates an instance of network component.
-   * @param dialog 
-   * @param api 
-   * @param profileAPI 
-   ************************************************************/
-  constructor(public dialog: MatDialog,
+   * @param dialog material dialog component
+   * @param api Network Service api
+   * @param profileAPI Profile Service api
+   * @param notificationService notification service api
+   * @param auth auth api
+   * @param setupAPI setup api
+   * @param afs anguar firstore
+   ****************************************************/
+  constructor(
+    public dialog: MatDialog,
     private api: NetworkService,
     private profileAPI: ProfileService,
     private notificationService: NotificationService,
@@ -92,14 +98,24 @@ export class NetworkComponent implements OnInit {
 
       let profiles: Profile[] = [];
       profiles$.docs.forEach((profile: DocumentSnapshot<Profile>) => {
-        if ((profile.id != this.uid) && !_.find(this.profile.friends, {id: profile.id}) )
+        if ((profile.id !== this.uid) && !_.find(this.profile.friends, {id: profile.id}) ) {
           profiles.push(profile.data());
+        }
       });
 
       profiles.forEach((prof: Profile) => {
         let apps = [];
+        this.profileAPI.getRegion(this.profile.regionId.toString()).subscribe((region: any) => {
+          prof._region = region.data();
+        });
+        this.profileAPI.getComm(this.profile.communicationPlatformId.toString()).subscribe((comm: any) => {
+          prof._communicationPlatform = comm.data();
+        });
+        this.profileAPI.getPlatform(this.profile.platformId.toString()).subscribe((platform: any) => {
+          prof._platform = platform.data();
+        });
         prof.steamApps.forEach((appId) => {
-          this.profileAPI.getSteamApp(appId.toString()).subscribe((app : any) =>{
+          this.profileAPI.getSteamApp(appId.toString()).subscribe((app: any) => {
             apps.push(app.data());
           });
         });
@@ -115,8 +131,8 @@ export class NetworkComponent implements OnInit {
     }
 
     this.profile.friends.push(this.afs.doc(`profiles/${prof.uid}`).ref);
-    
-    this.setupAPI.saveProfile(this.profile).then((val:any) => {
+
+    this.setupAPI.saveProfile(this.profile).then((val: any) => {
       this.friendSwiper.swiper.removeSlide(index);
       this.notificationService.showSuccessWithTimeout('Friend added successfully.', 'Success.', 1000);
     });

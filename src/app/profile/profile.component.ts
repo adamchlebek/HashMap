@@ -51,7 +51,8 @@ export class ProfileComponent implements OnInit {
 
   /** preloading a default profile */
   profile: Profile = {uid: '', displayName: '', regionId: null, platformId: null, communicationPlatformId: null,
-  bio: '', days: null, steamApps: null, _steamAppChips: null, friends: null, _friends: null, photoURL: null};
+  bio: '', days: null, steamApps: null, _steamAppChips: null, friends: null, _friends: null, photoURL: null,
+  _region: null, _communicationPlatform: null, _platform: null};
   /** a boolean promise to check if data has come back from firebase */
   isLoaded: Promise<boolean>;
 
@@ -68,9 +69,9 @@ export class ProfileComponent implements OnInit {
    * @param api profile api
    * @description Creates an instance of profile component.
    *********************************************************/
-  constructor(private route: ActivatedRoute, 
-              private notificationService: NotificationService, 
-              private auth: AuthService, 
+  constructor(private route: ActivatedRoute,
+              private notificationService: NotificationService,
+              private auth: AuthService,
               private setupAPI: SetupService,
               private api: ProfileService) { }
 
@@ -117,9 +118,9 @@ export class ProfileComponent implements OnInit {
         this.api.getPlatform(this.profile.platformId.toString()).subscribe((platform: any) => {
           this.platform = platform.data();
         });
-        _.forEach(this.profile.friends, function(profRef) {
+        _.forEach(this.profile.friends, (profRef) => {
           profRef.get().then((friendSnapShot: any) => {
-            if(friendSnapShot.exists) {
+            if (friendSnapShot.exists) {
               friends.push(friendSnapShot.data());
             }
           });

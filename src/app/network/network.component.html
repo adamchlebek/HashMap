@@ -6,21 +6,28 @@
           <div class="swiper-slide">
             <div class="card" style="margin: 18px">
               <div class="card-body">
-                <h5 class="card-title" style="text-align: left">{{profile.displayName}}</h5>
+                <h3 class="card-title" style="text-align: center">{{profile.displayName}}</h3>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group" >
+                      <img class="avatar" src="{{profile.photoURL}}"/>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-4">
                     <div class="fom-group">
-                      <label>Region Id: {{profile.regionId}}</label>    
+                      <label>Region Id: {{profile._region.name}}</label>    
                     </div>
                   </div>
                   <div class="col-4">
                     <div class="form-group">
-                      <label>Platform: {{profile.platformId}}</label>
+                      <label>Platform: {{profile._platform.name}}</label>
                     </div>
                   </div>
                   <div class="col-4">
                     <div class="fom-group">
-                      <label>Communication Preference: {{profile.regionId}}</label>    
+                      <label>Communication Preference: {{profile._communicationPlatform.name}}</label>    
                     </div>
                   </div>
                 </div>

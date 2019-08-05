@@ -1,4 +1,7 @@
 import { SteamApp } from 'src/app/services/steam/models/steamApp.model';
+import { Region } from './region.model';
+import { CommunicationPlatform } from './communication-platform.model';
+import { Platform } from './platform.model';
 
 /*******************************
  * Profile interface (model)
@@ -36,6 +39,9 @@ export interface Profile {
     friends: any[];
 
     _friends: Profile[];
+    _region: Region;
+    _platform: Platform;
+    _communicationPlatform: CommunicationPlatform;
 
 
 }

@@ -10,7 +10,7 @@ export class NetworkService {
   constructor(private afs: AngularFirestore) { }
 
   public getProfiles(prof: Profile) {
-    var profiles$ = this.afs.collection('profiles', ref => ref
+    const profiles$ = this.afs.collection('profiles', ref => ref
       .where('regionId', '==', prof.regionId)
       .where('platformId', '==', prof.platformId)
       .where('communicationPlatformId', '==', prof.communicationPlatformId));
