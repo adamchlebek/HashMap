@@ -7,7 +7,7 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, first } from 'rxjs/operators';
 import { User } from '../user.model';
 
 /** Defines Injectable */
@@ -45,6 +45,14 @@ export class AuthService {
       })
     );
   } // end of constructor
+
+  /*****************************
+   * Gets logged in user
+   * @returns promise of user
+   ****************************/
+  getUser() {
+    return this.user$.pipe(first()).toPromise();
+  }
 
   /******************************
    * Google signin method

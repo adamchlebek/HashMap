@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ChatModalService } from './chat-modal.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-chat-modal',
@@ -7,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatModalComponent implements OnInit {
 
-  constructor() { }
+  chat$: Observable<any>;
+  newMsg: string;
+
+  constructor(public cs: ChatModalService, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
