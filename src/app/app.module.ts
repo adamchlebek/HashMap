@@ -20,7 +20,7 @@ import { NetworkComponent } from './network/network.component';
 import { MatChipsModule, MatIconModule, MatTabsModule,
         MatAutocompleteModule, MatFormFieldModule,
         MatInputModule, MatButtonModule, MatCheckboxModule,
-        MatTableModule, MatSelectModule, MatDialogModule } from '@angular/material';
+        MatTableModule, MatSelectModule, MatDialogModule, MatExpansionModule } from '@angular/material';
 import { ProfileModalComponent } from './profile-modal/profile-modal.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { FriendCardComponent } from './friend-card/friend-card.component';
@@ -71,16 +71,16 @@ const config = {
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatFormFieldModule,
     MatTableModule,
     MatDialogModule,
     MatSelectModule,
     MatTabsModule,
+    MatExpansionModule,
     NgxUsefulSwiperModule,
     ToastrModule.forRoot({
       maxOpened: 1,
       autoDismiss: true
-    })
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
