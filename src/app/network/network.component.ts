@@ -1,5 +1,4 @@
 import { Component, OnInit, ɵConsole, ViewChild } from '@angular/core';
-import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { MatDialog } from '@angular/material';
 import { NetworkService } from './network.service';
 import { Profile } from '../setup/models/profile.model';
@@ -21,15 +20,24 @@ import { SetupService } from '../setup/setup.service';
   styleUrls: ['./network.component.scss']
 })
 
+/**************************************************
+ * @author Adam Chlebek and Collin Larson
+ * @version 1.0
+ * @description Network component gets a list of profiles
+ * based the users setup.
+ *************************************************/
 export class NetworkComponent implements OnInit {
 
+  /** View Swiper child */
   @ViewChild('friendSwiper', { static: false }) friendSwiper: SwiperComponent;
 
+  /** Uid of profile */
   private uid: string;
 
+  /** User Profile */
   profile: Profile;
 
-  /** Profiles  of network component */
+  /** Profiles of network component */
   profiles: Profile[];
 
   /** Steam apps of profile */
@@ -125,6 +133,11 @@ export class NetworkComponent implements OnInit {
     });
   }
 
+  /******************************************
+   * Adds friend
+   * @param prof profile to be added
+   * @param index index of swiper
+   *****************************************/
   addFriend(prof: Profile, index: number) {
     if (this.profile.friends == null) {
       this.profile.friends = [];
@@ -138,6 +151,11 @@ export class NetworkComponent implements OnInit {
     });
   }
 
+  /****************************************
+   * Declines network component
+   * @param prof profile to be removed
+   * @param index index of profile
+   **************************************/
   decline(prof: Profile, index: number) {
     this.friendSwiper.swiper.removeSlide(index);
   }
@@ -150,18 +168,5 @@ export class NetworkComponent implements OnInit {
   isDaySelected(profile: Profile, id: number) {
     return _.includes(profile.days, id);
   } // end of isDaySelected
-
-  // openModal(row){
-  //   const dialogRef = this.dialog.open(ProfileModalComponent, {
-  //     width: '80%',
-  //     data: {name: 'Adam', animal: 'Dog'}
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   });
-
-  //   console.log(row);
-  // }
 
 }

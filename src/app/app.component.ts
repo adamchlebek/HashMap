@@ -12,5 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 
 /** Sets Component Title */
 export class AppComponent {
+
+  /** Title  of app component */
   title = 'HashMap';
 }

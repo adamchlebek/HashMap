@@ -92,6 +92,7 @@ export class SetupComponent implements OnInit {
   /** uid represents a users id */
   private uid: string;
 
+  /** url of profile photo */
   private photoURL: string;
 
   /***************************************************

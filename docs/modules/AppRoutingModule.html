@@ -93,7 +93,7 @@ const routes: Routes &#x3D; [
     redirectTo: &#x27;/about&#x27;,
     pathMatch: &#x27;full&#x27;
   },
-  { path: &#x27;network&#x27;, component: NetworkComponent, canActivate: [AuthGuard]},
+  { path: &#x27;network&#x27;, component: NetworkComponent},
   { path: &#x27;setup&#x27;, component: SetupComponent, canActivate: [AuthGuard] },
   { path: &#x27;about&#x27;, component: AboutComponent },
   { path: &#x27;profile&#x27;, component: ProfileComponent, canActivate: [AuthGuard] }
@@ -106,6 +106,7 @@ const routes: Routes &#x3D; [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
 export const routingComponents &#x3D; [SetupComponent];
 </code></pre>
