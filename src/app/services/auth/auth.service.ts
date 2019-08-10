@@ -51,7 +51,9 @@ export class AuthService {
    * @returns promise of user
    ****************************/
   getUser() {
-    return this.user$.pipe(first()).toPromise();
+    return (localStorage.getItem('user') === null) ? 
+      this.user$.pipe(first()).toPromise() :
+      JSON.parse(localStorage.getItem('user'));
   }
 
   /******************************
@@ -70,6 +72,7 @@ export class AuthService {
    *******************************/
   public async signOut() {
     await this.afAuth.auth.signOut();
+    localStorage.clear();
     return this.router.navigate(['/about']);
   } // end of signout
 
@@ -88,6 +91,8 @@ export class AuthService {
       displayName : user.displayName,
       photoURL    : user.photoURL
     };
+
+    localStorage.setItem('user', JSON.stringify(data));
 
     return userRef.set(data, { merge: true });
 

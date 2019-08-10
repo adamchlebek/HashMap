@@ -17,6 +17,7 @@ import * as _ from 'lodash';
 import { Profile } from './models/profile.model';
 import { AuthService } from '../services/auth/auth.service';
 import { NotificationService } from '../utility/notification/notification.service';
+import { User } from '../services/user.model';
 
 /** Setup Component Links */
 @Component({
@@ -51,7 +52,7 @@ export class SetupComponent implements OnInit {
   appCtrl = new FormControl();
 
   /** observable of string array */
-  filteredApps: Observable<string[]>;
+  filteredApps: Observable<SteamApp[]>;
 
   /** selected steam app array */
   selectedApps: any[] = [];
@@ -95,6 +96,10 @@ export class SetupComponent implements OnInit {
   /** url of profile photo */
   private photoURL: string;
 
+  private user: User;
+
+  isLoaded = false;
+
   /***************************************************
    * Creates an instance of setup component.
    * @param api setup service api
@@ -102,12 +107,13 @@ export class SetupComponent implements OnInit {
    * @param notificationService ngx toaster service
    **************************************************/
   constructor(private api: SetupService, private auth: AuthService, private notificationService: NotificationService) {
-    this.auth.user$.subscribe(u => {
-      this.uid = u.uid;
-      this.profile.uid = this.uid;
-      this.photoURL = u.photoURL;
-      this.getProfile();
-    });
+    // this.auth.user$.subscribe(u => {
+    //   this.uid = u.uid;
+    //   this.profile.uid = this.uid;
+    //   this.photoURL = u.photoURL;
+    //   this.getProfile();
+    // });
+    
   }
 
   /****************************************
@@ -115,6 +121,15 @@ export class SetupComponent implements OnInit {
    ***************************************/
   ngOnInit() {
     this.getDropdowns();
+    this.getUser();
+  }
+
+  async getUser() {
+    this.user = await this.auth.getUser();
+    this.uid = this.user.uid;
+    this.profile.uid = this.uid;
+    this.photoURL = this.user.photoURL;
+    this.getProfile();
   }
 
   /***************************
@@ -125,8 +140,8 @@ export class SetupComponent implements OnInit {
     this.api.getProfile(this.uid).subscribe((prof: any) => {
       if (prof.exists) {
         this.profile = prof.data();
-        let sa       = this.steamApps;
-        let ssa      = [];
+        let sa = this.steamApps;
+        let ssa = [];
         _.forEach(this.profile.steamApps, (key) => {
           ssa.push(_.find(sa, ['appid', key]));
         });
@@ -141,17 +156,27 @@ export class SetupComponent implements OnInit {
    * Gets regions, platforms, days, comms,
    * and app dropdowns
    *****************************************/
-  getDropdowns() {
-    this.api.getFireSteamGameList().subscribe((sapp) => {
-      this.steamApps = sapp;
-      this.filteredApps = this.appCtrl.valueChanges.pipe(
-        startWith(null),
-        map((steamApp: App | null) => steamApp ? this._filter(steamApp) : this.steamApps.slice()));
-    });
-    this.regions   = this.api.getRegions();
+  async getDropdowns() {
+    // limit the 100+ document calls to get steam games by storing in local storage.
+    if (localStorage.getItem('steam-games') === null) {
+      await this.api.getFireSteamGameList().subscribe((sapp) => {
+        this.steamApps = sapp;
+        localStorage.setItem('steam-games', JSON.stringify(this.steamApps));
+      });
+    } else {
+      this.steamApps = JSON.parse(localStorage.getItem('steam-games'));        
+    }
+
+    this.filteredApps = this.appCtrl.valueChanges.pipe(
+      startWith(null),
+      map((steamApp: App | null) => steamApp ? this._filter(steamApp) : this.steamApps.slice()));
+
+    this.regions = this.api.getRegions();
     this.platforms = this.api.getPlatforms();
-    this.days      = this.api.getDays();
-    this.comms     = this.api.getComms();
+    this.days = this.api.getDays();
+    this.comms = this.api.getComms();
+
+    this.isLoaded = true;
   }
 
   /******************************************
@@ -233,7 +258,7 @@ export class SetupComponent implements OnInit {
    * @param text inputted filter text
    * @returns filtered list of steam apps
    *********************************************/
-  private _filter(text: any): any[] {
+  private _filter(text: any): SteamApp[] {
     const ga  = this.selectedApps;
     const list = _.filter(this.steamApps, (g: SteamApp) => {
       return _.findIndex(ga, {'appid': g.appid}) === -1;
@@ -251,7 +276,7 @@ export class SetupComponent implements OnInit {
   public createFilterFor(query: string) {
     const lowerCaseQuery = query.toString().toLowerCase();
 
-    return function filterFn(app: any) {
+    return function filterFn(app: SteamApp) {
       return (app.name.toString().toLowerCase().indexOf(lowerCaseQuery) === 0);
     };
   }
