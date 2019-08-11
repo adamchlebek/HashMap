@@ -25,17 +25,9 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { FriendCardComponent } from './friend-card/friend-card.component';
 import { ChatButtonComponent } from './chat-button/chat-button.component';
 import { ChatModalComponent } from './chat-modal/chat-modal.component';
+import { environment } from 'src/environments/environment';
 
-/** Google Firebase configuration */
-const config = {
-  apiKey            : 'AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg',
-  authDomain        : 'hashmaporbyt.firebaseapp.com',
-  databaseURL       : 'https://hashmaporbyt.firebaseio.com',
-  projectId         : 'hashmaporbyt',
-  storageBucket     : 'hashmaporbyt.appspot.com',
-  messagingSenderId : '988913741592',
-  appId             : '1:988913741592:web:7044428c9379127f'
-};
+export const firebaseConfig = environment.firebaseConfig;
 
 /***********************************************
  * Ng module declarions, imports, and providers
@@ -58,7 +50,7 @@ const config = {
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-    AngularFireModule.initializeApp(config),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,       // firestore
     AngularFireAuthModule,        // auth
     AngularFireStorageModule,     // storage

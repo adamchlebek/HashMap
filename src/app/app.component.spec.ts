@@ -23,16 +23,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { NetworkComponent } from './network/network.component';
 import { BehaviorSubject } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
-const config = {
-  apiKey            : 'AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg',
-  authDomain        : 'hashmaporbyt.firebaseapp.com',
-  databaseURL       : 'https://hashmaporbyt.firebaseio.com',
-  projectId         : 'hashmaporbyt',
-  storageBucket     : 'hashmaporbyt.appspot.com',
-  messagingSenderId : '988913741592',
-  appId             : '1:988913741592:web:7044428c9379127f'
-};
+export const firebaseConfig = environment.firebaseConfig;
+
 const FirestoreStub = {
   collection: (name: string) => ({
     doc: (_id: string) => ({
@@ -53,7 +47,7 @@ describe('AppComponent', () => {
         BrowserModule,
         AppRoutingModule,
         AngularFontAwesomeModule,
-        AngularFireModule.initializeApp(config),
+        AngularFireModule.initializeApp(firebaseConfig),
         AngularFirestoreModule,       // firestore
         AngularFireAuthModule,        // auth
         AngularFireStorageModule,     // storage

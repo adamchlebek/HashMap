@@ -25,15 +25,9 @@ import { NetworkComponent } from '../network/network.component';
 import { ProfileService } from '../profile/profile.service';
 import { of } from 'rxjs';
 
-const config = {
-  apiKey            : 'AIzaSyDDpHaPU_JxdJF62QK4aZvGol1kxUVsKTg',
-  authDomain        : 'hashmaporbyt.firebaseapp.com',
-  databaseURL       : 'https://hashmaporbyt.firebaseio.com',
-  projectId         : 'hashmaporbyt',
-  storageBucket     : 'hashmaporbyt.appspot.com',
-  messagingSenderId : '988913741592',
-  appId             : '1:988913741592:web:7044428c9379127f'
-};
+import { environment } from 'src/environments/environment';
+
+export const firebaseConfig = environment.firebaseConfig;
 
 describe('SetupComponent', () => {
   let component: SetupComponent;
@@ -59,7 +53,7 @@ describe('SetupComponent', () => {
         BrowserModule,
         AppRoutingModule,
         AngularFontAwesomeModule,
-        AngularFireModule.initializeApp(config),
+        AngularFireModule.initializeApp(firebaseConfig),
         AngularFirestoreModule,       // firestore
         AngularFireAuthModule,        // auth
         AngularFireStorageModule,     // storage
