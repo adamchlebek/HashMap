@@ -8,7 +8,7 @@
       </div>
       <div class="inbox_chat" *ngIf="!isLoading">
         <ng-container *ngFor="let friend of profile._friends">
-            <div [ngClass]="(chatId==(user.uid+friend.uid)) ? 'chat_list active_chat' : 'chat_list'">
+            <div [ngClass]="(chatId==getChatId(friend.uid)) ? 'chat_list active_chat' : 'chat_list'" (click)="changeChat(friend.uid)">
               <div class="chat_people">
                 <div class="chat_img"> <img src="{{friend.photoURL}}" alt="sunil"> </div>
                 <div class="chat_ib">
@@ -42,7 +42,7 @@
                 <div class="outgoing_msg">
                   <div class="sent_msg">
                     <p>{{ msg.content }}</p>
-                    <span class="time_date">{{msg.createdAt | date}}</span> </div>
+                    <span class="time_date">{{msg.createdAt | date:"M/d/yy, h:mm a"}}</span> </div>
                 </div>
               </ng-container>
 
@@ -52,7 +52,7 @@
                   <div class="received_msg">
                     <div class="received_withd_msg">
                       <p>{{ msg.content }}</p>
-                      <span class="time_date">{{msg.createdAt | date}}</span></div>
+                      <span class="time_date">{{msg.createdAt | date:"M/d/yy, h:mm a"}}</span></div>
                   </div>
                 </div>
               </ng-container>

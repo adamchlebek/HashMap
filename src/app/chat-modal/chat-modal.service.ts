@@ -28,6 +28,11 @@ export class ChatModalService {
       );
   }
 
+  get2(chatId: string) {
+    const chatRef = this.afs.doc(`chats/${chatId}`);
+    return chatRef.get();
+  }
+
   async create(chatId) {
     const { uid } = await this.auth.getUser();
     const chatRef = this.afs.doc(`chats/${chatId}`);
@@ -78,7 +83,7 @@ export class ChatModalService {
   
         // Firestore User Doc Reads
         const userDocs = uids.map(u =>
-          this.afs.doc(`users/${u}`).valueChanges()
+          this.afs.doc(`profiles/${u}`).valueChanges()
         );
   
         return userDocs.length ? combineLatest(userDocs) : of([]);

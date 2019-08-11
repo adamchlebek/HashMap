@@ -50,7 +50,6 @@ export class ChatModalComponent implements OnInit {
         } else {
           this.chatId = this.profile.friends[0].id+this.user.uid;
         }
-        
         this.onInitChat();
         this.isLoading = false;
       } else {
@@ -72,16 +71,23 @@ export class ChatModalComponent implements OnInit {
   }
 
   onInitChat() {
-    const source = this.cs.get(this.chatId);
+    this.cs.get2(this.chatId).subscribe((chat: any) => {
+      if(chat.exists) {
+        this.chat$ = this.cs.joinUsers(this.cs.get(this.chatId));
+      } else {
+        this.cs.create(this.chatId);
+      }
+    })
+    // const source = this.cs.get(this.chatId);
     // const source2 = this.cs.get(this.chatId);
     // source.subscribe((src: any) => {
     //   if(!src.exists) {
     //     this.cs.create(this.chatId);
     //   }
     // });
-    console.log(source);
-    this.chat$ = this.cs.joinUsers(source);
-    console.log(this.chat$);
+    //console.log(source);
+    //this.chat$ = this.cs.joinUsers(source);
+    //console.log(this.chat$);
   }
 
   changeChat(id: string) {
@@ -103,6 +109,16 @@ export class ChatModalComponent implements OnInit {
 
   trackByCreated(i, msg) {
     return msg.createdAt;
+  }
+
+  getChatId(id: string) {
+    let chatId = '';
+    if (this.user.uid.localeCompare(id) == 1) {
+      chatId = this.user.uid+id;
+    } else {
+      chatId = id+this.user.uid;
+    }
+    return chatId;
   }
 
 }
