@@ -32,7 +32,7 @@
     "bs-stepper": "^1.6.1",
     "firebase": "^6.2.3",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.11",
     "ngx-toastr": "^10.0.4",
     "ngx-useful-swiper": "^8.0.1-beta.2",
